@@ -175,7 +175,7 @@
         #hero {
             height: 100vh;
             display: grid;
-            grid-template-columns: 1fr 1.1fr;
+            grid-template-columns: 1fr 1fr;
             position: relative;
             background-color: var(--bg-color);
         }
@@ -192,7 +192,7 @@
         }
 
         .hero-content {
-            padding: 0 0 0 5rem;
+            padding: 0 5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -295,31 +295,31 @@
             animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* HERO VISUALS REMIX */
-        .img-3 { /* Sunglasses (THE HIGHLIGHT - FRONT & LARGER) */
-            height: 102%;
-            bottom: -2%;
-            left: 36%; /* Moved left slightly */
-            z-index: 4;
-            transform: translateX(-20%) translateY(50px);
+        /* UPDATED HERO IMAGES POSITIONING */
+        .img-1 { /* Yellow Sweater */
+            height: 80%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-70%) translateY(50px);
+            z-index: 3;
             animation-delay: 0.4s;
         }
 
-        .img-1 { /* Yellow Sweater */
-            height: 76%;
+        .img-2 { /* Mirror */
+            height: 70%;
             bottom: 0;
-            left: 38%; /* Moved left slightly */
-            transform: translateX(-70%) translateY(50px);
+            right: 0;
             z-index: 2;
+            transform: translateY(50px);
             animation-delay: 0.6s;
         }
 
-        .img-2 { /* Mirror Selfie (BIGGER) */
-            height: 82%;
+        .img-3 { /* Sunglasses (back/big) */
+            height: 90%;
             bottom: 0;
-            right: 12%; /* Moved left slightly */
-            z-index: 3;
-            transform: translateY(50px);
+            left: 50%;
+            z-index: 1;
+            transform: translateX(-20%) translateY(50px);
             animation-delay: 0.8s;
         }
 
@@ -535,40 +535,22 @@
         .kayura-card .project-left {
             background-color: var(--kayura-purple);
             color: #fff;
-            padding-right: 120px; /* Leave breathing room for right-aligned logo */
         }
         
-        /* KAYURA HEADER FLEX BOX FOR DESIGN TEXT FORMATTING */
-        .kayura-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            position: relative;
-            width: 100%;
-        }
-
-        .kayura-titles-block {
-            flex: 1;
-        }
-        
+        /* UPDATED KAYURA LOGO STYLES */
         .kayura-logo {
-            width: 135px; /* Bigger logo */
+            width: 90px;
             height: auto;
             object-fit: contain;
-            position: absolute;
-            right: -80px; /* Moved to the right side of the magenta half */
-            top: -10px;
+            margin-bottom: 2rem;
         }
 
         .kayura-card .project-label {
             color: var(--kayura-orange);
-            margin-bottom: 1rem;
         }
 
         .kayura-card .project-tagline {
             opacity: 0.8;
-            margin-bottom: 2.5rem;
         }
 
         .kayura-card .pill-tag {
@@ -577,12 +559,10 @@
 
         .kayura-watermark {
             position: absolute;
-            bottom: 0; /* Adjusted to fit completely inside the container */
-            right: 0;
+            bottom: -2rem;
+            right: -2rem;
             opacity: 0.12;
-            width: 220px;
-            max-height: 100%;
-            object-fit: contain;
+            width: 250px;
             pointer-events: none;
         }
 
@@ -651,50 +631,31 @@
             background-color: #F5F2EE;
             border: 1px solid #e5e0d8;
             color: var(--text-dark);
-            display: grid;
-            grid-template-columns: 1.4fr 0.9fr; /* Left side grid to layout content & phone side-by-side */
-            gap: 1.5rem;
-            padding: 3.5rem;
-            align-items: center;
         }
 
-        .workpluss-text-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .workpluss-phone-col {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
-
+        /* UPDATED WORKPLUSS LOGO STYLES */
         .workpluss-logo {
-            width: 250px; 
+            width: 280px; 
             max-width: 100%;
             height: auto;
             object-fit: contain;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .workpluss-card .project-label {
             color: var(--accent-rust);
-            margin-bottom: 1rem;
         }
 
         .workpluss-card .project-title {
             color: var(--workpluss-navy);
             font-size: 3rem;
-            margin-bottom: 1rem;
         }
 
         .workpluss-points {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
-            margin-top: 1rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .workpluss-point {
@@ -734,46 +695,45 @@
             flex-direction: column;
         }
 
-        /* WATERMARK (VERY VISIBLE & REPOSITIONED TO THE RIGHT COLUMN WITH MAIN SCREEN) */
         .workpluss-watermark {
             position: absolute;
-            top: 25%;
-            right: 5%;
-            width: 180px;
-            opacity: 0.55; /* Enhanced opacity to make it very visible */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            opacity: 0.08;
             pointer-events: none;
-            z-index: 2;
         }
 
+        /* UPDATED WORKPLUSS MOCKUPS STYLES */
         .workpluss-mockups {
             flex-grow: 1;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
         }
 
-        /* SCREEN 1 PICTURE (MADE BIGGER) */
         .screen-1 {
-            width: 88%; /* Expanded size */
+            position: absolute;
+            left: 8%;
+            width: 60%;
             height: auto;
             object-fit: contain;
             border-radius: 8px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* PHONE MOCKUP (PLACED NEXT TO TEXT IN LEFT COLUMN) */
         .phone-mockup {
-            max-height: 380px;
+            position: absolute;
+            right: 8%;
+            height: 80%;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
         }
 
-        /* Project 3: Strategic Comm (Laxminarayan Slide) */
+        /* Project 3: Strategic Comm */
         .strat-card .project-left {
             background-color: var(--card-dark);
             color: #fff;
@@ -1029,7 +989,7 @@
             #hero { height: auto; padding-top: 8rem; padding-bottom: 4rem; }
             .hero-visuals { display: none; }
             #hero { grid-template-columns: 1fr; }
-            .hero-content { align-items: center; text-align: center; padding: 0 2rem; }
+            .hero-content { align-items: center; text-align: center; }
             .hero-chips { justify-content: center; }
             .scroll-hint { position: relative; bottom: auto; left: auto; margin-top: 4rem; justify-content: center; }
         }
@@ -1049,28 +1009,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .workpluss-card .project-left {
-                grid-template-columns: 1fr;
-                padding: 2rem;
-            }
-
-            .workpluss-phone-col {
-                display: none;
-            }
-
-            .kayura-logo {
-                position: relative;
-                right: auto;
-                top: auto;
-                margin-bottom: 1.5rem;
-                display: block;
-            }
-            .kayura-card .project-left { padding-right: 2rem; }
-
             .kayura-card .project-right, .workpluss-card .project-right, 
             .strat-card .project-right, .soul-card .project-right {
                 min-height: 400px;
             }
+
+            .workpluss-mockups { display: none; }
             
             footer { flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
         }
@@ -1112,9 +1056,9 @@
             <div class="scroll-hint reveal">Scroll to explore</div>
         </div>
         <div class="hero-visuals">
+            <img src="images/Riya_Hero_3.png" alt="Riya Sunglasses" class="hero-img img-3">
             <img src="images/Riya_Hero_1.png" alt="Riya Yellow Sweater" class="hero-img img-1">
             <img src="images/Riya_Hero_2.png" alt="Riya Mirror Selfie" class="hero-img img-2">
-            <img src="images/Riya_Hero_3.png" alt="Riya Sunglasses" class="hero-img img-3">
         </div>
     </header>
 
@@ -1151,13 +1095,9 @@
         
         <div class="project-card kayura-card reveal">
             <div class="project-left">
-                <div class="kayura-header">
-                    <div class="kayura-titles-block">
-                        <span class="project-label">Mom's Care Project · Brand Strategy</span>
-                        <h3 class="project-title font-bebas">Kayura Home Made</h3>
-                    </div>
-                    <img src="images/KAYURA_LOGO.png" class="kayura-logo" alt="Kayura Logo">
-                </div>
+                <img src="images/KAYURA_LOGO.png" class="kayura-logo" alt="Kayura Logo">
+                <span class="project-label">Mom's Care Project · Brand Strategy</span>
+                <h3 class="project-title font-bebas">Kayura Home Made</h3>
                 <p class="project-tagline font-playfair italic">Luxury-grade Ayurvedic care for the Mass Affluent — where heritage meets premium positioning.</p>
                 <div class="project-tags">
                     <span class="pill-tag">Naming</span>
@@ -1204,34 +1144,30 @@
 
         <div class="project-card workpluss-card reveal">
             <div class="project-left">
-                <div class="workpluss-text-content">
-                    <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss" class="workpluss-logo">
-                    <span class="project-label">Tech-Hustle Project · GTM Strategy</span>
-                    <h3 class="project-title font-bebas">WorkPluss</h3>
-                    <p class="project-tagline font-playfair italic">Solving the gig-economy trust deficit — where instant payouts meet lean commission economics.</p>
-                    <div class="workpluss-points">
-                        <div class="workpluss-point">
-                            <div class="point-num">1</div>
-                            <div class="point-text"><strong>Instant Payout Advantage:</strong> Payment immediately post-job completion closes the trust gap.</div>
-                        </div>
-                        <div class="workpluss-point">
-                            <div class="point-num">2</div>
-                            <div class="point-text"><strong>10% Commission Model:</strong> Sustainable revenue that respects the worker.</div>
-                        </div>
-                        <div class="workpluss-point">
-                            <div class="point-num">3</div>
-                            <div class="point-text"><strong>Events Sector GTM:</strong> High-frequency, trust-critical market entry point.</div>
-                        </div>
+                <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss" class="workpluss-logo">
+                <span class="project-label">Tech-Hustle Project · GTM Strategy</span>
+                <h3 class="project-title font-bebas">WorkPluss</h3>
+                <p class="project-tagline font-playfair italic">Solving the gig-economy trust deficit — where instant payouts meet lean commission economics.</p>
+                <div class="workpluss-points">
+                    <div class="workpluss-point">
+                        <div class="point-num">1</div>
+                        <div class="point-text"><strong>Instant Payout Advantage:</strong> Payment immediately post-job completion closes the trust gap.</div>
                     </div>
-                </div>
-                <div class="workpluss-phone-col">
-                    <img src="images/WORKPLUSS_PHONE.png" class="phone-mockup" alt="Mobile App Mockup">
+                    <div class="workpluss-point">
+                        <div class="point-num">2</div>
+                        <div class="point-text"><strong>10% Commission Model:</strong> Sustainable revenue that respects the worker.</div>
+                    </div>
+                    <div class="workpluss-point">
+                        <div class="point-num">3</div>
+                        <div class="point-text"><strong>Events Sector GTM:</strong> High-frequency, trust-critical market entry point.</div>
+                    </div>
                 </div>
             </div>
             <div class="project-right">
                 <img src="images/WORKPLUSS_WATERMARK.png" class="workpluss-watermark" alt="Workpluss Watermark">
                 <div class="workpluss-mockups">
                     <img src="images/WORKPLUSS_SCREEN.png" class="screen-1" alt="Platform UI">
+                    <img src="images/WORKPLUSS_PHONE.png" class="phone-mockup" alt="Mobile App Mockup">
                 </div>
                 <div class="swatches" style="margin-top: auto;">
                     <div class="swatch" style="background-color: var(--workpluss-navy);">#3A2850</div>
@@ -1253,11 +1189,11 @@
                 </div>
             </div>
             <div class="project-right">
-                <img src="images/STRATCOMM_3.png" class="strat-img-full" alt="Presentation Slide 3" style="height: 50%; padding-bottom: 0.5rem;">
                 <div class="strat-img-row">
                     <img src="images/STRATCOMM_1.png" alt="Presentation Slide 1">
                     <img src="images/STRATCOMM_2.png" alt="Presentation Slide 2">
                 </div>
+                <img src="images/STRATCOMM_3.png" class="strat-img-full" alt="Presentation Slide 3">
             </div>
         </div>
 
