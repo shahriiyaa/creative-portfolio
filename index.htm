@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riya Shah | Strategy × Soul × Substance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-color: #F5F2EE;
+            --text-dark: #1A1A1A;
+            --accent-rust: #7D3019;
+            
+            --kayura-purple: #6A1C57;
+            --kayura-orange: #F89B1F;
+            --kayura-blush: #F2DCD5;
+            
+            --workpluss-navy: #3A2850;
+            --workpluss-gold: #FACC15;
+            --workpluss-light: #FFF3F4;
+
+            --card-dark: #1A1A1A;
+            --card-darker: #1C1C1C;
+            --card-cream: #EDE8DF;
+        }
+
+        /* Reset & Base Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+            line-height: 1.5;
+            cursor: none; /* Custom cursor fallback */
+        }
+
+        /* Typography */
+        h1, h2, h3, .font-bebas {
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+        }
+
+        .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-rust);
+            transition: transform 0.2s ease-out;
+        }
+
+        .cursor-ring {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--accent-rust);
+            transition: width 0.3s ease-out, height 0.3s ease-out;
+        }
+
+        .cursor-hover .cursor-dot {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: transparent;
+        }
+
+        .cursor-hover .cursor-ring {
+            width: 60px;
+            height: 60px;
+            opacity: 0.2;
+        }
+
+        @media (hover: none) {
+            .cursor-dot, .cursor-ring {
+                display: none !important;
+            }
+            body {
+                cursor: auto;
+            }
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.4rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: multiply;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .logo-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-rust);
+            border-radius: 50%;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            background-color: var(--bg-color);
+        }
+
+        /* Grain texture */
+        #hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.4;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            padding: 0 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero-title {
+            font-size: clamp(4.5rem, 8vw, 7.5rem);
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            opacity: 0;
+            animation: fadeUp 0.8s forwards;
+            animation-delay: 0.5s;
+        }
+
+        .hero-title .rust-x {
+            color: var(--accent-rust);
+        }
+
+        .hero-subline {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards;
+            animation-delay: 0.7s;
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeUp 0.8s forwards;
+            animation-delay: 0.9s;
+        }
+
+        .chip {
+            padding: 0.5rem 1.5rem;
+            border: 1.5px solid var(--text-dark);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chip:hover {
+            background-color: var(--text-dark);
+            color: #fff;
+        }
+
+        .hero-visuals {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Abstract shapes */
+        .hero-visuals::before, .hero-visuals::after {
+            content: '';
+            position: absolute;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .hero-visuals::before {
+            background: var(--text-dark);
+            width: 300px;
+            height: 400px;
+            top: 20%;
+            right: 10%;
+            transform: rotate(-5deg);
+        }
+
+        .hero-visuals::after {
+            background: var(--accent-rust);
+            width: 250px;
+            height: 350px;
+            bottom: 10%;
+            left: 20%;
+            transform: rotate(10deg);
+        }
+
+        .hero-img {
+            position: absolute;
+            object-fit: contain;
+            opacity: 0;
+            animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .img-1 {
+            height: 88%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-60%) translateY(50px);
+            z-index: 3;
+            animation-delay: 0.4s;
+        }
+
+        .img-2 {
+            height: 75%;
+            bottom: 0;
+            right: 0;
+            z-index: 2;
+            transform: translateY(50px);
+            animation-delay: 0.6s;
+        }
+
+        .img-3 {
+            height: 65%;
+            bottom: 0;
+            left: 5%;
+            z-index: 1;
+            transform: translateY(50px);
+            animation-delay: 0.8s;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 3rem;
+            left: 5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.4;
+            z-index: 5;
+        }
+
+        .scroll-hint::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background-color: var(--text-dark);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0) translateX(var(--tx, 0)); }
+        }
+
+        .img-1 { --tx: -60%; }
+
+        /* About Section */
+        #about {
+            padding: 8rem 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-label {
+            color: var(--accent-rust);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .about-title {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            margin-bottom: 2rem;
+            line-height: 1;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .about-text strong {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .philosophy-card-wrapper {
+            position: relative;
+        }
+
+        .philosophy-bg-rect {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 120px;
+            height: 120px;
+            background-color: var(--accent-rust);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .philosophy-card {
+            background-color: var(--card-dark);
+            padding: 3rem;
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+
+        .philosophy-tag {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background-color: var(--accent-rust);
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .philosophy-quote {
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-author {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            padding: 2rem 5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-divider-text {
+            color: var(--accent-rust);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .section-divider-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--accent-rust);
+            opacity: 0.3;
+        }
+
+        /* Project Cards */
+        #work {
+            padding: 0 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            padding-bottom: 8rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.06);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .project-left {
+            padding: 4rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .project-tagline {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 2.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .pill-tag {
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Project 1: Kayura */
+        .kayura-card .project-left {
+            background-color: var(--kayura-purple);
+            color: #fff;
+        }
+        
+        .kayura-card .project-label {
+            color: var(--kayura-orange);
+        }
+
+        .kayura-card .project-tagline {
+            opacity: 0.8;
+        }
+
+        .kayura-card .pill-tag {
+            background-color: rgba(255,255,255,0.12);
+        }
+
+        .kayura-watermark {
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            opacity: 0.12;
+            width: 250px;
+            pointer-events: none;
+        }
+
+        .kayura-card .project-right {
+            background-color: var(--kayura-blush);
+            display: grid;
+            grid-template-rows: 1fr auto auto;
+        }
+
+        .kayura-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+        }
+
+        .kayura-img-wrap {
+            position: relative;
+            height: 100%;
+        }
+
+        .kayura-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .kayura-logo-overlay {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 80px !important;
+            height: auto !important;
+        }
+
+        .swatches {
+            display: flex;
+            height: 40px;
+        }
+
+        .swatch {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+        }
+
+        .kayura-strat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: #fff;
+            padding: 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .strat-item h4 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 0.3rem;
+        }
+
+        .strat-item p {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Project 2: WorkPluss */
+        .workpluss-card .project-left {
+            background-color: #F5F2EE;
+            border: 1px solid #e5e0d8;
+            color: var(--text-dark);
+        }
+
+        .workpluss-logo {
+            height: 36px;
+            margin-bottom: 2rem;
+        }
+
+        .workpluss-card .project-label {
+            color: var(--accent-rust);
+        }
+
+        .workpluss-card .project-title {
+            color: var(--workpluss-navy);
+            font-size: 3rem;
+        }
+
+        .workpluss-points {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .workpluss-point {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .point-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--workpluss-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--workpluss-navy);
+            flex-shrink: 0;
+        }
+
+        .point-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .point-text strong {
+            color: var(--workpluss-navy);
+        }
+
+        .workpluss-card .project-right {
+            background-color: var(--workpluss-navy);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .workpluss-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .workpluss-mockups {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .screen-1 {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 55%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .phone-mockup {
+            position: absolute;
+            bottom: -5%;
+            right: -5%;
+            height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+        }
+
+        /* Project 3: Strategic Comm */
+        .strat-card .project-left {
+            background-color: var(--card-dark);
+            color: #fff;
+        }
+
+        .strat-card .project-label {
+            color: var(--accent-rust);
+        }
+
+        .strat-card .project-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .strat-card .project-tagline {
+            font-size: 1.05rem;
+            opacity: 0.8;
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+        }
+
+        .strat-card .pill-tag {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .strat-card .project-right {
+            background-color: var(--card-dark);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .strat-img-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            height: 50%;
+        }
+
+        .strat-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .strat-img-full {
+            height: 50%;
+        }
+
+        /* Project 4: Unfinished You */
+        .soul-card .project-left {
+            background-color: var(--card-cream);
+        }
+
+        .soul-card .project-label {
+            color: var(--accent-rust);
+        }
+
+        .soul-card .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            text-transform: none;
+        }
+
+        .soul-card .project-tagline {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .soul-metric {
+            margin-top: 2rem;
+            display: inline-block;
+            background-color: var(--text-dark);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .soul-card .project-right {
+            background-color: var(--card-darker);
+            position: relative;
+        }
+
+        .soul-card .project-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--card-dark);
+            color: #fff;
+            padding: 8rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18vw;
+            opacity: 0.03;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-label {
+            color: var(--accent-rust);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-title {
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .contact-sub {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 80%;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-rust);
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .contact-form input, .contact-form textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 1rem;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: #A0401F;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-rust);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #923a1e;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-dark);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255,255,255,0.25);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            #hero { height: auto; padding-top: 8rem; padding-bottom: 4rem; }
+            .hero-visuals { display: none; }
+            #hero { grid-template-columns: 1fr; }
+            .hero-content { align-items: center; text-align: center; }
+            .hero-chips { justify-content: center; }
+            .scroll-hint { position: relative; bottom: auto; left: auto; margin-top: 4rem; justify-content: center; }
+        }
+
+        @media (max-width: 900px) {
+            nav { padding: 1.2rem 2rem; }
+            .nav-links { gap: 1.5rem; }
+            
+            #about, #contact, footer, .section-divider, #work { padding-left: 2rem; padding-right: 2rem; }
+            
+            #about, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .kayura-card .project-right, .workpluss-card .project-right, 
+            .strat-card .project-right, .soul-card .project-right {
+                min-height: 400px;
+            }
+
+            .workpluss-mockups { display: none; }
+            
+            footer { flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 3.5rem; }
+            .project-left { padding: 2rem; }
+            .project-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <nav>
+        <a href="#" class="logo">RS <div class="logo-dot"></div></a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Brand Strategy Portfolio</div>
+            <h1 class="hero-title">Strategy <span class="rust-x">×</span> Soul <span class="rust-x">×</span> Substance</h1>
+            <div class="hero-subline font-playfair italic">Giving meaning direction — one brand at a time.</div>
+            <div class="hero-chips">
+                <span class="chip">Brand Positioning</span>
+                <span class="chip">Consumer Behaviour</span>
+                <span class="chip">Storytelling</span>
+                <span class="chip">GTM Strategy</span>
+            </div>
+            
+            <div class="scroll-hint reveal">Scroll to explore</div>
+        </div>
+        <div class="hero-visuals">
+            <img src="[Riya_Hero_3]" alt="Riya Standing" class="hero-img img-3">
+            <img src="[Riya_Hero_1]" alt="Riya Portrait" class="hero-img img-1">
+            <img src="[Riya_Hero_2]" alt="Riya Mirror" class="hero-img img-2">
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="about-left reveal">
+            <span class="about-label">Meet the Person</span>
+            <h2 class="about-title font-bebas">About Riya</h2>
+            <p class="about-text">
+                I'm <strong>Riya Shah</strong>, a strategist and founder drawn to the emotional side of business: the stories people carry, the identities they aspire toward, and the quiet psychology behind what resonates.<br><br>
+                My work sits at the intersection of <strong>strategy, culture, consumer behavior, and storytelling</strong>.<br><br>
+                From building a heritage-led skincare brand to shaping trust-first systems for the gig economy, I'm interested in ideas that combine clarity with emotional depth. I'm especially drawn to brands that feel <strong>human — thoughtful, intentional, and culturally aware</strong>.
+            </p>
+        </div>
+        <div class="about-right reveal">
+            <div class="philosophy-card-wrapper">
+                <div class="philosophy-bg-rect"></div>
+                <div class="philosophy-card">
+                    <span class="philosophy-tag">Philosophy</span>
+                    <blockquote class="philosophy-quote font-playfair italic">
+                        "Strategy is the art of giving meaning direction."
+                    </blockquote>
+                    <cite class="philosophy-author">— Riya Shah</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider reveal">
+        <span class="section-divider-text">Selected Work</span>
+        <div class="section-divider-line"></div>
+    </div>
+
+    <section id="work">
+        
+        <div class="project-card kayura-card reveal">
+            <div class="project-left">
+                <span class="project-label">Mom's Care Project · Brand Strategy</span>
+                <h3 class="project-title font-bebas">Kayura Home Made</h3>
+                <p class="project-tagline font-playfair italic">Luxury-grade Ayurvedic care for the Mass Affluent — where heritage meets premium positioning.</p>
+                <div class="project-tags">
+                    <span class="pill-tag">Naming</span>
+                    <span class="pill-tag">Positioning</span>
+                    <span class="pill-tag">Visual Identity</span>
+                    <span class="pill-tag">Heritage Storytelling</span>
+                </div>
+                <img src="[KAYURA_WATERMARK]" class="kayura-watermark" alt="">
+            </div>
+            <div class="project-right">
+                <div class="kayura-images">
+                    <div class="kayura-img-wrap">
+                        <img src="[KAYURA_ALL_PRODUCTS_IMAGE]" alt="Kayura Products">
+                        <img src="[KAYURA_LOGO]" class="kayura-logo-overlay" alt="Kayura Logo">
+                    </div>
+                    <div class="kayura-img-wrap">
+                        <img src="[KAYURA_HAMPER]" alt="Kayura Hamper">
+                    </div>
+                </div>
+                <div class="swatches">
+                    <div class="swatch" style="background-color: var(--kayura-purple);">#6A1C57</div>
+                    <div class="swatch" style="background-color: var(--kayura-orange); color: var(--text-dark);">#F89B1F</div>
+                    <div class="swatch" style="background-color: var(--kayura-blush); color: var(--text-dark);">#F2DCD5</div>
+                </div>
+                <div class="kayura-strat-grid">
+                    <div class="strat-item">
+                        <h4>Target Segment</h4>
+                        <p>Mass Affluent</p>
+                    </div>
+                    <div class="strat-item">
+                        <h4>Naming Logic</h4>
+                        <p>Care + Kavita + Ayurveda</p>
+                    </div>
+                    <div class="strat-item">
+                        <h4>Anchor Pillar</h4>
+                        <p>Heritage Authenticity</p>
+                    </div>
+                    <div class="strat-item">
+                        <h4>Ingredient Story</h4>
+                        <p>100% Organic · No Chemicals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card workpluss-card reveal">
+            <div class="project-left">
+                <img src="[WORKPLUSS_LOGO]" alt="WorkPluss" class="workpluss-logo">
+                <span class="project-label">Tech-Hustle Project · GTM Strategy</span>
+                <h3 class="project-title font-bebas">WorkPluss</h3>
+                <p class="project-tagline font-playfair italic">Solving the gig-economy trust deficit — where instant payouts meet lean commission economics.</p>
+                <div class="workpluss-points">
+                    <div class="workpluss-point">
+                        <div class="point-num">1</div>
+                        <div class="point-text"><strong>Instant Payout Advantage:</strong> Payment immediately post-job completion closes the trust gap.</div>
+                    </div>
+                    <div class="workpluss-point">
+                        <div class="point-num">2</div>
+                        <div class="point-text"><strong>10% Commission Model:</strong> Sustainable revenue that respects the worker.</div>
+                    </div>
+                    <div class="workpluss-point">
+                        <div class="point-num">3</div>
+                        <div class="point-text"><strong>Events Sector GTM:</strong> High-frequency, trust-critical market entry point.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-right">
+                <img src="[WORKPLUSS_WATERMARK]" class="workpluss-watermark" alt="">
+                <div class="workpluss-mockups">
+                    <img src="[WORKPLUSS_SCREEN]" class="screen-1" alt="Platform UI">
+                    <img src="[WORKPLUSS_PHONE]" class="phone-mockup" alt="Mobile App Mockup">
+                </div>
+                <div class="swatches" style="margin-top: auto;">
+                    <div class="swatch" style="background-color: var(--workpluss-navy);">#3A2850</div>
+                    <div class="swatch" style="background-color: var(--workpluss-gold); color: var(--text-dark);">#FACC15</div>
+                    <div class="swatch" style="background-color: var(--workpluss-light); color: var(--text-dark);">#FFF3F4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card strat-card reveal">
+            <div class="project-left">
+                <span class="project-label">Strategic Communication</span>
+                <h3 class="project-title font-bebas">Pitch. Position. Persuade.</h3>
+                <p class="project-tagline">Beyond founder-led ventures, I've supported businesses across finance, advisory, and consumer sectors through strategic storytelling, pitch narratives, and presentation design focused on clarity, positioning, and communication impact.</p>
+                <div class="project-tags" style="margin-top: 2rem;">
+                    <span class="pill-tag">Laxmi Narayan Mithai</span>
+                    <span class="pill-tag">VCFO + Internal Audit</span>
+                    <span class="pill-tag">Sector Communication</span>
+                </div>
+            </div>
+            <div class="project-right">
+                <div class="strat-img-row">
+                    <img src="[STRATCOMM_1]" alt="Presentation Slide 1">
+                    <img src="[STRATCOMM_2]" alt="Presentation Slide 2">
+                </div>
+                <img src="[STRATCOMM_3]" class="strat-img-full" alt="Presentation Slide 3">
+            </div>
+        </div>
+
+        <div class="project-card soul-card reveal">
+            <div class="project-left">
+                <span class="project-label">My Soul Project</span>
+                <h3 class="project-title">The Unfinished You</h3>
+                <p class="project-tagline italic font-playfair" style="margin-bottom: 1.5rem;">Wisdom in what remains Undone</p>
+                <p class="about-text" style="font-size: 1rem;">Moving social media from Aspiration to Validation — building authentic connection through shared human experience. A community of collective vulnerability.</p>
+                <div class="soul-metric">↑ Saves & Shares over vanity metrics</div>
+            </div>
+            <div class="project-right">
+                <img src="[UNFINISHED_YOU]" alt="The Unfinished You Abstract Visual">
+            </div>
+        </div>
+
+    </section>
+
+    <section id="contact">
+        <div class="contact-bg-text">LETS TALK</div>
+        <div class="contact-grid reveal">
+            <div class="contact-left">
+                <span class="contact-label">Let's Build Something Soul-Centered</span>
+                <h2 class="contact-title font-bebas">Let's Talk.</h2>
+                <p class="contact-sub">Whether you're a founder seeking clarity, a brand craving meaning, or a dreamer ready to turn vision into reality — I'm here to help craft strategy with substance and heart.</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:riya.shah01@yahoo.com" class="contact-link">
+                        <div class="contact-icon">@</div>
+                        riya.shah01@yahoo.com
+                    </a>
+                    <a href="tel:+918805055860" class="contact-link">
+                        <div class="contact-icon">✆</div>
+                        +91 8805 055 860
+                    </a>
+                </div>
+            </div>
+            <div class="contact-right">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell me about your brand</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send it →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>© 2026 Riya Shah</div>
+        <div>Strategy × Soul × Substance</div>
+        <div>Brand Strategist · Pune</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* --- Custom Cursor Logic --- */
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorRing = document.querySelector('.cursor-ring');
+            
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let ringX = mouseX;
+            let ringY = mouseY;
+            
+            // Check if touch device
+            const isTouchDevice = (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+            
+            if (!isTouchDevice) {
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    
+                    // Update dot instantly
+                    cursorDot.style.left = `${mouseX}px`;
+                    cursorDot.style.top = `${mouseY}px`;
+                });
+                
+                // Animation loop for ring lag
+                const render = () => {
+                    // Lerp formula: current = current + (target - current) * factor
+                    ringX += (mouseX - ringX) * 0.15;
+                    ringY += (mouseY - ringY) * 0.15;
+                    
+                    cursorRing.style.left = `${ringX}px`;
+                    cursorRing.style.top = `${ringY}px`;
+                    
+                    requestAnimationFrame(render);
+                };
+                requestAnimationFrame(render);
+                
+                // Hover states on interactables
+                const interactables = document.querySelectorAll('a, button, .chip');
+                interactables.forEach(el => {
+                    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+                    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+                });
+            }
+
+            /* --- Scroll Reveal Logic --- */
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            /* --- Form Handler --- */
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+                    
+                    const subject = encodeURIComponent(`Brand Strategy Inquiry from ${name}`);
+                    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                    
+                    window.location.href = `mailto:riya.shah01@yahoo.com?subject=${subject}&body=${body}`;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
