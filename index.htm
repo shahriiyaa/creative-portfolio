@@ -152,6 +152,15 @@
             margin-top: 4px;
         }
 
+        .logo-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--accent-rust);
+            margin-left: 6px;
+            margin-top: 5px;
+        }
+
         .nav-links {
             display: flex;
             gap: 2.5rem;
@@ -199,25 +208,14 @@
             z-index: 2;
         }
 
-        .hero-eyebrow {
-            font-size: 0.7rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--accent-rust);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeUp 0.8s forwards;
-            animation-delay: 0.3s;
-        }
-
         .hero-title {
             font-size: clamp(4.5rem, 8vw, 7.5rem);
-            line-height: 0.95;
+            line-height: 1;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
             opacity: 0;
             animation: fadeUp 0.8s forwards;
-            animation-delay: 0.5s;
+            animation-delay: 0.3s;
         }
 
         .hero-title .rust-x {
@@ -230,7 +228,7 @@
             margin-bottom: 3rem;
             opacity: 0;
             animation: fadeUp 0.8s forwards;
-            animation-delay: 0.7s;
+            animation-delay: 0.5s;
         }
 
         .hero-chips {
@@ -239,12 +237,12 @@
             gap: 1rem;
             opacity: 0;
             animation: fadeUp 0.8s forwards;
-            animation-delay: 0.9s;
+            animation-delay: 0.7s;
         }
 
         .chip {
             padding: 0.5rem 1.5rem;
-            border: 1.5px solid var(--text-dark);
+            border: 1px solid var(--text-dark);
             border-radius: 100px;
             font-size: 0.85rem;
             font-weight: 500;
@@ -262,30 +260,29 @@
             z-index: 2;
         }
 
-        /* Abstract shapes */
+        /* Abstract shapes matching the image */
         .hero-visuals::before, .hero-visuals::after {
             content: '';
             position: absolute;
-            opacity: 0.15;
             z-index: -1;
         }
 
         .hero-visuals::before {
-            background: var(--text-dark);
-            width: 300px;
-            height: 400px;
-            top: 20%;
-            right: 10%;
-            transform: rotate(-5deg);
+            background: #E5E0D8;
+            width: 350px;
+            height: 480px;
+            top: 15%;
+            right: 5%;
+            transform: rotate(-3deg);
         }
 
         .hero-visuals::after {
-            background: var(--accent-rust);
-            width: 250px;
-            height: 350px;
-            bottom: 10%;
-            left: 20%;
-            transform: rotate(10deg);
+            background: #EEDAD1;
+            width: 280px;
+            height: 380px;
+            bottom: 20%;
+            left: 15%;
+            transform: rotate(8deg);
         }
 
         .hero-img {
@@ -296,16 +293,16 @@
         }
 
         .img-1 {
-            height: 88%;
+            height: 85%;
             bottom: 0;
             left: 50%;
-            transform: translateX(-60%) translateY(50px);
+            transform: translateX(-40%) translateY(50px);
             z-index: 3;
             animation-delay: 0.4s;
         }
 
         .img-2 {
-            height: 75%;
+            height: 65%;
             bottom: 0;
             right: 0;
             z-index: 2;
@@ -314,9 +311,9 @@
         }
 
         .img-3 {
-            height: 65%;
+            height: 70%;
             bottom: 0;
-            left: 5%;
+            left: 15%;
             z-index: 1;
             transform: translateY(50px);
             animation-delay: 0.8s;
@@ -354,7 +351,7 @@
             to { opacity: 1; transform: translateY(0) translateX(var(--tx, 0)); }
         }
 
-        .img-1 { --tx: -60%; }
+        .img-1 { --tx: -40%; }
 
         /* About Section */
         #about {
@@ -1021,7 +1018,7 @@
     <div class="cursor-ring"></div>
 
     <nav>
-        <a href="#" class="logo">RS <div class="logo-dot"></div></a>
+        <a href="#" class="logo">RS <div class="logo-dot"></div> <span class="logo-text">BRAND STRATEGY PORTFOLIO</span></a>
         <div class="nav-links">
             <a href="#work">Work</a>
             <a href="#about">About</a>
@@ -1031,8 +1028,11 @@
 
     <header id="hero">
         <div class="hero-content">
-            <div class="hero-eyebrow">Brand Strategy Portfolio</div>
-            <h1 class="hero-title">Strategy <span class="rust-x">×</span> Soul <span class="rust-x">×</span> Substance</h1>
+            <h1 class="hero-title">
+                Strategy <span class="rust-x">×</span><br>
+                Soul <span class="rust-x">×</span><br>
+                Substance
+            </h1>
             <div class="hero-subline font-playfair italic">Giving meaning direction — one brand at a time.</div>
             <div class="hero-chips">
                 <span class="chip">Brand Positioning</span>
@@ -1044,9 +1044,9 @@
             <div class="scroll-hint reveal">Scroll to explore</div>
         </div>
         <div class="hero-visuals">
-            <img src="images/Riya_Hero_2.png" alt="Riya Mirror" class="hero-img img-3">
-            <img src="images/Riya_Hero_3.png" alt="Riya Standing" class="hero-img img-1">
-            <img src="images/Riya_Hero_1.png" alt="Riya Portrait" class="hero-img img-2">
+            <img src="images/Riya_Hero_3.png" alt="Riya Sunglasses" class="hero-img img-3">
+            <img src="images/Riya_Hero_1.png" alt="Riya Yellow Sweater" class="hero-img img-1">
+            <img src="images/Riya_Hero_2.png" alt="Riya Mirror Selfie" class="hero-img img-2">
         </div>
     </header>
 
@@ -1092,16 +1092,16 @@
                     <span class="pill-tag">Visual Identity</span>
                     <span class="pill-tag">Heritage Storytelling</span>
                 </div>
-                <img src="[KAYURA_WATERMARK]" class="kayura-watermark" alt="">
+                <img src="images/KAYURA_WATERMARK.png" class="kayura-watermark" alt="">
             </div>
             <div class="project-right">
                 <div class="kayura-images">
                     <div class="kayura-img-wrap">
-                        <img src="[KAYURA_ALL_PRODUCTS_IMAGE]" alt="Kayura Products">
-                        <img src="[KAYURA_LOGO]" class="kayura-logo-overlay" alt="Kayura Logo">
+                        <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Products">
+                        <img src="images/KAYURA_LOGO.png" class="kayura-logo-overlay" alt="Kayura Logo">
                     </div>
                     <div class="kayura-img-wrap">
-                        <img src="[KAYURA_HAMPER]" alt="Kayura Hamper">
+                        <img src="images/KAYURA_HAMPER.jpg" alt="Kayura Hamper">
                     </div>
                 </div>
                 <div class="swatches">
@@ -1132,7 +1132,7 @@
 
         <div class="project-card workpluss-card reveal">
             <div class="project-left">
-                <img src="[WORKPLUSS_LOGO]" alt="WorkPluss" class="workpluss-logo">
+                <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss" class="workpluss-logo">
                 <span class="project-label">Tech-Hustle Project · GTM Strategy</span>
                 <h3 class="project-title font-bebas">WorkPluss</h3>
                 <p class="project-tagline font-playfair italic">Solving the gig-economy trust deficit — where instant payouts meet lean commission economics.</p>
@@ -1152,10 +1152,10 @@
                 </div>
             </div>
             <div class="project-right">
-                <img src="[WORKPLUSS_WATERMARK]" class="workpluss-watermark" alt="">
+                <img src="images/WORKPLUSS_WATERMARK.png" class="workpluss-watermark" alt="">
                 <div class="workpluss-mockups">
-                    <img src="[WORKPLUSS_SCREEN]" class="screen-1" alt="Platform UI">
-                    <img src="[WORKPLUSS_PHONE]" class="phone-mockup" alt="Mobile App Mockup">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="screen-1" alt="Platform UI">
+                    <img src="images/WORKPLUSS_PHONE.png" class="phone-mockup" alt="Mobile App Mockup">
                 </div>
                 <div class="swatches" style="margin-top: auto;">
                     <div class="swatch" style="background-color: var(--workpluss-navy);">#3A2850</div>
@@ -1178,10 +1178,10 @@
             </div>
             <div class="project-right">
                 <div class="strat-img-row">
-                    <img src="[STRATCOMM_1]" alt="Presentation Slide 1">
-                    <img src="[STRATCOMM_2]" alt="Presentation Slide 2">
+                    <img src="images/STRATCOMM_1.png" alt="Presentation Slide 1">
+                    <img src="images/STRATCOMM_2.png" alt="Presentation Slide 2">
                 </div>
-                <img src="[STRATCOMM_3]" class="strat-img-full" alt="Presentation Slide 3">
+                <img src="images/STRATCOMM_3.png" class="strat-img-full" alt="Presentation Slide 3">
             </div>
         </div>
 
@@ -1194,7 +1194,7 @@
                 <div class="soul-metric">↑ Saves & Shares over vanity metrics</div>
             </div>
             <div class="project-right">
-                <img src="[UNFINISHED_YOU]" alt="The Unfinished You Abstract Visual">
+                <img src="images/UNFINISHED_YOU.png" alt="The Unfinished You Abstract Visual">
             </div>
         </div>
 
