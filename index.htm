@@ -295,31 +295,31 @@
             animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* UPDATED HERO IMAGES POSITIONING */
+        /* UPDATED POSITIONING: MOVED LEFT + ADJUSTED HIGHLIGHT SCALES */
         .img-1 { /* Yellow Sweater */
             height: 80%;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-70%) translateY(50px);
+            left: 42%;
+            transform: translateX(-95%) translateY(50px);
             z-index: 3;
             animation-delay: 0.4s;
         }
 
-        .img-2 { /* Mirror */
-            height: 70%;
+        .img-2 { /* Mirror - A LITTLE BIGGER */
+            height: 82%;
             bottom: 0;
-            right: 0;
+            right: 10%;
             z-index: 2;
             transform: translateY(50px);
             animation-delay: 0.6s;
         }
 
-        .img-3 { /* Sunglasses (back/big) */
-            height: 90%;
-            bottom: 0;
-            left: 50%;
+        .img-3 { /* Sunglasses - EVEN BIGGER BRUSH HIGHLIGHT */
+            height: 105%;
+            bottom: -5%;
+            left: 45%;
             z-index: 1;
-            transform: translateX(-20%) translateY(50px);
+            transform: translateX(-40%) translateY(50px);
             animation-delay: 0.8s;
         }
 
@@ -333,9 +333,9 @@
             to { opacity: 1; transform: translateY(0) translateX(var(--tx, 0)); }
         }
 
-        .img-1 { --tx: -70%; }
+        .img-1 { --tx: -95%; }
         .img-2 { --tx: 0; }
-        .img-3 { --tx: -20%; }
+        .img-3 { --tx: -40%; }
 
         .scroll-hint {
             position: absolute;
@@ -537,12 +537,13 @@
             color: #fff;
         }
         
-        /* UPDATED KAYURA LOGO STYLES */
+        /* UPDATED KAYURA LOGO - BIGGER & MOVED RIGHT */
         .kayura-logo {
-            width: 90px;
+            width: 140px;
             height: auto;
             object-fit: contain;
             margin-bottom: 2rem;
+            align-self: flex-end;
         }
 
         .kayura-card .project-label {
@@ -631,11 +632,17 @@
             background-color: #F5F2EE;
             border: 1px solid #e5e0d8;
             color: var(--text-dark);
+            position: relative;
+            padding-right: 14rem; /* Safe frame spacing for left side mockup placement */
+        }
+
+        .workpluss-content-block {
+            max-width: 100%;
         }
 
         /* UPDATED WORKPLUSS LOGO STYLES */
         .workpluss-logo {
-            width: 280px; 
+            width: 240px; 
             max-width: 100%;
             height: auto;
             object-fit: contain;
@@ -695,83 +702,99 @@
             flex-direction: column;
         }
 
+        /* WATERMARK NEXT TO SCREEN IMAGE */
         .workpluss-watermark {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            opacity: 0.08;
+            right: 4%;
+            top: 15%;
+            width: 220px;
+            opacity: 0.12;
             pointer-events: none;
+            z-index: 1;
         }
 
-        /* UPDATED WORKPLUSS MOCKUPS STYLES */
+        /* UPDATED WORKPLUSS SCREEN & PHONE ARRANGEMENT */
         .workpluss-mockups {
             flex-grow: 1;
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         .screen-1 {
             position: absolute;
-            left: 8%;
-            width: 60%;
+            left: 5%;
+            width: 80%; /* SCREEN IMAGE IS NOW BIGGER */
             height: auto;
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 2;
         }
 
-        .phone-mockup {
+        /* PHONE MOCKUP RELOCATED TO LEFT TEXT PANEL */
+        .phone-mockup-left {
             position: absolute;
-            right: 8%;
-            height: 80%;
+            right: 1.5rem;
+            bottom: 0;
+            height: 75%;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.15));
+            z-index: 3;
         }
 
-        /* Project 3: Strategic Comm */
+        /* Project 3: Strategic Comm / Laxmi Narayan Mithai (THE BIGGER ONE) */
+        .strat-card {
+            box-shadow: 0 15px 50px rgba(125, 48, 25, 0.12); /* Added dramatic pop shadow */
+        }
+
         .strat-card .project-left {
             background-color: var(--card-dark);
             color: #fff;
+            padding: 5.5rem 4.5rem; /* Expanded padding structure to make it physically bigger */
         }
 
         .strat-card .project-label {
             color: var(--accent-rust);
+            font-weight: 600;
+            letter-spacing: 3px;
         }
 
         .strat-card .project-title {
-            font-size: 3rem;
+            font-size: 4.2rem; /* MASSIFY TYPOGRAPHY FOR HIGH VISIBILITY */
             margin-bottom: 1.5rem;
+            line-height: 1.05;
         }
 
         .strat-card .project-tagline {
-            font-size: 1.05rem;
-            opacity: 0.8;
+            font-size: 1.15rem;
+            opacity: 0.85;
             font-family: 'DM Sans', sans-serif;
             font-style: normal;
+            line-height: 1.6;
         }
 
         .strat-card .pill-tag {
-            background-color: rgba(255,255,255,0.1);
+            background-color: var(--accent-rust);
+            color: #fff;
+            font-weight: 500;
         }
 
         .strat-card .project-right {
-            background-color: var(--card-dark);
-            padding: 2rem;
+            background-color: #141414;
+            padding: 2.5rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .strat-img-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            height: 50%;
+            gap: 1.5rem;
+            height: 52%;
         }
 
         .strat-card img {
@@ -779,10 +802,15 @@
             height: 100%;
             object-fit: cover;
             border-radius: 6px;
+            transition: transform 0.4s ease;
+        }
+        
+        .strat-card img:hover {
+            transform: scale(1.02);
         }
 
         .strat-img-full {
-            height: 50%;
+            height: 48%;
         }
 
         /* Project 4: Unfinished You */
@@ -1009,12 +1037,16 @@
                 grid-template-columns: 1fr;
             }
 
+            .workpluss-card .project-left { padding-right: 2rem; }
+            .phone-mockup-left { display: none; }
+
             .kayura-card .project-right, .workpluss-card .project-right, 
             .strat-card .project-right, .soul-card .project-right {
                 min-height: 400px;
             }
 
-            .workpluss-mockups { display: none; }
+            .workpluss-mockups { display: flex; justify-content: center; }
+            .screen-1 { left: 10%; width: 80%; }
             
             footer { flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
         }
@@ -1023,7 +1055,7 @@
             .nav-links { display: none; }
             .hero-title { font-size: 3.5rem; }
             .project-left { padding: 2rem; }
-            .project-title { font-size: 2.5rem; }
+            .strat-card .project-title { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -1144,30 +1176,31 @@
 
         <div class="project-card workpluss-card reveal">
             <div class="project-left">
-                <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss" class="workpluss-logo">
-                <span class="project-label">Tech-Hustle Project · GTM Strategy</span>
-                <h3 class="project-title font-bebas">WorkPluss</h3>
-                <p class="project-tagline font-playfair italic">Solving the gig-economy trust deficit — where instant payouts meet lean commission economics.</p>
-                <div class="workpluss-points">
-                    <div class="workpluss-point">
-                        <div class="point-num">1</div>
-                        <div class="point-text"><strong>Instant Payout Advantage:</strong> Payment immediately post-job completion closes the trust gap.</div>
-                    </div>
-                    <div class="workpluss-point">
-                        <div class="point-num">2</div>
-                        <div class="point-text"><strong>10% Commission Model:</strong> Sustainable revenue that respects the worker.</div>
-                    </div>
-                    <div class="workpluss-point">
-                        <div class="point-num">3</div>
-                        <div class="point-text"><strong>Events Sector GTM:</strong> High-frequency, trust-critical market entry point.</div>
+                <div class="workpluss-content-block">
+                    <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss" class="workpluss-logo">
+                    <span class="project-label">Tech-Hustle Project · GTM Strategy</span>
+                    <h3 class="project-title font-bebas">WorkPluss</h3>
+                    <div class="workpluss-points">
+                        <div class="workpluss-point">
+                            <div class="point-num">1</div>
+                            <div class="point-text"><strong>Instant Payout Advantage:</strong> Payment immediately post-job completion closes the trust gap.</div>
+                        </div>
+                        <div class="workpluss-point">
+                            <div class="point-num">2</div>
+                            <div class="point-text"><strong>10% Commission Model:</strong> Sustainable revenue that respects the worker.</div>
+                        </div>
+                        <div class="workpluss-point">
+                            <div class="point-num">3</div>
+                            <div class="point-text"><strong>Events Sector GTM:</strong> High-frequency, trust-critical market entry point.</div>
+                        </div>
                     </div>
                 </div>
+                <img src="images/WORKPLUSS_PHONE.png" class="phone-mockup-left" alt="Mobile App Mockup">
             </div>
             <div class="project-right">
                 <img src="images/WORKPLUSS_WATERMARK.png" class="workpluss-watermark" alt="Workpluss Watermark">
                 <div class="workpluss-mockups">
                     <img src="images/WORKPLUSS_SCREEN.png" class="screen-1" alt="Platform UI">
-                    <img src="images/WORKPLUSS_PHONE.png" class="phone-mockup" alt="Mobile App Mockup">
                 </div>
                 <div class="swatches" style="margin-top: auto;">
                     <div class="swatch" style="background-color: var(--workpluss-navy);">#3A2850</div>
@@ -1179,9 +1212,9 @@
 
         <div class="project-card strat-card reveal">
             <div class="project-left">
-                <span class="project-label">Strategic Communication</span>
-                <h3 class="project-title font-bebas">Pitch. Position. Persuade.</h3>
-                <p class="project-tagline">Beyond founder-led ventures, I've supported businesses across finance, advisory, and consumer sectors through strategic storytelling, pitch narratives, and presentation design focused on clarity, positioning, and communication impact.</p>
+                <span class="project-label">Strategic Communication Highlight</span>
+                <h3 class="project-title font-bebas">Laxmi Narayan Mithai <br><span style="font-size: 2.2rem; color: var(--accent-rust); vertical-align: middle;">× Strategic Comm</span></h3>
+                <p class="project-tagline">Beyond founder-led ventures, I've supported businesses across corporate finance, advisory, and premium consumer sectors through targeted brand storytelling, high-stakes pitch narratives, and architectural presentation design focused entirely on premium positioning and definitive communication impact.</p>
                 <div class="project-tags" style="margin-top: 2rem;">
                     <span class="pill-tag">Laxmi Narayan Mithai</span>
                     <span class="pill-tag">VCFO + Internal Audit</span>
