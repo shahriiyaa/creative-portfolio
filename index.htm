@@ -3,910 +3,692 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riya Shah | Brand Strategist</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
-
+    <title>Riya Shah | Strategy x Soul x Substance</title>
     <style>
-        /* ==========================================
-           COLOR SYSTEM & VARIABLES
-           ========================================== */
         :root {
-            --paper: #F4F1EC;
-            --ink: #1C1B18;
-            --rust: #7B3320;
-            --rust-muted: #A0441F;
-            --stone: #C8BFB0;
-            --cream-dark: #E8E2D9;
+            --bg-color: #0d0d0d;
+            --text-color: #f5f5f5;
+            --accent-color: #ff5722;
+            --muted-color: #888888;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            /* Project Branding Colors */
+            --kayura-purple: #6A1C57;
+            --kayura-orange: #F89B1F;
+            --workpluss-bg: #3A2850;
+            --workpluss-yellow: #FACC15;
         }
 
-        /* ==========================================
-           RESET & BASE
-           ========================================== */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: none; /* Custom cursor override */
+            box-sizing: border-box;
+            user-select: none;
         }
 
-        body, html {
-            background-color: var(--paper);
-            color: var(--ink);
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            position: relative;
         }
 
-        /* ==========================================
-           TYPOGRAPHY CLASSES
-           ========================================== */
-        .disp-hero {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            font-size: clamp(5rem, 10vw, 9rem);
-            line-height: 0.92;
-        }
-        
-        .disp-hero i {
-            font-weight: 400;
-            font-style: italic;
-            color: var(--rust);
-        }
-
-        .head-bebas {
-            font-family: 'Bebas Neue', sans-serif;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-
-        .head-cormorant {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-        }
-
-        .body-text {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
-            line-height: 1.9;
-        }
-
-        .accent-cap {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .cormorant-italic {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 400;
-            font-style: italic;
-        }
-
-        /* ==========================================
-           TEXTURE & ATMOSPHERE
-           ========================================== */
-        #grain-overlay {
+        /* --- NOISE & GRAIN OVERLAY --- */
+        body::before {
+            content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9997;
-            opacity: 0.03;
-            mix-blend-mode: overlay;
-        }
-
-        .section-divider {
-            height: 2px;
-            width: 100%;
-            background-color: var(--stone);
-            opacity: 0.4;
-        }
-
-        /* ==========================================
-           MOTION & REVEAL
-           ========================================== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-        }
-        .reveal.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hover-lift {
-            transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
-        }
-        .hover-lift:hover {
-            transform: translateY(-6px);
-        }
-
-        /* Load Animations */
-        .load-stagger-1 { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.2s forwards; opacity: 0; transform: translateY(24px); }
-        .load-stagger-2 { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.4s forwards; opacity: 0; transform: translateY(24px); }
-        .load-stagger-3 { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.6s forwards; opacity: 0; transform: translateY(24px); }
-        .load-stagger-4 { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.8s forwards; opacity: 0; transform: translateY(24px); }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ==========================================
-           CUSTOM CURSOR
-           ========================================== */
-        #cursor-dot {
-            position: fixed;
-            top: 0; left: 0;
-            width: 12px; height: 12px;
-            background-color: var(--rust);
-            border-radius: 50%;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            opacity: 0.04;
             pointer-events: none;
             z-index: 9999;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: multiply;
-            transition: transform 0.2s ease;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        #cursor-ring {
-            position: fixed;
-            top: 0; left: 0;
-            width: 38px; height: 38px;
-            border: 1.5px solid var(--rust);
+        /* --- CUSTOM CURSOR EFFECT --- */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--text-color);
             border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: multiply;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Hover States for Cursor */
-        .cursor-hover #cursor-dot { transform: translate(-50%, -50%) scale(2); }
-        .cursor-hover #cursor-ring { opacity: 0; }
-
-        @media (hover: none) and (pointer: coarse) {
-            #cursor-dot, #cursor-ring { display: none !important; }
-            * { cursor: auto !important; }
-        }
-
-        /* ==========================================
-           LAYOUT SECTIONS
-           ========================================== */
-        a { text-decoration: none; color: inherit; }
-        
-        /* 1. NAV */
-        nav {
             position: fixed;
-            top: 0; width: 100%;
-            padding: 1.6rem 4rem;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .custom-cursor.hovered {
+            transform: translate(-50%, -50%) scale(1.8);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        /* --- FIXED ANCHOR NAVIGATION --- */
+        .fixed-nav {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 999;
+            background: var(--glass-bg);
+            padding: 1.5rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--muted-color);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-dot:hover, .nav-dot.active {
+            background-color: var(--accent-color);
+            transform: scale(1.3);
+        }
+
+        .nav-dot .label {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            opacity: 0;
+            color: var(--text-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .nav-dot:hover .label {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 9990;
-            mix-blend-mode: multiply;
+            z-index: 998;
         }
-        nav .logo {
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        nav .logo span {
-            width: 6px; height: 6px;
-            background-color: var(--rust);
-            border-radius: 50%;
-            display: inline-block;
-        }
-        nav .email-link {
-            font-size: 0.7rem;
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
         }
-        nav .email-link:hover { opacity: 1; }
 
-        /* 2. HERO */
-        #hero {
-            height: 100vh;
+        /* --- SECTIONS --- */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            padding: 8rem 10% 6rem 10%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 4rem;
-            background: radial-gradient(ellipse at 30% 60%, #EDE6DA 0%, #F4F1EC 60%, #EAE4DB 100%);
+            position: relative;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        /* Hero */
+        #hero {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-centerpiece {
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .hero-centerpiece h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-centerpiece p {
+            color: var(--muted-color);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .constellation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: auto;
+        }
+
+        .floating-node {
+            position: absolute;
+            padding: 1rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: border-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-node:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .floating-node::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        /* About Section Design */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.21fr 0.79fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-gallery-frame {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
             position: relative;
         }
-        .hero-line {
-            width: 80px; height: 2px;
-            background-color: var(--rust);
-            margin-bottom: 2.5rem;
+
+        .about-image-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .hero-name {
-            font-size: 1rem;
-            letter-spacing: 4px;
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: contrast(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        .about-image-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Portfolio Cards Layout */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .section-subtitle {
+            color: var(--muted-color);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 0;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.6);
+        }
+
+        /* Dynamic Galleries inside Cards */
+        .card-image-gallery {
+            display: flex;
+            gap: 1px;
+            height: 220px;
+            background: #000;
+            border-bottom: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .card-image-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex: 1;
+            transition: flex 0.4s ease;
+        }
+
+        .card-image-gallery img:hover {
+            flex: 1.8;
+        }
+        
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: var(--stone);
-            margin-top: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
         }
-        .hero-tags {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-        .hero-tags span { margin: 0 0.5rem; color: var(--stone); }
-        .hero-quote {
-            margin-top: 4rem;
-            font-size: 1.1rem;
-            opacity: 0.5;
-        }
-        .scroll-indicator {
-            position: absolute;
-            bottom: 4rem; right: 4rem;
-            transform: rotate(90deg);
-            transform-origin: right bottom;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 0.3;
+
+        .project-card p {
+            color: var(--muted-color);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* 3. ABOUT */
-        #about {
-            background-color: var(--cream-dark);
-            padding: 10rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 6rem;
-            align-items: start;
-        }
-        .about-label-wrapper { display: flex; flex-direction: column; gap: 1rem; }
-        .about-line { width: 40px; height: 2px; background-color: var(--rust); }
-        
-        /* Overlapping Editorial Gallery Styling */
-        .about-gallery {
-            margin-top: 4rem;
-            position: relative;
-            width: 100%;
-            max-width: 360px;
-            height: 490px; /* Explicit canvas height to contain elements */
-        }
-        .about-gallery img {
-            position: absolute;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 4px solid var(--cream-dark);
-            object-fit: cover;
-            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease, z-index 0.2s ease;
-        }
-        .about-gallery img:hover {
-            transform: scale(1.04) translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-            z-index: 10 !important;
-        }
-        /* Highlight Portrait: Blazer */
-        .img-blazer {
-            width: 76%;
-            top: 70px;
-            left: 0;
-            z-index: 2;
-        }
-        /* 2nd Portrait: Yellow Sweater */
-        .img-yellow {
-            width: 56%;
-            bottom: 0;
-            right: -10px;
-            z-index: 3;
-        }
-        /* Final Portrait: Mirror Shot */
-        .img-mirror {
-            width: 52%;
-            top: 0;
-            right: 15px;
-            z-index: 1;
+        .project-meta-list {
+            list-style: none;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
         }
 
-        .about-open {
-            font-size: 1.8rem;
-            line-height: 1.4;
-            margin-bottom: 2rem;
-            margin-top: 1rem;
-        }
-        .about-body { color: #444; max-width: 700px; }
-        .about-quote {
-            border-left: 3px solid var(--rust);
-            padding-left: 1.5rem;
-            margin-top: 2.5rem;
-            font-size: 1.4rem;
-            color: var(--rust);
-        }
-
-        /* 4. SELECTED WORK INTRO */
-        #work-intro {
-            background-color: var(--paper);
-            padding: 6rem 4rem 2rem;
-        }
-        .work-intro-title { font-size: clamp(3rem, 6vw, 5rem); margin: 1rem 0; }
-        .work-intro-desc { font-size: 0.9rem; opacity: 0.5; max-width: 500px; }
-
-        /* PROJECT BASE STYLES */
-        .project-section {
-            padding: 8rem 4rem;
-            width: 100%;
-        }
-        .project-grid-lr {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 6rem;
-            align-items: center;
-        }
-        .project-grid-rl {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 6rem;
-            align-items: center;
-        }
-        .project-index { font-size: 5rem; line-height: 1; }
-        .project-title { font-size: clamp(3rem, 4.5vw, 4.5rem); margin: 0.5rem 0; }
-        .cs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        .cs-item label {
-            display: block;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--stone);
+        .project-meta-list li {
+            font-size: 0.85rem;
+            color: var(--text-color);
             margin-bottom: 0.5rem;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .cs-item p { font-size: 0.95rem; line-height: 1.8; }
 
-        /* 5. PROJECTS - SPECIFICS */
-        /* Kayura */
-        #kayura { background-color: #F9F3EE; }
-        #kayura .project-index { color: var(--stone); }
-        #kayura .project-title { color: #6A1C57; }
-        #kayura .tagline { color: #6A1C57; font-size: 1.2rem; }
-        .color-swatches { display: flex; gap: 1rem; margin-top: 3rem; }
-        .swatch-group { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-        .swatch { width: 40px; height: 40px; border-radius: 50%; }
-        .swatch-label { font-size: 0.55rem; letter-spacing: 1px; color: var(--stone); }
-        .k-visuals { position: relative; width: 100%; }
-        .k-logo { width: 160px; display: block; margin-bottom: 2.5rem; } /* Upscaled logo size */
-        .k-main-img { width: 100%; border-radius: 4px; display: block; }
-        .k-hamper { 
-            width: 75%; border-radius: 4px; 
-            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-            position: relative; margin-top: -15%; left: -2rem;
+        .project-meta-list li::before {
+            content: "→";
+            color: var(--accent-color);
         }
-        .k-watermark { position: absolute; bottom: 0; right: 0; width: 120px; opacity: 0.1; }
 
-        /* WorkPluss */
-        #workpluss { background-color: #1E1A2E; color: rgba(255,255,255,0.7); }
-        #workpluss .project-index { color: rgba(255,255,255,0.15); margin-bottom: 0; }
-        #workpluss .project-title { color: #FFF; }
-        #workpluss .tagline { color: #FACC15; font-size: 1.2rem; }
-        #workpluss .cs-item p { color: rgba(255,255,255,0.7); }
-        #workpluss .cs-item label { color: rgba(255,255,255,0.4); }
-        .wp-header-row { display: flex; align-items: center; gap: 2rem; margin-bottom: 0.5rem; } /* Align logo horizontally */
-        .wp-visuals { position: relative; width: 100%; }
-        .wp-screen { width: 100%; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,0.4); }
-        .wp-phone { 
-            width: 60%; margin-left: auto; margin-top: -3rem; display: block;
-            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
-        }
-        .wp-watermark { position: absolute; top: 10%; left: -5%; width: 200px; opacity: 0.06; }
-
-        /* Strat Comm */
-        #strat-comm { background-color: var(--cream-dark); }
-        .sc-container { max-width: 900px; margin: 0 auto; text-align: center; }
-        #strat-comm .project-index { font-size: 3rem; color: var(--stone); margin-bottom: 1rem; }
-        #strat-comm .project-title { font-size: 4rem; color: var(--ink); margin-top: 0.5rem;}
-        #strat-comm .tagline { font-size: 1.4rem; color: var(--rust); margin-bottom: 2rem;}
-        .sc-intro { font-size: 1.1rem; max-width: 700px; margin: 0 auto 4rem; }
-        .sc-cs-row {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem; text-align: left; margin-bottom: 4rem;
-        }
-        .sc-img-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;
-        }
-        .sc-img-grid img { width: 100%; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .sc-tags { font-size: 0.75rem; letter-spacing: 2px; color: var(--stone); text-transform: uppercase; }
-
-        /* Unfinished You */
-        #unfinished { background-color: #1C1C1C; color: rgba(255,255,255,0.7); }
-        #unfinished .project-index { color: rgba(255,255,255,0.12); }
-        #unfinished .project-title { font-size: 3.5rem; color: #EDE8DF; line-height: 1.1; }
-        #unfinished .tagline { color: rgba(237, 232, 223, 0.6); font-size: 1.1rem; }
-        .uy-visual { height: 100%; width: 100%; object-fit: cover; filter: saturate(0.85); border-radius: 4px; min-height: 500px;}
-        .uy-closing { margin-top: 3rem; font-size: 1rem; color: rgba(255,255,255,0.35); }
-
-        /* 6. CONTACT */
-        #contact {
-            background-color: var(--paper);
-            padding: 10rem 4rem;
+        /* Soul Project Unique Frame Layout */
+        .soul-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-bg-text {
-            position: absolute;
-            top: -2%; left: -2%;
-            font-size: 20vw;
-            line-height: 1;
-            color: var(--stone);
-            opacity: 0.08;
-            pointer-events: none;
-        }
-        .contact-left { position: relative; z-index: 2; }
-        .contact-title { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin: 1.5rem 0; max-width: 500px; }
-        .contact-desc { opacity: 0.6; max-width: 380px; margin-bottom: 3rem; }
-        .contact-links { display: flex; flex-direction: column; gap: 0.5rem; }
-        .contact-links a { 
-            font-size: 1.2rem; color: var(--rust); 
-            width: fit-content; position: relative;
-        }
-        .contact-links a::after {
-            content: ''; position: absolute; width: 100%; height: 1px;
-            bottom: 2px; left: 0; background-color: var(--rust);
-            transform: scaleX(0); transform-origin: right; transition: transform 0.4s ease;
-        }
-        .contact-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-
-        .contact-right { position: relative; z-index: 2; padding-top: 2rem; }
-        .form-group { margin-bottom: 2rem; position: relative; }
-        .form-group label {
-            display: block; font-size: 0.6rem; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--stone); margin-bottom: 0.5rem;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%; background: transparent; border: none;
-            border-bottom: 1.5px solid var(--stone); border-radius: 0;
-            padding: 0.8rem 0; font-family: 'DM Sans', sans-serif;
-            font-size: 1rem; color: var(--ink); font-weight: 300;
-            transition: border-color 0.3s ease;
-        }
-        .form-group textarea { min-height: 140px; resize: vertical; }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-bottom-color: var(--rust);
-        }
-        button[type="submit"] {
-            background: transparent; border: none; font-size: 1.2rem;
-            color: var(--rust); padding: 0; position: relative; margin-top: 1rem;
-        }
-        button[type="submit"]::after {
-            content: ''; position: absolute; width: 100%; height: 1px;
-            bottom: 2px; left: 0; background-color: var(--rust);
-            transform: scaleX(0); transform-origin: right; transition: transform 0.4s ease;
-        }
-        button[type="submit"]:hover::after { transform: scaleX(1); transform-origin: left; }
-
-        /* 7. FOOTER */
-        footer {
-            background-color: var(--ink);
-            padding: 3rem 4rem;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            color: white;
         }
-        .footer-logo { font-size: 1.2rem; }
-        .footer-tag { font-size: 0.65rem; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
 
-        /* ==========================================
-           RESPONSIVE
-           ========================================== */
-        @media (max-width: 850px) {
-            nav { flex-direction: column; gap: 1rem; padding: 1.5rem 2rem; align-items: flex-start; }
-            #hero { padding: 0 2rem; }
-            #about, #work-intro, .project-section, #contact { padding: 5rem 2rem; }
-            #about { grid-template-columns: 1fr; gap: 3rem; }
-            .about-gallery { margin: 3rem auto; max-width: 320px; height: 440px; }
-            .project-grid-lr, .project-grid-rl { grid-template-columns: 1fr; gap: 4rem; }
-            .project-grid-rl .wp-visuals { order: -1; }
-            .cs-grid, .sc-cs-row { grid-template-columns: 1fr; }
-            .sc-img-grid { grid-template-columns: 1fr; }
-            #contact { grid-template-columns: 1fr; gap: 4rem; }
-            footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .uy-visual { min-height: 300px; }
+        .soul-banner-frame {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .soul-banner-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Footer / Contact */
+        #contact {
+            text-align: center;
+            align-items: center;
+        }
+
+        .contact-email {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: color 0.3s;
+            display: inline-block;
+            word-break: break-all;
+        }
+
+        .contact-email:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-ambience {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0.25;
+            transition: opacity 0.4s ease;
+        }
+
+        .footer-ambience:hover {
+            opacity: 0.6;
+        }
+
+        .footer-ambience img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid var(--text-color);
+        }
+
+        /* Responsive Layout Updates */
+        @media(max-width: 992px) {
+            .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-centerpiece h1 { font-size: 3rem; }
+        }
+
+        @media(max-width: 768px) {
+            .fixed-nav {
+                bottom: 2rem;
+                top: auto;
+                right: 50%;
+                transform: translateX(50%);
+                flex-direction: row;
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-dot .label { display: none; }
+            .contact-email { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <svg style="display: none;">
-        <filter id="grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-            <feColorMatrix type="saturate" values="0"/>
-            <feBlend in="SourceGraphic" mode="overlay"/>
-        </filter>
-    </svg>
-    <div id="grain-overlay"></div>
+    <div class="custom-cursor" id="cursor"></div>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
+    <header>
+        <div class="logo">RIYA SHAH</div>
+        <div>STRATEGY X SOUL X SUBSTANCE</div>
+    </header>
 
-    <nav class="interactable">
-        <div class="logo head-cormorant cormorant-italic">RS<span></span></div>
-        <a href="mailto:riya.shah01@yahoo.com" class="email-link">riya.shah01@yahoo.com</a>
+    <nav class="fixed-nav" id="fixedNav">
+        <div class="nav-dot active" data-target="hero"><span class="label">Home</span></div>
+        <div class="nav-dot" data-target="about"><span class="label">About</span></div>
+        <div class="nav-dot" data-target="work"><span class="label">Strategic Work</span></div>
+        <div class="nav-dot" data-target="soul"><span class="label">Soul Project</span></div>
+        <div class="nav-dot" data-target="contact"><span class="label">Contact</span></div>
     </nav>
 
     <section id="hero">
-        <div class="hero-line load-stagger-1"></div>
-        <h1 class="disp-hero load-stagger-2">
-            Giving<br>
-            <i>Meaning</i><br>
-            Direction.
-        </h1>
-        <div class="hero-name load-stagger-3">Riya Shah</div>
-        <div class="hero-tags load-stagger-3">
-            Brand Strategy <span>&middot;</span> GTM <span>&middot;</span> Storytelling <span>&middot;</span> Founder Thinking
+        <div class="hero-centerpiece">
+            <h1 id="scramble-text">STRATEGY X SUBSTANCE</h1>
+            <p>Crafting brands that are not just seen, but felt.</p>
         </div>
-        <div class="hero-quote cormorant-italic load-stagger-4">
-            "People don't buy products. They buy identities."
-        </div>
-        <div class="scroll-indicator load-stagger-4">SCROLL</div>
-    </section>
 
-    <div class="section-divider"></div>
+        <div class="constellation-container" id="canvas">
+            <div class="floating-node" data-target="about" style="top: 25%; left: 10%;">About Me</div>
+            <div class="floating-node" data-target="work" style="top: 74%; left: 15%;">Kayura Project</div>
+            <div class="floating-node" data-target="work" style="top: 66%; right: 12%;">WorkPluss Tech</div>
+            <div class="floating-node" data-target="soul" style="top: 28%; right: 18%;">The Unfinished You</div>
+            <div class="floating-node" data-target="contact" style="top: 80%; right: 46%;">Contact</div>
+        </div>
+    </section>
 
     <section id="about">
-        <div class="about-label-wrapper reveal">
-            <h2 class="head-bebas" style="font-size: 5rem; color: var(--ink);">About</h2>
-            <div class="about-line"></div>
+        <div class="about-grid">
+            <div>
+                <h2 class="section-title" style="margin-bottom: 2rem;">Meet The Person</h2>
+                <p style="font-size: 1.25rem; line-height: 1.8; color: var(--muted-color); margin-bottom: 1.5rem;">
+                    I'm a strategist and founder drawn to the emotional side of business: the stories people carry, the identities they aspire toward, and the quiet psychology behind what resonates.
+                </p>
+                <p style="color: var(--muted-color); line-height: 1.6;">
+                    My work sits at the intersection of strategy, culture, consumer behavior, and storytelling. From building a heritage-led skincare brand to shaping trust-first systems for the gig economy, I'm interested in ideas that combine clarity with emotional depth.
+                </p>
+            </div>
             
-            <div class="about-gallery">
-                <img src="images/Riya_Hero_2.png" alt="Riya Shah - Highlight Portrait" class="img-blazer">
-                <img src="images/Riya_Hero_3.png" alt="Riya Shah - Yellow Sweater Accent" class="img-yellow">
-                <img src="images/Riya_Hero_1.png" alt="Riya Shah - Mirror Selfie Canvas" class="img-mirror">
-            </div>
-        </div>
-        <div class="about-content reveal">
-            <p class="head-cormorant about-open">
-                "I believe the strongest brands are not just seen — they are felt."
-            </p>
-            <p class="body-text about-body">
-                I'm Riya Shah, a strategist and founder drawn to the emotional side of business: the stories people carry, the identities they aspire toward, and the quiet psychology behind what resonates. My work sits at the intersection of strategy, culture, consumer behaviour, and storytelling — from building a heritage-led skincare brand to shaping trust-first systems for the gig economy. I'm especially drawn to brands that feel human: thoughtful, intentional, and culturally aware.
-            </p>
-            <div class="about-quote cormorant-italic">
-                "Strategy is the art of giving meaning direction."
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section id="work-intro">
-        <div class="accent-cap reveal" style="color: var(--stone); margin-bottom: 1rem;">SELECTED WORK</div>
-        <h3 class="head-cormorant work-intro-title reveal">Four projects. Four different kinds of problems.</h3>
-        <p class="body-text work-intro-desc reveal">Each one required a different strategy. Each one started with a question about people.</p>
-    </section>
-
-    <section id="kayura" class="project-section">
-        <div class="project-grid-lr">
-            <div class="k-content reveal">
-                <div class="head-cormorant project-index">01</div>
-                <div class="accent-cap" style="color: var(--stone); margin-bottom: 1rem;">Mom's Care Project &middot; Brand Strategy</div>
-                <h4 class="head-bebas project-title">KAYURA HOMEMADE</h4>
-                <div class="cormorant-italic tagline">"Where Ayurvedic heritage meets modern luxury."</div>
-                
-                <div class="cs-grid">
-                    <div class="cs-item">
-                        <label>PROBLEM</label>
-                        <p class="body-text">A homemade Ayurvedic skincare brand without premium positioning or a name that carried its origin story.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>INSIGHT</label>
-                        <p class="body-text">The Mass Affluent consumer doesn't want cheap wellness. They want heritage with credibility — and a product that feels like it was made for them.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>STRATEGY</label>
-                        <p class="body-text">Named the brand 'Kayura' — a fusion of 'Kavita' (the founder's mother) and 'Ayurveda' — anchoring the brand in maternal care and ancient wisdom. Positioned against the Mass Affluent segment with luxury-grade visual identity.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>OUTCOME</label>
-                        <p class="body-text">A brand with a story worth telling: purple and gold visual identity, 100% organic formulations, and a positioning that bridges heritage and aspiration.</p>
-                    </div>
+            <div class="about-gallery-frame">
+                <div class="about-image-wrapper" style="margin-top: 2rem;">
+                    <img src="images/Riya_Hero_3.jpg" alt="Riya Shah Strategic Lens">
                 </div>
-
-                <div class="color-swatches">
-                    <div class="swatch-group">
-                        <div class="swatch" style="background-color: #6A1C57;"></div>
-                        <div class="swatch-label">#6A1C57</div>
-                    </div>
-                    <div class="swatch-group">
-                        <div class="swatch" style="background-color: #F89B1F;"></div>
-                        <div class="swatch-label">#F89B1F</div>
-                    </div>
-                    <div class="swatch-group">
-                        <div class="swatch" style="background-color: #F2DCD5;"></div>
-                        <div class="swatch-label">#F2DCD5</div>
-                    </div>
-                </div>
-            </div>
-            <div class="k-visuals reveal">
-                <img src="images/KAYURA_LOGO.png" alt="Kayura Logo" class="k-logo hover-lift">
-                <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Products" class="k-main-img hover-lift">
-                <img src="images/KAYURA_HAMPER.jpg" alt="Kayura Hamper" class="k-hamper hover-lift">
-                <img src="images/KAYURA_WATERMARK.png" alt="Watermark" class="k-watermark">
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section id="workpluss" class="project-section">
-        <div class="project-grid-rl">
-            <div class="wp-visuals reveal">
-                <img src="images/WORKPLUSS_SCREEN.png" alt="WorkPluss Platform" class="wp-screen hover-lift">
-                <img src="images/WORKPLUSS_PHONE.png" alt="WorkPluss Mobile" class="wp-phone hover-lift">
-                <img src="images/WORKPLUSS_WATERMARK.png" alt="Watermark" class="wp-watermark">
-            </div>
-            <div class="wp-content reveal">
-                <div class="wp-header-row">
-                    <div class="head-cormorant project-index">02</div>
-                    <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss" style="height: 38px;" class="hover-lift">
-                </div>
-                <div class="accent-cap" style="color: var(--stone); margin-bottom: 1rem;">Tech-Hustle Project &middot; GTM Strategy</div>
-                <div class="cormorant-italic tagline" style="margin-bottom: 1.5rem;">"Closing the trust gap in India's gig economy."</div>
-                
-                <div class="cs-grid">
-                    <div class="cs-item">
-                        <label>PROBLEM</label>
-                        <p class="body-text">Gig workers in India's events sector couldn't trust that they'd be paid on time — or at all.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>INSIGHT</label>
-                        <p class="body-text">Trust is not built through branding. It's built through systems. The product itself had to be the promise.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>STRATEGY</label>
-                        <p class="body-text">GTM focused on the Events Sector as a high-frequency, high-stakes entry point. Positioned WorkPluss around Instant Payout as the brand's core proof point, with a lean 10% commission model that signalled worker-first values.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>OUTCOME</label>
-                        <p class="body-text">A platform brand built on reliability, not aesthetics — launching 2025 via Dhruvanta Tech Pvt. Ltd.</p>
-                    </div>
-                </div>
-
-                <div class="color-swatches" style="margin-top: 3rem;">
-                    <div class="swatch-group">
-                        <div class="swatch" style="background-color: #3A2850; border: 1px solid rgba(255,255,255,0.2);"></div>
-                        <div class="swatch-label">#3A2850</div>
-                    </div>
-                    <div class="swatch-group">
-                        <div class="swatch" style="background-color: #FACC15;"></div>
-                        <div class="swatch-label">#FACC15</div>
-                    </div>
-                    <div class="swatch-group">
-                        <div class="swatch" style="background-color: #FFF3F4;"></div>
-                        <div class="swatch-label">#FFF3F4</div>
-                    </div>
+                <div class="about-image-wrapper">
+                    <img src="images/Riya_Hero_1.jpg" alt="Riya Shah Portrait">
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <section id="strat-comm" class="project-section">
-        <div class="sc-container reveal">
-            <div class="head-cormorant project-index">03</div>
-            <div class="accent-cap" style="color: var(--stone); margin-bottom: 1rem;">Strategic Communication Projects</div>
-            <h4 class="head-bebas project-title">PITCH. POSITION. PERSUADE.</h4>
-            <div class="cormorant-italic tagline">"Clarity is a competitive advantage."</div>
+    <section id="work">
+        <h2 class="section-title">Selected Strategy Work</h2>
+        <p class="section-subtitle">Bridging consumer culture, trust models, and corporate positioning.</p>
+        
+        <div class="grid-layout">
             
-            <p class="body-text sc-intro">
-                Beyond founder-led ventures, I've supported businesses across finance, advisory, and consumer sectors through strategic storytelling, pitch narratives, and presentation design focused on clarity, positioning, and communication impact.
-            </p>
-
-            <div class="sc-cs-row">
-                <div class="cs-item">
-                    <label>PROBLEM</label>
-                    <p class="body-text">Complex services and heritage brands struggling to articulate their value to modern stakeholders.</p>
+            <div class="project-card" style="border-bottom: 4px solid var(--kayura-purple);">
+                <div class="card-image-gallery">
+                    <img src="images/KAYURA_LOGO.png" alt="Kayura Luxury Minimal Branding">
+                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Product Suite Lineup">
+                    <img src="images/KAYURA_HAMPER.jpg" alt="Kayura Raw Ayurvedic Soap Close-up">
                 </div>
-                <div class="cs-item">
-                    <label>INSIGHT</label>
-                    <p class="body-text">Audiences don't buy features. They buy the future state those features enable.</p>
-                </div>
-                <div class="cs-item">
-                    <label>STRATEGY</label>
-                    <p class="body-text">Structured presentation systems and narrative frameworks tailored for investor, client, and internal alignment.</p>
-                </div>
-                <div class="cs-item">
-                    <label>OUTCOME</label>
-                    <p class="body-text">Elevated brand perception across legacy businesses, NGOs, and financial institutions.</p>
+                
+                <div class="card-content">
+                    <div>
+                        <span class="project-tag" style="color: var(--kayura-orange);">Mom's Care Project / Brand Identity</span>
+                        <h3>Kayura Homemade</h3>
+                        <p>Positioning luxury-grade Ayurvedic care for the "Mass Affluent" consumer segment. A strategic naming and brand identity blueprint merging traditional wisdom with premium market expectations.</p>
+                    </div>
+                    <ul class="project-meta-list">
+                        <li>Heritage storytelling & maternal care focus</li>
+                        <li>Regal warmth color world (#6A1C57 & #F89B1F)</li>
+                        <li>100% organic, chemical-free positioning</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="sc-img-grid">
-                <img src="images/STRATCOMM_1.png" alt="Presentation Slide 1" class="hover-lift">
-                <img src="images/STRATCOMM_2.png" alt="Presentation Slide 2" class="hover-lift">
-                <img src="images/STRATCOMM_3.png" alt="Presentation Slide 3" class="hover-lift">
+            <div class="project-card" style="border-bottom: 4px solid var(--workpluss-yellow);">
+                <div class="card-image-gallery">
+                    <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss Platform Logo Layout" style="background:#221533; padding: 1.5rem; object-fit: contain;">
+                    <img src="images/WORKPLUSS_PHONE.pNg" alt="WorkPluss Mobile Interface Application Mockup">
+                    <img src="images/WORKPLUSS_SCREEN.png" alt="WorkPluss System Matrix Performance Dashboard">
+                </div>
+
+                <div class="card-content">
+                    <div>
+                        <span class="project-tag" style="color: var(--workpluss-yellow);">Tech-Hustle Project / Growth Strategy</span>
+                        <h3>WorkPluss (Dhruvanta)</h3>
+                        <p>Redefining how students across India find flexible, meaningful assignments. Actively solving the foundational gig-economy trust deficit through innovative systemic structures.</p>
+                    </div>
+                    <ul class="project-meta-list">
+                        <li>Instant Payout Advantage to eliminate trust deficit</li>
+                        <li>Sustainable lean 10% commission business model</li>
+                        <li>Events Sector Go-To-Market (GTM) rollout strategy</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="sc-tags">
-                Laxmi Narayan Mithai &middot; VCFO + Internal Audit &middot; Sector & Services Communication
+            <div class="project-card">
+                 <div class="card-image-gallery">
+                    <img src="images/STRATCOMM_1.png" alt="Strategic Communication Advisory Presentation Pillar">
+                    <img src="images/STRATCOMM_2.png" alt="Corporate Architecture Audit Value Metric Structure">
+                    <img src="images/STRATCOMM_3.png" alt="VCFO Strategic Advisory Framework Overview Matrix">
+                </div>
+
+                <div class="card-content">
+                    <div>
+                        <span class="project-tag">Stakeholder Communications</span>
+                        <h3>VCFO & Corporate Advisory</h3>
+                        <p>Structured presentation ecosystems, pitch narratives, and brand modernization advisory for heritage companies like Laxmi Narayan Mithai and SEBI-regulated public entities.</p>
+                    </div>
+                    <ul class="project-meta-list">
+                        <li>VCFO + Internal Audit service positioning</li>
+                        <li>Next-generation heritage brand evolution pipelines</li>
+                        <li>Clarity-driven financial storytelling</li>
+                    </ul>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <section id="unfinished" class="project-section">
-        <div class="project-grid-lr">
-            <div class="uy-left reveal">
-                <img src="images/UNFINISHED_YOU.png" alt="The Unfinished You" class="uy-visual hover-lift">
+    <section id="soul">
+        <div class="soul-container">
+            <div>
+                <h2 class="section-title">My Soul Project</h2>
+                <p class="section-subtitle" style="margin-bottom: 2rem;">Assembling communities outside corporate structures.</p>
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent-color);">The Unfinished You</h3>
+                <p style="color: var(--muted-color); line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">
+                    Building a community of collective vulnerability. Moving social media from Aspiration to Validation.
+                </p>
+                <p style="color: var(--muted-color); line-height: 1.6;">
+                    This soul-centered project builds authentic connection through shared human experience, measuring success through high-resonance metrics like Saves and Shares rather than vanity numbers. Wisdom lives in what remains undone.
+                </p>
             </div>
-            <div class="uy-right reveal">
-                <div class="head-cormorant project-index">04</div>
-                <div class="accent-cap" style="color: var(--stone); margin-bottom: 1rem;">My Soul Project &middot; Social Strategy</div>
-                <h4 class="head-cormorant project-title">The Unfinished You</h4>
-                <div class="cormorant-italic tagline">"Wisdom in what remains undone."</div>
-                
-                <div class="cs-grid">
-                    <div class="cs-item">
-                        <label>PROBLEM</label>
-                        <p class="body-text">Social media optimises for aspiration — perfectly curated lives that make everyone else feel behind.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>INSIGHT</label>
-                        <p class="body-text">People don't want more inspiration. They want validation that being unfinished is human.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>STRATEGY</label>
-                        <p class="body-text">Built a content community around collective vulnerability. Reframed incompleteness as insight. Measured success through Saves and Shares — signals of private resonance — not vanity metrics.</p>
-                    </div>
-                    <div class="cs-item">
-                        <label>OUTCOME</label>
-                        <p class="body-text">A soul-centered brand space that feels like a journal entry, not a feed.</p>
-                    </div>
-                </div>
-
-                <div class="cormorant-italic uy-closing">
-                    "Some projects are strategies. Some are beliefs."
-                </div>
+            
+            <div class="soul-banner-frame">
+                <img src="images/UNIFINISHED_YOU.png" alt="The Unfinished You Manifesto Graphic Overlay">
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="contact-bg-text head-cormorant">LET'S<br>TALK.</div>
+        <h2 class="section-title">Let's Build Something Soul-Centered</h2>
+        <p style="color: var(--muted-color);">Whether you're a founder seeking clarity, a brand craving meaning, or a dreamer turning vision into reality.</p>
         
-        <div class="contact-left reveal">
-            <div class="accent-cap" style="color: var(--rust);">GET IN TOUCH</div>
-            <h5 class="head-cormorant contact-title">Let's build something soul-centered.</h5>
-            <p class="body-text contact-desc">
-                Whether you're a founder seeking clarity, a brand craving meaning, or a dreamer ready to turn vision into reality. I'm here to help craft strategy with substance and heart.
-            </p>
-            <div class="contact-links cormorant-italic interactable">
-                <a href="mailto:riya.shah01@yahoo.com">riya.shah01@yahoo.com</a>
-                <a href="tel:+918805055860">+91 8805 055 860</a>
-            </div>
-        </div>
-
-        <div class="contact-right reveal">
-            <form id="contact-form" class="interactable">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" required></textarea>
-                </div>
-                <button type="submit" class="cormorant-italic">Send it &rarr;</button>
-            </form>
+        <a href="mailto:riya.shah01@yahoo.com" class="contact-email">riya.shah01@yahoo.com</a>
+        
+        <p style="color: var(--muted-color); letter-spacing: 2px; font-weight: bold; font-size: 1.1rem;">+91 8805055860</p>
+        
+        <div class="footer-ambience">
+            <img src="images/KAYURA_WATERMARK.png" alt="Kayura Authenticity Craft Watermark Logo" title="Kayura Essence">
+            <img src="images/Riya_Hero_2.png" alt="Riya Shah Portfolio Studio Space Silhouette" title="Perspective Strategy Focus">
+            <img src="images/WORKPLUSS_WATERMARK.png" alt="WorkPluss Platform Verification System Watermark" title="WorkPluss Grid Identity" style="background: rgba(255,255,255,0.05); padding: 5px;">
+            <img src="images/image_8d768d.jpg" alt="Atmospheric Textures Portfolio Workspace Aesthetic Detail" title="Textural Ambience">
         </div>
     </section>
 
-    <footer>
-        <div class="footer-logo head-cormorant cormorant-italic">RS</div>
-        <div class="footer-tag">Strategy &times; Soul &times; Substance</div>
-        <div class="footer-tag">&copy; 2025 Riya Shah</div>
-    </footer>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            /* --- 1. Custom Cursor Logic --- */
-            const dot = document.getElementById('cursor-dot');
-            const ring = document.getElementById('cursor-ring');
-            const interactables = document.querySelectorAll('a, button, input, textarea, .interactable, .hover-lift');
-            
-            let mouseX = 0, mouseY = 0;
-            let ringX = 0, ringY = 0;
-            let isHovering = false;
+        // --- Custom Cursor Logic ---
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-            // Track exact mouse position for dot
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
+        const hoverables = document.querySelectorAll('.floating-node, .nav-dot, .project-card, .contact-email, .card-image-gallery img, .footer-ambience img');
+        hoverables.forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            item.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // --- Text Scramble Effect ---
+        const phrases = ['STRATEGY X SUBSTANCE', 'IDEAS WITH HEART', 'BUILT TO BE FELT'];
+        let count = 0;
+        const el = document.getElementById('scramble-text');
+
+        function scramble() {
+            let original = phrases[count];
+            let iterations = 0;
+            const interval = setInterval(() => {
+                el.innerText = original.split("").map((letter, index) => {
+                    if(index < iterations) return original[index];
+                    return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                }).join("");
                 
-                dot.style.left = `${mouseX}px`;
-                dot.style.top = `${mouseY}px`;
-            });
+                if(iterations >= original.length) clearInterval(interval);
+                iterations += 1/2;
+            }, 30);
+            count = (count + 1) % phrases.length;
+        }
+        setInterval(scramble, 4000);
 
-            // Lerp loop for the ring
-            const render = () => {
-                const lerpFactor = 0.1;
-                ringX += (mouseX - ringX) * lerpFactor;
-                ringY += (mouseY - ringY) * lerpFactor;
-                
-                ring.style.left = `${ringX}px`;
-                ring.style.top = `${ringY}px`;
-                
-                requestAnimationFrame(render);
-            };
-            requestAnimationFrame(render);
+        // --- NAVIGATION CLICK SMOOTH SCROLLING ---
+        const scrollTowards = (targetId) => {
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
 
-            // Handle hover states
-            interactables.forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-            });
-
-            /* --- 2. Scroll Reveal Observer --- */
-            const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealOptions = {
-                threshold: 0.12,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        observer.unobserve(entry.target); // Reveal only once
-                    }
-                });
-            }, revealOptions);
-
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
-
-            /* --- 3. Form Submit Handler --- */
-            const contactForm = document.getElementById('contact-form');
-            
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                
-                const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
-                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                
-                const mailtoUrl = `mailto:riya.shah01@yahoo.com?subject=${subject}&body=${body}`;
-                window.location.href = mailtoUrl;
+        document.querySelectorAll('.floating-node').forEach(node => {
+            node.addEventListener('click', () => {
+                scrollTowards(node.getAttribute('data-target'));
             });
         });
+
+        const dots = document.querySelectorAll('.nav-dot');
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                scrollTowards(dot.getAttribute('data-target'));
+            });
+        });
+
+        // Highlight right side dots on scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 250) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-target') === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+
+        // --- CONSTELLATION GENTLE ORBIT DRIFT ---
+        const nodes = document.querySelectorAll('.floating-node');
+        let angle = 0;
+        function driftNodes() {
+            angle += 0.007;
+            nodes.forEach((node, idx) => {
+                const offsetX = Math.cos(angle + idx) * 12;
+                const offsetY = Math.sin(angle + idx) * 12;
+                node.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+            requestAnimationFrame(driftNodes);
+        }
+        driftNodes();
     </script>
 </body>
 </html>
