@@ -331,6 +331,12 @@
         
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
         .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
+        
+        /* Direct Fixes for uncropped logo inside Kayura Modal Showcase */
+        .modal-showcase-grid img.kayura-modal-logo {
+            object-fit: contain;
+            background: transparent;
+        }
 
         .strategy-block { margin-bottom: 3rem; }
         .strategy-block h4 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; border-left: 3px solid var(--accent-color); padding-left: 10px; }
@@ -483,7 +489,7 @@
                 <h2>Kayura Homemade</h2>
             </div>
             <div class="modal-showcase-grid">
-                <img src="images/KAYURA_LOGO.png" alt="Kayura Identity">
+                <img src="images/KAYURA_LOGO.png" class="kayura-modal-logo" alt="Kayura Identity">
                 <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Range">
                 <img src="images/KAYURA_HAMPER.jpg" alt="Ayurvedic formulations">
             </div>
