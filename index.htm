@@ -169,7 +169,7 @@
         /* --- PREMIUM EDITORIAL ABOUT SECTION GRAPHICS --- */
         .about-grid { 
             display: grid; 
-            grid-template-columns: 1fr 1fr; 
+            grid-template-columns: 1fr 1.2fr; 
             gap: 5rem; 
             align-items: center; 
         }
@@ -187,70 +187,71 @@
         .about-gallery-frame { 
             position: relative; 
             width: 100%;
-            height: 540px;
-            background: transparent !important; /* No background fill rule */
+            height: 560px;
+            background: transparent !important;
         }
 
         .about-image-wrapper { 
             position: absolute;
             overflow: hidden; 
-            background: transparent !important; /* Transparent background canvas alignment */
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease, z-index 0.6s;
+            background: transparent !important;
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s ease, z-index 0.7s;
         }
 
         .about-image-wrapper img { 
             width: 100%; 
             height: 100%; 
-            object-fit: contain; /* Prevents background cropping fills */
+            object-fit: contain;
             display: block; 
-            filter: grayscale(20%) brightness(90%);
+            filter: grayscale(15%) brightness(90%);
             transition: filter 0.4s ease;
         }
         
-        /* Proportional Scaling & Placement Rules */
-        /* 1. Blazer Portrait: The Largest Anchor */
+        /* Proportional Layout, Sizing & Alignment Hierarchy Rules */
+        
+        /* 1. Black Blazer: Centerpiece & The Absolute Largest Anchor (z-index highest initially) */
         .about-img-blazer {
-            width: 62%;
+            width: 60%;
             height: 75%;
-            left: 20%;
-            top: 0;
-            z-index: 2;
-            transform: rotate(-2deg);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            z-index: 3;
         }
 
-        /* 2. Yellow Sweater: The Mid-Sized Balanced Element */
+        /* 2. Yellow Sweater: Positioned on the Right, slightly smaller than Blazer */
         .about-img-sweater {
             width: 48%;
-            height: 52%;
-            left: -8%;
-            bottom: 8%;
-            z-index: 3;
-            transform: rotate(6deg);
+            height: 60%;
+            right: -5%;
+            top: 55%;
+            transform: translateY(-50%) rotate(4deg);
+            z-index: 2;
         }
 
-        /* 3. Mirror Reflection: The Smallest Accent Piece */
+        /* 3. Mirror Reflection: Positioned on the Left, exactly 1% smaller than the Yellow Sweater */
         .about-img-mirror {
-            width: 38%;
-            height: 42%;
-            right: -2%;
-            bottom: 12%;
+            width: 47%;
+            height: 59%;
+            left: -5%;
+            top: 45%;
+            transform: translateY(-50%) rotate(-4deg);
             z-index: 1;
-            transform: rotate(-8deg);
         }
 
-        /* Tactile Layered Hover Interactions */
+        /* Dynamic Parallax & Separation Effects on Hovering Entire Frame */
         .about-gallery-frame:hover .about-img-blazer {
-            transform: translate(5px, -10px) rotate(0deg) scale(1.02);
-            filter: brightness(95%);
+            transform: translate(-50%, -53%) scale(1.02);
+            filter: grayscale(0%) brightness(100%);
         }
         .about-gallery-frame:hover .about-img-sweater {
-            transform: translate(-15px, 10px) rotate(8deg) scale(1.04);
-            filter: grayscale(0%) brightness(100%);
-            z-index: 4;
+            transform: translate(15px, -45%) rotate(7deg) scale(1.03);
+            filter: grayscale(0%) brightness(95%);
         }
         .about-gallery-frame:hover .about-img-mirror {
-            transform: translate(20px, 5px) rotate(-5deg) scale(1.05);
-            filter: grayscale(0%) brightness(100%);
+            transform: translate(-15px, -55%) rotate(-8deg) scale(1.03);
+            filter: grayscale(0%) brightness(95%);
+            z-index: 4; /* Dynamic overlap layer shift on separation */
         }
 
         /* Portfolio Grids */
@@ -463,9 +464,10 @@
         /* Responsive Breakpoints */
         @media(max-width: 992px) {
             .about-grid, .soul-container { grid-template-columns: 1fr; gap: 4rem; }
-            .about-gallery-frame { height: 440px; max-width: 480px; margin: 0 auto; }
-            .about-img-sweater { left: -4%; }
-            .about-img-mirror { right: -4%; }
+            .about-gallery-frame { height: 460px; max-width: 480px; margin: 2rem auto; }
+            .about-img-blazer { width: 65%; height: 80%; }
+            .about-img-sweater { right: -2%; width: 52%; }
+            .about-img-mirror { left: -2%; width: 51%; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
             .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -523,9 +525,9 @@
                 </p>
             </div>
             <div class="about-gallery-frame">
-                <div class="about-image-wrapper about-img-blazer"><img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait Focus"></div>
-                <div class="about-image-wrapper about-img-sweater"><img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Perspective"></div>
                 <div class="about-image-wrapper about-img-mirror"><img src="images/Riya_Hero_2.png" alt="Riya Shah Reflective Dimension"></div>
+                <div class="about-image-wrapper about-img-sweater"><img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Perspective"></div>
+                <div class="about-image-wrapper about-img-blazer"><img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait Focus"></div>
             </div>
         </div>
     </section>
