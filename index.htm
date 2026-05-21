@@ -183,7 +183,7 @@
         }
         .project-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.15); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
 
-        /* --- UPDATED COMPOSITIONS ENGINE --- */
+        /* --- COMPOSITIONS ENGINE --- */
         .card-image-gallery { 
             position: relative; 
             height: 280px; 
@@ -192,7 +192,7 @@
             overflow: hidden; 
         }
 
-        /* Kayura Layout Refinements */
+        /* Kayura Grid Project Preview Layout */
         .gallery-kayura .kayura-logo-side {
             position: absolute;
             left: 15px;
@@ -235,7 +235,7 @@
         .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
         .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        /* WorkPluss Layout Refinements */
+        /* WorkPluss Project Layout */
         .gallery-workpluss .wp-logo-panel {
             position: absolute;
             left: 0;
@@ -274,7 +274,7 @@
         .project-card:hover .gallery-workpluss .wp-phone-mockup { transform: rotate(0deg) scale(1.04); }
         .project-card:hover .gallery-workpluss .wp-screen-sub { opacity: 0.8; transform: scale(1) rotate(0deg); z-index: 5; }
 
-        /* Stratcomm Un-cut Layout Deck Structures */
+        /* Stratcomm Presentation Structures */
         .gallery-stratcomm .sc-deck {
             position: absolute;
             width: 60%;
@@ -311,7 +311,7 @@
         .soul-banner-frame { border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
         .soul-banner-frame img { width: 100%; height: auto; display: block; }
 
-        /* --- DEEP DIVE OVERLAY SYSTEM (MODALS) --- */
+        /* --- DEEP DIVE MODAL OVERLAYS --- */
         .case-study-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
@@ -333,11 +333,11 @@
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
         .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
-        /* New Split Layout Engine For Kayura Deep Dive Showcase */
+        /* Split Panel Architecture For Kayura Deep Dive */
         .kayura-split-showcase {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 2rem;
+            gap: 2.5rem;
             margin: 2.5rem 0;
             align-items: center;
         }
@@ -345,7 +345,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 340px;
+            height: 380px;
             background: transparent !important;
         }
         .kayura-left-logo-pane img {
@@ -357,14 +357,15 @@
         .kayura-right-pictures-pane {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1.5rem;
         }
         .kayura-right-pictures-pane img {
             width: 100%;
-            height: 160px;
-            object-fit: cover;
+            height: 180px;
+            object-fit: contain; /* Prevents the images from being cropped/cut off */
             border-radius: 12px;
             border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.01);
         }
 
         .strategy-block { margin-bottom: 3rem; }
@@ -378,13 +379,13 @@
         .footer-ambience { margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; opacity: 0.25; }
         .footer-ambience img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 1px solid var(--text-color); }
 
-        /* Responsive Updates */
+        /* Responsive Breakpoints */
         @media(max-width: 992px) {
             .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
             .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
-            .kayura-left-logo-pane { height: 240px; }
+            .kayura-left-logo-pane { height: 260px; }
         }
         @media(max-width: 768px) {
             .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
@@ -499,7 +500,7 @@
                     <div>
                         <span class="project-tag">Stakeholder Communications</span>
                         <h3>VCFO & Corporate Advisory</h3>
-                        <p>Structured presentation ecosystems, pitch narratives, and brand modernization advisory for heritage companies like Laxmi Narayan Narayan Mithai and SEBI-regulated public entities.</p>
+                        <p>Structured presentation ecosystems, pitch narratives, and brand modernization advisory for heritage companies like Laxmi Narayan Mithai and SEBI-regulated public entities.</p>
                     </div>
                     <ul class="project-meta-list">
                         <li>VCFO + Internal Audit service positioning</li>
@@ -525,8 +526,8 @@
                     <img src="images/KAYURA_LOGO.png" alt="Kayura Identity Master Logo">
                 </div>
                 <div class="kayura-right-pictures-pane">
-                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Range">
-                    <img src="images/KAYURA_HAMPER.jpg" alt="Ayurvedic formulations">
+                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Range Full Look">
+                    <img src="images/KAYURA_HAMPER.jpg" alt="Ayurvedic Formulations Showcase">
                 </div>
             </div>
 
@@ -622,7 +623,7 @@
         
         <p style="color: var(--muted-color); letter-spacing: 2px; font-weight: bold; font-size: 1.1rem;">+91 8805055860</p>
         
-    <div class="footer-ambience">
+        <div class="footer-ambience">
             <img src="images/Heart.png" alt="Kayura Craft Watermark Logo" title="Kayura Essence">
             <img src="images/Strategy.png" alt="Riya Shah Portfolio Studio Silhouette" title="Perspective Strategy Focus">
             <img src="images/Brand.png" alt="WorkPluss Platform Verification System Watermark" title="WorkPluss Grid Identity" style="background: rgba(255,255,255,0.05); padding: 5px;">
@@ -671,7 +672,7 @@
             if (modal) {
                 modal.classList.add('active');
                 document.body.classList.add('modal-open');
-                fixedNav.style.opacity = '0'; // Hide timeline nav to maximize space
+                fixedNav.style.opacity = '0'; 
                 fixedNav.style.pointerEvents = 'none';
             }
         };
