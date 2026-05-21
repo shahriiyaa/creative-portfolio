@@ -175,7 +175,7 @@
         /* Portfolio Grids */
         .section-title { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
         .section-subtitle { color: var(--muted-color); margin-bottom: 3rem; font-size: 1.1rem; }
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem; }
 
         .project-card {
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 0;
@@ -183,10 +183,118 @@
         }
         .project-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.15); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
 
-        .card-image-gallery { display: flex; gap: 1px; height: 220px; background: #000; border-bottom: 1px solid var(--glass-border); overflow: hidden; }
-        .card-image-gallery img { width: 100%; height: 100%; object-fit: cover; flex: 1; transition: flex 0.4s ease; }
-        .card-image-gallery img:hover { flex: 1.8; }
+        /* --- FUNKY OVERLAPPING CANVAS REGIONS --- */
+        .card-image-gallery { 
+            position: relative; 
+            height: 260px; 
+            background: #050505; 
+            border-bottom: 1px solid var(--glass-border); 
+            overflow: hidden; 
+        }
+
+        /* Kayura Editorial Overlap styling */
+        .gallery-kayura .kayura-logo-side {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            height: auto;
+            max-height: 90%;
+            object-fit: contain;
+            z-index: 5;
+            mix-blend-mode: screen; /* Removes black backgrounds seamlessly */
+        }
+        .gallery-kayura .kayura-img-stack-1 {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 48%;
+            height: 70%;
+            object-fit: cover;
+            border-radius: 8px;
+            transform: rotate(3deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            transition: all 0.3s;
+            z-index: 2;
+        }
+        .gallery-kayura .kayura-img-stack-2 {
+            position: absolute;
+            right: 45px;
+            bottom: 15px;
+            width: 45%;
+            height: 60%;
+            object-fit: cover;
+            border-radius: 8px;
+            transform: rotate(-6deg);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.7);
+            transition: all 0.3s;
+            z-index: 3;
+        }
+        .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(0deg) scale(1.03); z-index: 4; }
+        .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(0deg) scale(1.05); }
+
+        /* WorkPluss Deep Showcase styling */
+        .gallery-workpluss .wp-logo-panel {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            background: #221533;
+            padding: 1.5rem;
+        }
+        .gallery-workpluss .wp-phone-mockup {
+            position: absolute;
+            right: -10px;
+            top: 10px;
+            width: 55%;
+            height: 110%; /* Expands out completely to keep everything completely visible */
+            object-fit: contain;
+            z-index: 4;
+            transform: rotate(-2deg);
+            filter: drop-shadow(0px 15px 25px rgba(0,0,0,0.8));
+            mix-blend-mode: normal;
+            transition: transform 0.4s ease;
+        }
+        .gallery-workpluss .wp-screen-sub {
+            position: absolute;
+            left: 35%;
+            bottom: 10px;
+            width: 35%;
+            height: 45%;
+            object-fit: cover;
+            border-radius: 6px;
+            z-index: 2;
+            opacity: 0.6;
+            transform: scale(0.9);
+            transition: all 0.4s;
+        }
+        .project-card:hover .gallery-workpluss .wp-phone-mockup { transform: rotate(0deg) scale(1.06); }
+        .project-card:hover .gallery-workpluss .wp-screen-sub { opacity: 0.9; transform: scale(1) translateY(-5px); z-index: 5; }
+
+        /* Stratcomm Layer Stack styling (Fitted, Un-cut layouts) */
+        .gallery-stratcomm .sc-deck {
+            position: absolute;
+            width: 62%;
+            height: 75%;
+            object-fit: contain; /* Prevents any part of the text frameworks from clipping out */
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .gallery-stratcomm .sc-card-1 { left: 15px; top: 15px; transform: rotate(-4deg); z-index: 1; }
+        .gallery-stratcomm .sc-card-2 { right: 15px; top: 35px; transform: rotate(3deg); z-index: 2; }
+        .gallery-stratcomm .sc-card-3 { left: 22%; bottom: 10px; transform: rotate(-1deg); z-index: 3; width: 55%; height: 70%; }
         
+        .project-card:hover .gallery-stratcomm .sc-card-1 { transform: translate(-10px, -5px) rotate(-6deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-2 { transform: translate(15px, -5px) rotate(6deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-3 { transform: scale(1.05) translateY(-2px); z-index: 5; }
+
+        /* Card Content Basics */
         .card-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
         .project-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: inline-block; }
         .project-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
@@ -306,10 +414,10 @@
         <div class="grid-layout">
             
             <div class="project-card" data-open-modal="kayura" style="border-bottom: 4px solid var(--kayura-purple);">
-                <div class="card-image-gallery">
-                    <img src="images/KAYURA_LOGO.png" alt="Kayura Luxury Minimal Branding">
-                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Product Suite Lineup">
-                    <img src="images/KAYURA_HAMPER.png" alt="Kayura Raw Ayurvedic Soap Close-up">
+                <div class="card-image-gallery gallery-kayura">
+                    <img src="images/KAYURA_LOGO.png" class="kayura-logo-side" alt="Kayura Luxury Minimal Branding">
+                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" class="kayura-img-stack-1" alt="Kayura Product Suite Lineup">
+                    <img src="images/KAYURA_HAMPER.png" class="kayura-img-stack-2" alt="Kayura Raw Ayurvedic Soap Close-up">
                 </div>
                 <div class="card-content">
                     <div>
@@ -326,10 +434,10 @@
             </div>
 
             <div class="project-card" data-open-modal="workpluss" style="border-bottom: 4px solid var(--workpluss-yellow);">
-                <div class="card-image-gallery">
-                    <img src="images/WORKPLUSS_LOGO.png" alt="WorkPluss Platform Logo" style="background:#221533; padding: 1.5rem; object-fit: contain;">
-                    <img src="images/WORKPLUSS_PHONE.png" alt="WorkPluss Mobile Interface">
-                    <img src="images/WORKPLUSS_SCREEN.png" alt="WorkPluss Dashboard Grid">
+                <div class="card-image-gallery gallery-workpluss">
+                    <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-panel" alt="WorkPluss Platform Logo">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-screen-sub" alt="WorkPluss Dashboard Grid">
+                    <img src="images/WORKPLUSS_PHONE.png" class="wp-phone-mockup" alt="WorkPluss Mobile Interface">
                 </div>
                 <div class="card-content">
                     <div>
@@ -346,10 +454,10 @@
             </div>
 
             <div class="project-card" data-open-modal="stratcomm">
-                 <div class="card-image-gallery">
-                    <img src="images/STRATCOMM_1.png" alt="Strategic Communication Advisory Presentation Pillar">
-                    <img src="images/STRATCOMM_2.png" alt="Corporate Architecture Audit Value Metric Structure">
-                    <img src="images/STRATCOMM_3.png" alt="VCFO Strategic Advisory Framework Overview Matrix">
+                 <div class="card-image-gallery gallery-stratcomm">
+                    <img src="images/STRATCOMM_1.png" class="sc-deck sc-card-1" alt="Strategic Communication Advisory Presentation Pillar">
+                    <img src="images/STRATCOMM_2.png" class="sc-deck sc-card-2" alt="Corporate Architecture Audit Value Metric Structure">
+                    <img src="images/STRATCOMM_3.png" class="sc-deck sc-card-3" alt="VCFO Strategic Advisory Framework Overview Matrix">
                 </div>
                 <div class="card-content">
                     <div>
@@ -472,7 +580,7 @@
         
         <p style="color: var(--muted-color); letter-spacing: 2px; font-weight: bold; font-size: 1.1rem;">+91 8805055860</p>
         
-        <div class="footer-ambience">
+    <div class="footer-ambience">
             <img src="images/Heart.png" alt="Kayura Craft Watermark Logo" title="Kayura Essence">
             <img src="images/Strategy.png" alt="Riya Shah Portfolio Studio Silhouette" title="Perspective Strategy Focus">
             <img src="images/Brand.png" alt="WorkPluss Platform Verification System Watermark" title="WorkPluss Grid Identity" style="background: rgba(255,255,255,0.05); padding: 5px;">
