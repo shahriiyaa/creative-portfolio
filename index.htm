@@ -166,13 +166,14 @@
         .floating-node:hover { border-color: var(--accent-color); transform: scale(1.05); }
         .floating-node::before { content: ''; width: 6px; height: 6px; background-color: var(--accent-color); border-radius: 50%; }
 
-        /* --- ATTRACTIVE ABOUT SECTION EDITORIAL GRAPHICS --- */
+        /* --- PREMIUM EDITORIAL ABOUT SECTION GRAPHICS --- */
         .about-grid { 
             display: grid; 
-            grid-template-columns: 1fr 1.1fr; 
-            gap: 6rem; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 5rem; 
             align-items: center; 
         }
+        
         .about-subtitle-tag {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -182,73 +183,73 @@
             margin-bottom: 0.75rem;
             display: block;
         }
+
         .about-gallery-frame { 
             position: relative; 
             width: 100%;
-            height: 480px;
-            display: block;
+            height: 540px;
+            background: transparent !important; /* No background fill rule */
         }
+
         .about-image-wrapper { 
             position: absolute;
-            border-radius: 12px; 
             overflow: hidden; 
-            border: 1px solid var(--glass-border); 
-            background: #111;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7); 
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s ease, z-index 0.6s;
+            background: transparent !important; /* Transparent background canvas alignment */
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease, z-index 0.6s;
         }
+
         .about-image-wrapper img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; 
+            object-fit: contain; /* Prevents background cropping fills */
             display: block; 
-            filter: grayscale(15%) brightness(95%);
-            transition: filter 0.4s ease, transform 0.6s ease; 
+            filter: grayscale(20%) brightness(90%);
+            transition: filter 0.4s ease;
         }
         
-        /* Positioning the 3 interactive overlapping assets */
-        .about-img-1 {
-            width: 50%;
-            height: 65%;
-            left: 0;
-            top: 10%;
-            z-index: 2;
-            transform: rotate(-4deg);
-        }
-        .about-img-2 {
-            width: 52%;
+        /* Proportional Scaling & Placement Rules */
+        /* 1. Blazer Portrait: The Largest Anchor */
+        .about-img-blazer {
+            width: 62%;
             height: 75%;
-            left: 36%;
-            top: 0;
-            z-index: 1;
-            transform: rotate(3deg);
-        }
-        .about-img-3 {
-            width: 44%;
-            height: 52%;
             left: 20%;
-            bottom: -5%;
-            z-index: 3;
-            transform: rotate(-1deg);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+            top: 0;
+            z-index: 2;
+            transform: rotate(-2deg);
         }
 
-        /* Exquisite hovering interactions over entire framework stack */
-        .about-gallery-frame:hover .about-img-1 {
-            transform: translate(-15px, -10px) rotate(-6deg) scale(1.02);
-            z-index: 2;
+        /* 2. Yellow Sweater: The Mid-Sized Balanced Element */
+        .about-img-sweater {
+            width: 48%;
+            height: 52%;
+            left: -8%;
+            bottom: 8%;
+            z-index: 3;
+            transform: rotate(6deg);
         }
-        .about-gallery-frame:hover .about-img-2 {
-            transform: translate(20px, -5px) rotate(5deg) scale(1.02);
+
+        /* 3. Mirror Reflection: The Smallest Accent Piece */
+        .about-img-mirror {
+            width: 38%;
+            height: 42%;
+            right: -2%;
+            bottom: 12%;
             z-index: 1;
-            filter: brightness(100%);
+            transform: rotate(-8deg);
         }
-        .about-gallery-frame:hover .about-img-3 {
-            transform: translate(5px, 15px) rotate(1deg) scale(1.05);
+
+        /* Tactile Layered Hover Interactions */
+        .about-gallery-frame:hover .about-img-blazer {
+            transform: translate(5px, -10px) rotate(0deg) scale(1.02);
+            filter: brightness(95%);
+        }
+        .about-gallery-frame:hover .about-img-sweater {
+            transform: translate(-15px, 10px) rotate(8deg) scale(1.04);
+            filter: grayscale(0%) brightness(100%);
             z-index: 4;
-            border-color: rgba(255, 255, 255, 0.2);
         }
-        .about-image-wrapper:hover img {
+        .about-gallery-frame:hover .about-img-mirror {
+            transform: translate(20px, 5px) rotate(-5deg) scale(1.05);
             filter: grayscale(0%) brightness(100%);
         }
 
@@ -329,9 +330,9 @@
         .gallery-workpluss .wp-phone-mockup {
             position: absolute;
             right: 5px;
-            top: 0px;
+            top: -15px;
             width: 52%;
-            height: 100%;
+            height: 115%;
             object-fit: contain;
             z-index: 4;
             transform: rotate(-2deg);
@@ -411,7 +412,7 @@
         
         /* Base Modal Grid Style */
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
-        .modal-showcase-grid img { width: 100%; height: auto; max-width: 100%; object-fit: contain; border-radius: 12px; border: 1px solid var(--glass-border); }
+        .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
         /* Split Panel Architecture For Kayura Deep Dive */
         .kayura-split-showcase {
@@ -441,64 +442,11 @@
         }
         .kayura-right-pictures-pane img {
             width: 100%;
-            height: auto;
-            max-width: 100%;
+            height: 180px;
             object-fit: contain;
-            border-radius: 0;
-            border: none;
-            background: transparent;
-        }
-        .kayura-right-pictures-pane img:nth-child(1) {
-            transform: rotate(2deg);
-        }
-        .kayura-right-pictures-pane img:nth-child(2) {
-            transform: rotate(-3deg);
-            margin-top: -25px;
-        }
-
-        /* Isolated Split Panel Architecture For WorkPluss Deep Dive */
-        .wp-split-showcase {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 2.5rem;
-            margin: 2.5rem 0;
-            align-items: center;
-        }
-        .wp-left-phone-pane {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 420px;
-            background: transparent;
-        }
-        .wp-left-phone-pane img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0px 15px 30px rgba(0,0,0,0.7));
-        }
-        .wp-right-assets-pane {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .wp-right-assets-pane img {
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-            object-fit: contain;
-            border-radius: 0;
-            border: none;
-            background: transparent;
-        }
-        .wp-right-assets-pane img:nth-child(1) {
-            max-width: 80%;
-            align-self: center;
-            transform: rotate(-1deg);
-        }
-        .wp-right-assets-pane img:nth-child(2) {
-            transform: rotate(2deg);
-            margin-top: -25px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.01);
         }
 
         .strategy-block { margin-bottom: 3rem; }
@@ -514,14 +462,14 @@
 
         /* Responsive Breakpoints */
         @media(max-width: 992px) {
-            .about-grid, .soul-container { grid-template-columns: 1fr; gap: 5rem; }
-            .about-gallery-frame { height: 400px; max-width: 500px; margin: 0 auto; }
+            .about-grid, .soul-container { grid-template-columns: 1fr; gap: 4rem; }
+            .about-gallery-frame { height: 440px; max-width: 480px; margin: 0 auto; }
+            .about-img-sweater { left: -4%; }
+            .about-img-mirror { right: -4%; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
-            .kayura-split-showcase, .wp-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
-            .kayura-left-logo-pane, .wp-left-phone-pane { height: 260px; }
-            .wp-right-assets-pane img:nth-child(2) { margin-top: 0; }
-            .kayura-right-pictures-pane img:nth-child(2) { margin-top: 0; }
+            .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
+            .kayura-left-logo-pane { height: 260px; }
         }
         @media(max-width: 768px) {
             .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
@@ -575,9 +523,9 @@
                 </p>
             </div>
             <div class="about-gallery-frame">
-                <div class="about-image-wrapper about-img-1"><img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Lens"></div>
-                <div class="about-image-wrapper about-img-2"><img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait Focus"></div>
-                <div class="about-image-wrapper about-img-3"><img src="images/Riya_Hero_2.png" alt="Riya Shah Creative Direction"></div>
+                <div class="about-image-wrapper about-img-blazer"><img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait Focus"></div>
+                <div class="about-image-wrapper about-img-sweater"><img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Perspective"></div>
+                <div class="about-image-wrapper about-img-mirror"><img src="images/Riya_Hero_2.png" alt="Riya Shah Reflective Dimension"></div>
             </div>
         </div>
     </section>
@@ -691,17 +639,11 @@
                 <span>Tech-Hustle Architecture / Growth Framework</span>
                 <h2>WorkPluss (Dhruvanta Tech)</h2>
             </div>
-            
-            <div class="wp-split-showcase">
-                <div class="wp-left-phone-pane">
-                    <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
-                </div>
-                <div class="wp-right-assets-pane">
-                    <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding">
-                    <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
-                </div>
+            <div class="modal-showcase-grid">
+                <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding" style="background:#221533; padding:1rem; object-fit:contain;">
+                <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
+                <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
             </div>
-
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
                 <p>Addressing the massive employment gap for college students across Tier-1 and Tier-2 Indian ecosystems by providing access to flexible part-time assignments within corporate on-ground configurations, production networks, and event structures.</p>
