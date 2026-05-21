@@ -249,9 +249,9 @@
         .gallery-workpluss .wp-phone-mockup {
             position: absolute;
             right: 5px;
-            top: -30px;
+            top: 0px;
             width: 52%;
-            height: 125%;
+            height: 100%;
             object-fit: contain;
             z-index: 4;
             transform: rotate(-2deg);
@@ -331,7 +331,7 @@
         
         /* Base Modal Grid Style */
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
-        .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
+        .modal-showcase-grid img { width: 100%; height: auto; max-width: 100%; object-fit: contain; border-radius: 12px; border: 1px solid var(--glass-border); }
         
         /* Split Panel Architecture For Kayura Deep Dive */
         .kayura-split-showcase {
@@ -362,7 +362,8 @@
         .kayura-right-pictures-pane img {
             width: 100%;
             height: auto;
-            object-fit: none;
+            max-width: 100%;
+            object-fit: contain;
             border-radius: 0;
             border: none;
             background: transparent;
@@ -372,7 +373,7 @@
         }
         .kayura-right-pictures-pane img:nth-child(2) {
             transform: rotate(-3deg);
-            margin-top: -20px;
+            margin-top: -25px;
         }
 
         /* Isolated Split Panel Architecture For WorkPluss Deep Dive */
@@ -404,7 +405,8 @@
         .wp-right-assets-pane img {
             width: 100%;
             height: auto;
-            object-fit: none;
+            max-width: 100%;
+            object-fit: contain;
             border-radius: 0;
             border: none;
             background: transparent;
@@ -416,7 +418,7 @@
         }
         .wp-right-assets-pane img:nth-child(2) {
             transform: rotate(2deg);
-            margin-top: -10px;
+            margin-top: -25px;
         }
 
         .strategy-block { margin-bottom: 3rem; }
