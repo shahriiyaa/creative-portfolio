@@ -249,9 +249,9 @@
         .gallery-workpluss .wp-phone-mockup {
             position: absolute;
             right: 5px;
-            top: -15px;
+            top: -30px;
             width: 52%;
-            height: 115%;
+            height: 125%;
             object-fit: contain;
             z-index: 4;
             transform: rotate(-2deg);
@@ -361,11 +361,62 @@
         }
         .kayura-right-pictures-pane img {
             width: 100%;
-            height: 180px;
-            object-fit: contain; /* Prevents the images from being cropped/cut off */
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.01);
+            height: auto;
+            object-fit: none;
+            border-radius: 0;
+            border: none;
+            background: transparent;
+        }
+        .kayura-right-pictures-pane img:nth-child(1) {
+            transform: rotate(2deg);
+        }
+        .kayura-right-pictures-pane img:nth-child(2) {
+            transform: rotate(-3deg);
+            margin-top: -20px;
+        }
+
+        /* Isolated Split Panel Architecture For WorkPluss Deep Dive */
+        .wp-split-showcase {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 2.5rem;
+            margin: 2.5rem 0;
+            align-items: center;
+        }
+        .wp-left-phone-pane {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 420px;
+            background: transparent;
+        }
+        .wp-left-phone-pane img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0px 15px 30px rgba(0,0,0,0.7));
+        }
+        .wp-right-assets-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .wp-right-assets-pane img {
+            width: 100%;
+            height: auto;
+            object-fit: none;
+            border-radius: 0;
+            border: none;
+            background: transparent;
+        }
+        .wp-right-assets-pane img:nth-child(1) {
+            max-width: 80%;
+            align-self: center;
+            transform: rotate(-1deg);
+        }
+        .wp-right-assets-pane img:nth-child(2) {
+            transform: rotate(2deg);
+            margin-top: -10px;
         }
 
         .strategy-block { margin-bottom: 3rem; }
@@ -384,8 +435,10 @@
             .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
-            .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
-            .kayura-left-logo-pane { height: 260px; }
+            .kayura-split-showcase, .wp-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
+            .kayura-left-logo-pane, .wp-left-phone-pane { height: 260px; }
+            .wp-right-assets-pane img:nth-child(2) { margin-top: 0; }
+            .kayura-right-pictures-pane img:nth-child(2) { margin-top: 0; }
         }
         @media(max-width: 768px) {
             .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
@@ -553,11 +606,17 @@
                 <span>Tech-Hustle Architecture / Growth Framework</span>
                 <h2>WorkPluss (Dhruvanta Tech)</h2>
             </div>
-            <div class="modal-showcase-grid">
-                <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding" style="background:#221533; padding:1rem; object-fit:contain;">
-                <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
-                <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
+            
+            <div class="wp-split-showcase">
+                <div class="wp-left-phone-pane">
+                    <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
+                </div>
+                <div class="wp-right-assets-pane">
+                    <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding">
+                    <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
+                </div>
             </div>
+
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
                 <p>Addressing the massive employment gap for college students across Tier-1 and Tier-2 Indian ecosystems by providing access to flexible part-time assignments within corporate on-ground configurations, production networks, and event structures.</p>
