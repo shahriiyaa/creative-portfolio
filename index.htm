@@ -203,7 +203,7 @@
             max-height: 85%;
             object-fit: contain;
             z-index: 5;
-            mix-blend-mode: screen; 
+            background: transparent !important;
         }
         .gallery-kayura .kayura-img-stack-1 {
             position: absolute;
@@ -329,13 +329,42 @@
         .modal-header span { text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--accent-color); }
         .modal-header h2 { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; margin-top: 0.5rem; }
         
+        /* Base Modal Grid Style */
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
         .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
-        /* Direct Fixes for uncropped logo inside Kayura Modal Showcase */
-        .modal-showcase-grid img.kayura-modal-logo {
+        /* New Split Layout Engine For Kayura Deep Dive Showcase */
+        .kayura-split-showcase {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            margin: 2.5rem 0;
+            align-items: center;
+        }
+        .kayura-left-logo-pane {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 340px;
+            background: transparent !important;
+        }
+        .kayura-left-logo-pane img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            background: transparent;
+            background: transparent !important;
+        }
+        .kayura-right-pictures-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .kayura-right-pictures-pane img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
         }
 
         .strategy-block { margin-bottom: 3rem; }
@@ -354,6 +383,8 @@
             .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
+            .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
+            .kayura-left-logo-pane { height: 240px; }
         }
         @media(max-width: 768px) {
             .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
@@ -468,7 +499,7 @@
                     <div>
                         <span class="project-tag">Stakeholder Communications</span>
                         <h3>VCFO & Corporate Advisory</h3>
-                        <p>Structured presentation ecosystems, pitch narratives, and brand modernization advisory for heritage companies like Laxmi Narayan Mithai and SEBI-regulated public entities.</p>
+                        <p>Structured presentation ecosystems, pitch narratives, and brand modernization advisory for heritage companies like Laxmi Narayan Narayan Mithai and SEBI-regulated public entities.</p>
                     </div>
                     <ul class="project-meta-list">
                         <li>VCFO + Internal Audit service positioning</li>
@@ -488,11 +519,17 @@
                 <span>Mom's Care Project / Luxury Skincare Strategy</span>
                 <h2>Kayura Homemade</h2>
             </div>
-            <div class="modal-showcase-grid">
-                <img src="images/KAYURA_LOGO.png" class="kayura-modal-logo" alt="Kayura Identity">
-                <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Range">
-                <img src="images/KAYURA_HAMPER.jpg" alt="Ayurvedic formulations">
+            
+            <div class="kayura-split-showcase">
+                <div class="kayura-left-logo-pane">
+                    <img src="images/KAYURA_LOGO.png" alt="Kayura Identity Master Logo">
+                </div>
+                <div class="kayura-right-pictures-pane">
+                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Range">
+                    <img src="images/KAYURA_HAMPER.jpg" alt="Ayurvedic formulations">
+                </div>
             </div>
+
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
                 <p>To scale an intimate homemade venture inspired by maternal care into a high-resonance, luxury Ayurvedic brand targeted directly at India's fast-growing "Mass Affluent" consumers who seek chemical-free, premium lifestyle alternatives.</p>
