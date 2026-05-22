@@ -459,9 +459,9 @@
             /* Hide Desktop Artifacts */
             header, .constellation-container, .fixed-nav { display: none !important; }
             
-            /* Brutalist Typography & Spacing */
-            section { border-bottom: none; padding: 6rem 6% 6rem 6%; }
-            .section-title { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; border-bottom: 4px solid var(--text-color); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+            /* FIX 1 — Sizing */
+            section { border-bottom: none; padding: 4rem 5% 4rem 5%; }
+            .section-title { font-size: clamp(1.6rem, 6vw, 2rem); font-weight: 900; text-transform: uppercase; border-bottom: 4px solid var(--text-color); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
             .section-subtitle { font-size: 1.2rem; font-weight: bold; }
             p { font-size: 1rem !important; line-height: 1.7 !important; }
 
@@ -470,7 +470,7 @@
             .scroll-divider.drawn { width: 100%; }
 
             /* Hero - Full Typography Takeover */
-            #hero { padding: 0; justify-content: center; align-items: flex-start; background: var(--bg-color); }
+            #hero { padding: 0; justify-content: center; align-items: flex-start; background: var(--bg-color); min-height: 100svh; }
             .mobile-hero-title {
                 position: absolute; top: 12%; left: 0; width: 100%; padding: 0 5%;
                 font-size: 22vw; font-weight: 900; line-height: 0.85; opacity: 0.08;
@@ -480,8 +480,8 @@
             .m-riya { text-align: left; }
             .m-shah { text-align: right; }
             
-            .hero-centerpiece { position: relative; z-index: 10; text-align: left; padding: 0 8%; margin-top: 40vh; width: 90%; }
-            .hero-centerpiece h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; word-break: break-word; }
+            .hero-centerpiece { position: relative; z-index: 10; text-align: left; padding: 0 8%; margin-top: 30vh; width: 90%; }
+            .hero-centerpiece h1 { font-size: clamp(2rem, 8vw, 3rem); font-weight: 900; letter-spacing: -2px; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; word-break: break-word; }
             .hero-centerpiece p { font-size: 1.1rem; color: var(--text-color); border-left: 4px solid var(--accent-color); padding-left: 1rem; }
             
             .mobile-ticker {
@@ -514,16 +514,16 @@
             }
             .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
             .mobile-nav-links { display: flex; flex-direction: column; gap: 2.5rem; text-align: center; }
-            .mobile-nav-link { font-size: 3rem; font-weight: 900; color: var(--text-color); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+            .mobile-nav-link { font-size: clamp(2rem, 10vw, 3rem); font-weight: 900; color: var(--text-color); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
             .mobile-nav-link:active { color: var(--accent-color); }
 
-            /* About Section - Torn Polaroids */
-            .about-gallery-frame { height: auto !important; display: flex !important; flex-direction: column; align-items: center; margin-top: 3rem; gap: 1rem; }
-            .about-image-wrapper { position: relative !important; width: 90% !important; height: auto !important; background: #e8e8e8 !important; padding: 10px 10px 40px 10px !important; border-radius: 0 !important; box-shadow: 10px 10px 0px rgba(255,87,34,0.3) !important; border: 2px solid var(--bg-color); filter: grayscale(30%) contrast(1.1); top: auto !important; left: auto !important; right: auto !important; transform: none; }
-            .about-image-wrapper img { position: relative; width: 100%; height: auto; display: block; filter: none !important; }
-            .about-img-blazer { transform: rotate(-3deg) !important; z-index: 1; }
-            .about-img-sweater { transform: rotate(4deg) !important; z-index: 2; margin-top: -3rem; }
-            .about-img-mirror { transform: rotate(-2deg) !important; z-index: 3; margin-top: -3rem; }
+            /* FIX 2 — About Photos */
+            .about-gallery-frame { display: flex !important; flex-direction: row !important; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; height: auto !important; margin-top: 2rem; }
+            .about-image-wrapper { position: relative !important; width: 32% !important; height: auto !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; border: none !important; filter: none !important; top: auto !important; left: auto !important; right: auto !important; margin-top: 0 !important; }
+            .about-image-wrapper img { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5)) !important; }
+            .about-img-blazer { transform: rotate(-3deg) !important; z-index: 2; }
+            .about-img-sweater { transform: rotate(2deg) !important; z-index: 1; }
+            .about-img-mirror { transform: rotate(-1deg) !important; z-index: 3; }
 
             /* Strategy Work - Numbered Brutalist Cards */
             .grid-layout { display: flex; flex-direction: column; gap: 4rem; }
@@ -547,9 +547,12 @@
 
             /* Contact Block */
             #contact { padding-bottom: 8rem; text-align: left; align-items: flex-start; }
-            .contact-email { font-size: 1.8rem; background: var(--accent-color); color: var(--bg-color); padding: 1.5rem 1rem; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 2rem; display: block; text-align: center; font-weight: 900; text-transform: uppercase; border-top: 4px solid var(--text-color); border-bottom: 4px solid var(--text-color); transition: none; word-break: break-all; box-shadow: none; }
-            .footer-ambience { margin-top: 4rem; justify-content: flex-start; opacity: 1; filter: grayscale(100%); }
-            .footer-ambience img { border-radius: 0; border: 2px solid var(--glass-border); width: 70px; height: 70px; }
+            .contact-email { font-size: clamp(1rem, 5vw, 1.6rem); background: var(--accent-color); color: var(--bg-color); padding: 1.5rem 1rem; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 2rem; display: block; text-align: center; font-weight: 900; text-transform: uppercase; border-top: 4px solid var(--text-color); border-bottom: 4px solid var(--text-color); transition: none; word-break: break-all; box-shadow: none; }
+            
+            /* FIX 3 — Footer */
+            .footer-ambience { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; width: 100%; gap: 0.5rem; margin-top: 2.5rem; opacity: 0.7; filter: grayscale(100%); }
+            .footer-ambience img { width: calc(22% - 0.4rem); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 1px solid var(--text-color); flex-shrink: 0; }
+            .footer-ambience img[title="WorkPluss Grid Identity"] { background: transparent !important; padding: 0 !important; }
 
             /* Modals Takeover */
             .modal-container { border-radius: 0 !important; width: 100%; max-width: 100%; padding: 5rem 1.5rem 3rem 1.5rem !important; border: none; border-top: 8px solid var(--accent-color); min-height: 100vh; }
