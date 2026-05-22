@@ -4,44 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riya Shah | Strategy x Soul x Substance</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <style>
-        /* --- DESIGN TOKENS --- */
         :root {
-            /* Colors */
-            --color-bg: #0a0a0a;
-            --color-text: #f5f5f5;
-            --color-accent: #ff5722;
-            --color-muted: #8a8a8a;
-            --color-surface: rgba(255, 255, 255, 0.03);
-            --color-border: rgba(255, 255, 255, 0.08);
+            --bg-color: #0d0d0d;
+            --text-color: #f5f5f5;
+            --accent-color: #ff5722;
+            --muted-color: #888888;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
             
-            /* Project Colors */
-            --color-kayura: #6A1C57;
-            --color-workpluss: #FACC15;
-            --color-stratcomm: #4aa5ff;
-
-            /* Typography */
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            
-            /* Fluid Spacing */
-            --space-xs: clamp(0.5rem, 1vw, 1rem);
-            --space-sm: clamp(1rem, 2vw, 2rem);
-            --space-md: clamp(2rem, 4vw, 4rem);
-            --space-lg: clamp(4rem, 8vw, 8rem);
-            --space-xl: clamp(6rem, 12vw, 12rem);
-
-            /* Transitions */
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+            /* Project Branding Colors */
+            --kayura-purple: #6A1C57;
+            --kayura-orange: #F89B1F;
+            --workpluss-bg: #3A2850;
+            --workpluss-yellow: #FACC15;
         }
 
-        /* --- RESET & HYGIENE --- */
         * {
             margin: 0;
             padding: 0;
@@ -49,159 +27,79 @@
             user-select: none;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            font-weight: 300;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            position: relative;
         }
 
         body.modal-open {
             overflow: hidden;
         }
 
-        /* --- PAGE TRANSITION --- */
-        #page-loader {
+        /* --- NOISE & GRAIN OVERLAY --- */
+        body::before {
+            content: "";
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: var(--color-bg);
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s;
-        }
-        #page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader-text {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-style: italic;
-            letter-spacing: 2px;
-            color: var(--color-text);
-            animation: pulse 1.5s infinite var(--ease-in-out-circ);
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3, .logo {
-            font-family: var(--font-display);
-            font-weight: 400;
-            line-height: 1.1;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            letter-spacing: -0.02em;
-            margin-bottom: var(--space-sm);
-        }
-
-        h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            letter-spacing: -0.01em;
-            margin-bottom: var(--space-xs);
-        }
-
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            margin-bottom: var(--space-xs);
-        }
-
-        p {
-            font-size: clamp(1rem, 1.2vw, 1.125rem);
-            color: var(--color-muted);
-            margin-bottom: var(--space-sm);
-            max-width: 65ch;
-        }
-
-        /* --- CUSTOM CURSOR --- */
+        /* --- CUSTOM CURSOR EFFECT --- */
         .custom-cursor {
             width: 20px;
             height: 20px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid var(--text-color);
             border-radius: 50%;
             position: fixed;
+            transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 10000;
-            transition: transform 0.3s var(--ease-out-expo), background-color 0.3s, border-color 0.3s;
-            mix-blend-mode: difference;
+            transition: transform 0.1s ease, background-color 0.2s ease;
         }
+
         .custom-cursor.hovered {
-            transform: scale(2.5);
-            background-color: var(--color-text);
-            border-color: transparent;
+            transform: translate(-50%, -50%) scale(1.8);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
         }
 
-        /* --- HEADER & NAVIGATION --- */
-        header {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: var(--space-sm) 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 998;
-            mix-blend-mode: difference;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .header-tagline {
-            font-size: 0.85rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        /* Navigation - Desktop */
+        /* --- NAVIGATION --- */
         .fixed-nav {
             position: fixed;
             top: 50%;
-            right: var(--space-md);
+            right: 2rem;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
             z-index: 999;
-            background: rgba(10, 10, 10, 0.4);
+            background: var(--glass-bg);
             padding: 1.5rem 0.8rem;
-            border-radius: 40px;
-            border: 1px solid var(--color-border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: opacity 0.4s var(--ease-out-expo);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s;
         }
 
         .nav-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background-color: var(--color-muted);
+            background-color: var(--muted-color);
             position: relative;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: transform 0.4s var(--ease-out-expo), background-color 0.4s;
         }
 
         .nav-dot:hover, .nav-dot.active {
-            background-color: var(--color-accent);
-            transform: scale(1.5);
+            background-color: var(--accent-color);
+            transform: scale(1.3);
         }
 
         .nav-dot .label {
@@ -210,12 +108,11 @@
             top: 50%;
             transform: translateY(-50%) translateX(10px);
             opacity: 0;
-            color: var(--color-text);
+            color: var(--text-color);
             font-size: 0.75rem;
-            font-family: var(--font-body);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.4s var(--ease-out-expo);
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
             pointer-events: none;
             white-space: nowrap;
         }
@@ -225,466 +122,540 @@
             transform: translateY(-50%) translateX(0);
         }
 
-        /* --- LAYOUT SECTIONS --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 998;
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        /* --- SECTIONS --- */
         section {
             min-height: 100vh;
             width: 100%;
-            padding: var(--space-xl) 10% var(--space-lg) 10%;
+            padding: 10rem 10% 8rem 10%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             position: relative;
-            border-bottom: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        /* Hero */
-        #hero { 
-            overflow: hidden; 
-            align-items: center; 
-            text-align: center;
-        }
+        #hero { overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .hero-centerpiece { text-align: center; z-index: 10; pointer-events: none; }
+        .hero-centerpiece h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -2px; }
+        .hero-centerpiece p { color: var(--muted-color); font-size: 1.2rem; letter-spacing: 1px; }
 
-        .hero-centerpiece { z-index: 10; pointer-events: none; }
-        .hero-centerpiece p { 
-            margin: 0 auto; 
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            font-style: italic;
-            font-family: var(--font-display);
-        }
-
-        .constellation-container { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; 
-        }
-
+        .constellation-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
         .floating-node {
-            position: absolute; 
-            padding: 0.8rem 1.5rem; 
-            background: var(--color-surface); 
-            border: 1px solid var(--color-border); 
-            border-radius: 50px;
-            cursor: pointer; 
-            backdrop-filter: blur(8px); 
-            -webkit-backdrop-filter: blur(8px);
-            transition: border-color 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo); 
-            display: flex; align-items: center; gap: 10px;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            position: absolute; padding: 1rem 1.5rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 50px;
+            cursor: pointer; backdrop-filter: blur(5px); transition: border-color 0.3s, transform 0.2s; display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .floating-node:hover { border-color: var(--accent-color); transform: scale(1.05); }
+        .floating-node::before { content: ''; width: 6px; height: 6px; background-color: var(--accent-color); border-radius: 50%; }
+
+        /* --- ABOUT COLLAGE --- */
+        .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+        
+        .about-gallery-frame { 
+            position: relative; 
+            width: 100%;
+            height: 600px; 
+            background: transparent;
+            display: block; 
         }
 
-        .floating-node:hover { 
-            border-color: var(--color-accent); 
-        }
-
-        .floating-node::before { 
-            content: ''; width: 6px; height: 6px; background-color: var(--color-accent); border-radius: 50%; 
-        }
-
-        /* Grid Layouts */
-        .grid-layout { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
-            gap: var(--space-md); 
-        }
-
-        .split-grid {
-            display: grid; 
-            grid-template-columns: 1.2fr 1fr; 
-            gap: var(--space-lg); 
-            align-items: center;
-        }
-
-        /* --- PROJECT CARDS & 3D MICRO-INTERACTIONS --- */
-        .project-card {
-            background: var(--color-surface); 
-            border: 1px solid var(--color-border); 
-            border-radius: 20px; 
-            padding: 0;
-            cursor: pointer; 
-            display: flex; flex-direction: column; 
-            overflow: hidden; position: relative;
-            /* 3D setup */
-            transform-style: preserve-3d;
-            transition: transform 0.1s linear, border-color 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+        .about-image-wrapper { 
+            position: absolute;
+            background: transparent;
         }
         
-        .project-card:hover { 
-            border-color: rgba(255, 255, 255, 0.2); 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8); 
-            z-index: 2;
+        .about-image-wrapper img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            display: block; 
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
         }
 
+        .about-img-blazer { width: 60%; height: 90%; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3; }
+        .about-img-sweater { width: 48%; height: 80%; right: 0%; top: 55%; transform: translateY(-50%); z-index: 2; }
+        .about-img-mirror { width: 47%; height: 69%; left: 0%; top: 55%; transform: translateY(-50%); z-index: 1; }
+
+        .about-gallery-frame:hover .about-img-blazer img { transform: scale(1.03); }
+        .about-gallery-frame:hover .about-img-sweater img { transform: scale(1.04) translate(15px, -10px); }
+        .about-gallery-frame:hover .about-img-mirror img { transform: scale(1.35) translate(-15px, -10px); }
+
+        /* Portfolio Grids */
+        .section-title { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        .section-subtitle { color: var(--muted-color); margin-bottom: 3rem; font-size: 1.1rem; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem; }
+
+        .project-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 0;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; cursor: pointer; display: flex; flex-direction: column; overflow: hidden; position: relative;
+        }
+        .project-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.15); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
+
+        /* --- PREVIEW ARCHITECTURES --- */
         .card-image-gallery { 
             position: relative; 
-            height: 320px; 
-            background: #000; 
-            border-bottom: 1px solid var(--color-border); 
+            height: 280px; 
+            background: #060606; 
+            border-bottom: 1px solid var(--glass-border); 
             overflow: hidden; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform: translateZ(30px); /* Push out of card on hover */
         }
 
-        .card-image-gallery img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s var(--ease-out-expo);
+        /* Kayura Project Layout */
+        .gallery-kayura .kayura-logo-side {
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            width: 44%; height: auto; max-height: 85%; object-fit: contain; z-index: 5; background: transparent;
         }
+        .gallery-kayura .kayura-img-stack-1 {
+            position: absolute; right: 15px; top: 20px; width: 46%; height: 68%;
+            object-fit: cover; border-radius: 8px; transform: rotate(4deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6); transition: transform 0.3s ease, z-index 0.3s ease; z-index: 2;
+        }
+        .gallery-kayura .kayura-img-stack-2 {
+            position: absolute; right: 40px; bottom: 20px; width: 44%; height: 58%;
+            object-fit: cover; border-radius: 8px; transform: rotate(-6deg);
+            border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease; z-index: 3;
+        }
+        .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
+        .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        .project-card:hover .card-image-gallery img {
-            transform: scale(1.05);
+        /* WorkPluss Project Layout */
+        .gallery-workpluss .wp-logo-side {
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            width: 44%; height: auto; max-height: 85%; object-fit: contain; z-index: 5; background: transparent;
         }
+        .gallery-workpluss .wp-img-stack-1 {
+            position: absolute; right: 15px; top: 20px; width: 46%; height: 68%;
+            object-fit: contain; transform: rotate(4deg);
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)); transition: transform 0.3s ease, z-index 0.3s ease; z-index: 2;
+        }
+        .gallery-workpluss .wp-img-stack-2 {
+            position: absolute; right: 40px; bottom: 20px; width: 44%; height: 58%;
+            object-fit: contain; transform: rotate(-6deg);
+            filter: drop-shadow(0 12px 25px rgba(0,0,0,0.7));
+            transition: transform 0.3s ease; z-index: 3;
+        }
+        .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
+        .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        .card-content { 
-            padding: var(--space-sm); 
-            display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; 
-            transform: translateZ(20px);
+        /* Stratcomm Presentation Structures */
+        .gallery-stratcomm .sc-deck {
+            position: absolute; object-fit: contain;
+            background: transparent !important; 
+            border: none !important;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0.4s;
         }
-
-        .project-tag { 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.15em; 
-            margin-bottom: var(--space-xs); 
-            display: inline-block; 
-            font-weight: 500;
-        }
-
-        .project-meta-list { 
-            list-style: none; 
-            border-top: 1px solid var(--color-border); 
-            padding-top: var(--space-xs); 
-            margin-top: var(--space-xs);
-        }
-
-        .project-meta-list li { 
-            font-size: 0.85rem; 
-            color: var(--color-muted); 
-            margin-bottom: 0.5rem; 
-            display: flex; align-items: flex-start; gap: 8px; 
-        }
-
-        .project-meta-list li::before { 
-            content: "—"; color: var(--color-accent); 
-        }
-
-        .explore-hint { 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            color: var(--color-text); 
-            letter-spacing: 0.1em; 
-            margin-top: var(--space-sm); 
-            font-weight: 600; 
-            display: flex; align-items: center; gap: 8px; 
-            transition: color 0.3s;
-        }
+        .gallery-stratcomm .sc-card-1 { left: 15px; top: 50%; transform: translateY(-50%) rotate(-3deg); z-index: 1; width: 45%; height: auto; }
+        .gallery-stratcomm .sc-card-2 { right: 15px; top: 15px; transform: rotate(5deg); z-index: 2; width: 48%; height: auto; }
+        .gallery-stratcomm .sc-card-3 { right: 35px; bottom: 15px; transform: rotate(-4deg); z-index: 3; width: 44%; height: auto; }
         
-        .project-card:hover .explore-hint {
-            color: var(--color-accent);
-        }
+        .project-card:hover .gallery-stratcomm .sc-card-1 { transform: translateY(-50%) translate(-8px, -4px) rotate(-6deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-2 { transform: translate(12px, -4px) rotate(8deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-3 { transform: scale(1.05) translateY(-4px); z-index: 5; }
 
-        /* --- DEEP DIVE MODALS --- */
+        /* Card Content Basics */
+        .card-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .project-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: inline-block; }
+        .project-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .project-card p { color: var(--muted-color); line-height: 1.6; font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+        .project-meta-list { list-style: none; border-top: 1px solid var(--glass-border); padding-top: 1rem; }
+        .project-meta-list li { font-size: 0.85rem; color: var(--text-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .project-meta-list li::before { content: "→"; color: var(--accent-color); }
+        .explore-hint { font-size: 0.75rem; text-transform: uppercase; color: var(--accent-color); letter-spacing: 1px; margin-top: 1rem; font-weight: bold; display: flex; align-items: center; gap: 4px; }
+
+        /* Soul Container Layout */
+        .soul-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .soul-banner-frame { border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        .soul-banner-frame img { width: 100%; height: auto; display: block; }
+
+        /* --- DEEP DIVE MODAL OVERLAYS --- */
         .case-study-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(5, 5, 5, 0.98); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            z-index: 10001; 
-            visibility: hidden; opacity: 0; 
-            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s;
-            display: flex; justify-content: center; overflow-y: auto; 
-            padding: var(--space-md) var(--space-sm);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            z-index: 10001; visibility: hidden; opacity: 0; transition: opacity 0.5s ease, visibility 0.5s ease;
+            display: flex; justify-content: center; overflow-y: auto; padding: 4rem 2rem;
         }
+        .case-study-overlay.active { visibility: visible; opacity: 1; }
+
+        .modal-container { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); max-width: 900px; width: 100%; border-radius: 24px; padding: 4rem; position: relative; height: fit-content; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .close-button { position: absolute; top: 2rem; right: 2rem; background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-color); font-size: 1.5rem; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .close-button:hover { background: var(--text-color); color: var(--bg-color); transform: rotate(90deg); }
+
+        .modal-header { margin-bottom: 3rem; }
+        .modal-header span { text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--accent-color); }
+        .modal-header h2 { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; margin-top: 0.5rem; }
         
-        .case-study-overlay.active { 
-            visibility: visible; opacity: 1; 
-        }
-
-        .modal-container { 
-            background: var(--color-bg); 
-            border: 1px solid var(--color-border); 
-            max-width: 1000px; width: 100%; 
-            border-radius: 24px; 
-            padding: var(--space-md); 
-            position: relative; height: fit-content; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.9); 
-            transform: translateY(40px);
-            transition: transform 0.6s var(--ease-out-expo);
-        }
-
-        .case-study-overlay.active .modal-container {
-            transform: translateY(0);
-        }
-
-        .close-button { 
-            position: absolute; top: 1.5rem; right: 1.5rem; 
-            background: transparent; border: 1px solid var(--color-border); 
-            color: var(--color-text); font-size: 1.5rem; 
-            width: 48px; height: 48px; border-radius: 50%; 
-            cursor: pointer; display: flex; align-items: center; justify-content: center; 
-            transition: transform 0.4s var(--ease-out-expo), background 0.3s; 
-        }
-        .close-button:hover { 
-            background: var(--color-text); color: var(--color-bg); transform: rotate(90deg); 
-        }
-
-        .modal-header span { 
-            text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; color: var(--color-accent); font-weight: 500;
-        }
-
-        .strategy-block { margin-top: var(--space-md); }
-        .strategy-block h4 { 
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; 
-            margin-bottom: 1rem; border-left: 2px solid var(--color-accent); padding-left: 1rem; 
-        }
+        .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
+        .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
-        .modal-showcase-img {
-            width: 100%;
-            border-radius: 12px;
-            margin-top: var(--space-sm);
-            border: 1px solid var(--color-border);
+        /* Split Showcase Layouts (Desktop) */
+        .kayura-split-showcase, .workpluss-split-showcase {
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; margin: 2.5rem 0; align-items: center;
         }
+        .kayura-left-logo-pane, .workpluss-left-system-pane { display: flex; align-items: center; justify-content: center; height: 380px; background: transparent !important; }
+        .kayura-left-logo-pane img, .workpluss-left-system-pane img { width: 100%; height: 100%; object-fit: contain; background: transparent !important; }
+        
+        .kayura-right-pictures-pane { display: flex; flex-direction: column; gap: 1.5rem; }
+        .kayura-right-pictures-pane img { width: 100%; height: 180px; object-fit: contain; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.01); }
 
-        /* --- CONTACT --- */
+        .workpluss-left-system-pane { flex-direction: column; gap: 1.5rem; height: auto; }
+        .workpluss-left-system-pane .wp-modal-logo { width: 70%; height: auto; object-fit: contain; }
+        .workpluss-left-system-pane .wp-modal-screen { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .workpluss-right-phone-pane { display: flex; align-items: center; justify-content: center; height: 420px; background: transparent !important; }
+        .workpluss-right-phone-pane img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 15px 35px rgba(0,0,0,0.7)); }
+
+        .strategy-block { margin-bottom: 3rem; }
+        .strategy-block h4 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; border-left: 3px solid var(--accent-color); padding-left: 10px; }
+        .strategy-block p { color: #ccc; line-height: 1.8; font-size: 1.05rem; }
+
+        /* Footer */
         #contact { text-align: center; align-items: center; }
-        .contact-email { 
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 4rem);
-            color: var(--color-text); text-decoration: none; 
-            margin: var(--space-md) 0; transition: color 0.4s var(--ease-out-expo); 
-            display: inline-block; word-break: break-all; 
-        }
-        .contact-email:hover { color: var(--color-accent); font-style: italic;}
+        .contact-email { font-size: 3rem; font-weight: 700; color: var(--text-color); text-decoration: none; margin: 2rem 0; transition: color 0.3s; display: inline-block; word-break: break-all; }
+        .contact-email:hover { color: var(--accent-color); }
+        .footer-ambience { margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; opacity: 0.25; }
+        .footer-ambience img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 1px solid var(--text-color); }
 
-        /* --- FLUID RESPONSIVENESS & MOBILE-FIRST ARCHITECTURE --- */
+        /* --- RESPONSIVE MEDIA QUERIES & MOBILE RE-ARCHITECTURE --- */
         @media(max-width: 992px) {
-            .split-grid { grid-template-columns: 1fr; gap: var(--space-md); }
-            .header-tagline { display: none; }
+            header { 
+                padding: 1.25rem 5%; 
+                flex-direction: row; 
+                justify-content: space-between;
+                background: rgba(13, 13, 13, 0.85); 
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--glass-border);
+            }
+            .header-tagline { font-size: 0.7rem; text-align: right; max-width: 180px; }
+            section { padding: 9rem 6% 8rem 6%; }
+            .hero-centerpiece h1 { font-size: 3.2rem; }
+            .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
+            .about-gallery-frame { height: 440px; max-width: 440px; margin: 0 auto; }
+            
+            .modal-container { padding: 2.5rem 1.5rem; border-radius: 16px; }
+            .modal-header h2 { font-size: 2.2rem; }
+            
+            .kayura-split-showcase, .workpluss-split-showcase { grid-template-columns: 1fr; gap: 2.5rem; }
+            .kayura-left-logo-pane { height: auto; max-height: 200px; }
+            .workpluss-left-system-pane .wp-modal-logo { width: 50%; margin: 0 auto; }
+            .workpluss-right-phone-pane { height: 380px; }
         }
 
         @media(max-width: 768px) {
             .custom-cursor { display: none !important; }
             
-            /* Bottom-Docked Navigation */
+            /* Mobile Navigation */
             .fixed-nav { 
-                top: auto; bottom: 1.5rem; right: 50%; 
-                transform: translateX(50%); 
-                flex-direction: row; padding: 1rem 1.5rem; gap: 1.5rem; 
-                border-radius: 50px; 
-                width: max-content;
+                bottom: 1.5rem; top: auto; right: 50%; transform: translateX(50%); 
+                flex-direction: row; padding: 0.8rem 1.2rem; gap: 1.5rem; 
+                border-radius: 40px; background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(15px);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             }
             .nav-dot .label { display: none; }
-            .nav-dot { width: 10px; height: 10px; }
+            .nav-dot { width: 12px; height: 12px; }
             
-            /* Stacked Hero for Mobile */
-            .constellation-container {
+            .hero-centerpiece h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .grid-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contact-email { font-size: 1.75rem; margin: 1.5rem 0; }
+            .footer-ambience { gap: 1rem; flex-wrap: wrap; }
+            .footer-ambience img { width: 60px; height: 60px; }
+
+            /* --- RESCALED FIXED PREVIEW ARCHITECTURES FOR MOBILE --- */
+            .card-image-gallery {
+                height: 260px !important;
                 position: relative;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-                margin-top: var(--space-md);
-                height: auto;
-            }
-            .floating-node {
-                position: relative;
-                top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
-                transform: none !important;
             }
 
-            .grid-layout { grid-template-columns: 1fr; }
-            .project-card { transform: none !important; } /* Disable 3D tilt on mobile */
+            /* Kayura & WorkPluss: Balanced Identity + Stack Previews */
+            .gallery-kayura .kayura-logo-side,
+            .gallery-workpluss .wp-logo-side {
+                left: 1.5rem !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                width: 38% !important;
+                max-height: 75% !important;
+            }
+
+            .gallery-kayura .kayura-img-stack-1,
+            .gallery-workpluss .wp-img-stack-1 {
+                top: 15% !important;
+                right: 1.25rem !important;
+                width: 44% !important;
+                height: 65% !important;
+                object-fit: cover !important;
+            }
+
+            .gallery-kayura .kayura-img-stack-2,
+            .gallery-workpluss .wp-img-stack-2 {
+                bottom: 15% !important;
+                right: 2.5rem !important;
+                left: auto !important;
+                width: 40% !important;
+                height: 50% !important;
+                object-fit: cover !important;
+            }
+
+            /* Stratcomm Presentation Fix: Restores aspect-ratio decks, prevents cutoff */
+            .gallery-stratcomm .sc-deck {
+                position: absolute !important;
+                width: 46% !important;
+                height: auto !important;
+                max-height: none !important;
+                object-fit: contain !important;
+            }
+            .gallery-stratcomm .sc-card-1 {
+                left: 1.25rem !important;
+                top: 50% !important;
+                transform: translateY(-50%) rotate(-4deg) !important;
+            }
+            .gallery-stratcomm .sc-card-2 {
+                right: 1.25rem !important;
+                top: 12% !important;
+                transform: rotate(6deg) !important;
+            }
+            .gallery-stratcomm .sc-card-3 {
+                right: 2.25rem !important;
+                bottom: 12% !important;
+                transform: rotate(-4deg) !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="page-loader">
-        <div class="loader-text">Riya Shah</div>
-    </div>
-
     <div class="custom-cursor" id="cursor"></div>
 
     <header>
         <div class="logo">RIYA SHAH</div>
-        <div class="header-tagline">Strategy × Soul × Substance</div>
+        <div class="header-tagline">STRATEGY X SOUL X SUBSTANCE</div>
     </header>
 
     <nav class="fixed-nav" id="fixedNav">
         <div class="nav-dot active" data-target="hero"><span class="label">Home</span></div>
         <div class="nav-dot" data-target="about"><span class="label">About</span></div>
-        <div class="nav-dot" data-target="work"><span class="label">Work</span></div>
-        <div class="nav-dot" data-target="soul"><span class="label">Soul</span></div>
+        <div class="nav-dot" data-target="work"><span class="label">Strategic Work</span></div>
+        <div class="nav-dot" data-target="soul"><span class="label">Soul Project</span></div>
         <div class="nav-dot" data-target="contact"><span class="label">Contact</span></div>
     </nav>
 
-    <main>
-        <section id="hero">
-            <div class="hero-centerpiece">
-                <h1 id="scramble-text">STRATEGY × SUBSTANCE</h1>
-                <p>Crafting brands that are not just seen, but felt.</p>
-            </div>
+    <section id="hero">
+        <div class="hero-centerpiece">
+            <h1 id="scramble-text">STRATEGY X SUBSTANCE</h1>
+            <p>Crafting brands that are not just seen, but felt.</p>
+        </div>
 
-            <div class="constellation-container" id="canvas">
-                <div class="floating-node" data-target="about" style="top: 20%; left: 15%;">About Me</div>
-                <div class="floating-node" data-modal="kayura" style="top: 70%; left: 20%;">Kayura Homemade</div>
-                <div class="floating-node" data-modal="workpluss" style="top: 60%; right: 15%;">WorkPluss</div>
-                <div class="floating-node" data-target="soul" style="top: 25%; right: 20%;">The Unfinished You</div>
-            </div>
-        </section>
+        <div class="constellation-container" id="canvas">
+            <div class="floating-node" data-target="about" style="top: 25%; left: 10%;">About Me</div>
+            <div class="floating-node" data-modal="kayura" style="top: 74%; left: 15%;">Kayura Homemade</div>
+            <div class="floating-node" data-modal="workpluss" style="top: 66%; right: 12%;">WorkPluss</div>
+            <div class="floating-node" data-target="soul" style="top: 28%; right: 18%;">The Unfinished You</div>
+            <div class="floating-node" data-target="contact" style="top: 80%; right: 46%;">Contact</div>
+        </div>
+    </section>
 
-        <section id="about">
-            <div class="split-grid">
-                <div>
-                    <h2>Meet The Person</h2>
-                    <p style="font-size: 1.25rem; color: var(--color-text);">
-                        I'm a strategist and founder drawn to the emotional side of business: the stories people carry, the identities they aspire toward, and the quiet psychology behind what resonates.
-                    </p>
-                    <p>
-                        My work sits at the intersection of strategy, culture, consumer behavior, and storytelling. From building a heritage-led skincare brand to shaping trust-first systems for the gig economy, I'm interested in ideas that combine clarity with emotional depth.
-                    </p>
-                </div>
-                <div style="background: var(--color-surface); border-radius: 20px; aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-border);">
-                    <span style="color: var(--color-muted); font-style: italic;">[Editorial Portrait Placement]</span>
-                </div>
+    <section id="about">
+        <div class="about-grid">
+            <div>
+                <h2 class="section-title" style="margin-bottom: 2rem;">Meet The Person</h2>
+                <p style="font-size: 1.25rem; line-height: 1.8; color: var(--muted-color); margin-bottom: 1.5rem;">
+                    I'm a strategist and founder drawn to the emotional side of business: the stories people carry, the identities they aspire toward, and the quiet psychology behind what resonates.
+                </p>
+                <p style="color: var(--muted-color); line-height: 1.6;">
+                    My work sits at the intersection of strategy, culture, consumer behavior, and storytelling. From building a heritage-led skincare brand to shaping trust-first systems for the gig economy, I'm interested in ideas that combine clarity with emotional depth.
+                </p>
             </div>
-        </section>
-
-        <section id="work">
-            <h2 style="margin-bottom: 0;">Strategy Work</h2>
-            <p style="margin-bottom: var(--space-md);">Selected structural and brand architecture.</p>
             
-            <div class="grid-layout">
-                <div class="project-card" data-open-modal="kayura">
-                    <div class="card-image-gallery">
-                        <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Skincare" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span class="project-tag" style="color: var(--color-kayura);">Brand Identity</span>
-                            <h3>Kayura Homemade</h3>
-                            <p>Positioning luxury-grade Ayurvedic care for the mass affluent. Merging traditional wisdom with premium market expectations.</p>
-                        </div>
-                        <ul class="project-meta-list">
-                            <li>Heritage storytelling & maternal care</li>
-                            <li>Regal visual identity & naming architecture</li>
-                        </ul>
-                        <div class="explore-hint">Read Case Study <span>→</span></div>
-                    </div>
+            <div class="about-gallery-frame">
+                <div class="about-image-wrapper about-img-mirror">
+                    <img src="images/Riya_Hero_2.png" alt="Riya Shah Mirror View">
+                </div>
+                
+                <div class="about-image-wrapper about-img-sweater">
+                    <img src="images/Riya_Hero_1.png" alt="Riya Shah Strategic Lens">
                 </div>
 
-                <div class="project-card" data-open-modal="workpluss">
-                    <div class="card-image-gallery">
-                         <img src="images/WORKPLUSS_SCREEN.png" alt="WorkPluss Platform" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span class="project-tag" style="color: var(--color-workpluss);">Growth Strategy</span>
-                            <h3>WorkPluss</h3>
-                            <p>Solving the foundational gig-economy trust deficit through innovative systemic structures and rapid payout architectures.</p>
-                        </div>
-                        <ul class="project-meta-list">
-                            <li>Instant Payout Advantage solution</li>
-                            <li>Lean 10% commission matrix</li>
-                        </ul>
-                        <div class="explore-hint">Read Case Study <span>→</span></div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-open-modal="stratcomm">
-                    <div class="card-image-gallery">
-                         <img src="images/STRATCOMM_1.png" alt="Corporate Strategy Mockups" loading="lazy" onerror="this.style.display='none'">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <span class="project-tag" style="color: var(--color-stratcomm);">Stakeholder Communications</span>
-                            <h3>VCFO & Corporate Advisory</h3>
-                            <p>Structured presentation ecosystems and brand modernization advisory for heritage companies and public entities.</p>
-                        </div>
-                        <ul class="project-meta-list">
-                            <li>VCFO + Internal Audit service positioning</li>
-                            <li>Next-generation heritage brand evolution</li>
-                        </ul>
-                        <div class="explore-hint">Read Case Study <span>→</span></div>
-                    </div>
+                <div class="about-image-wrapper about-img-blazer">
+                    <img src="images/Riya_Hero_3.png" alt="Riya Shah Portrait">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="soul">
-            <div class="split-grid">
-                <div>
-                    <h2>The Unfinished You</h2>
-                    <p style="color: var(--color-text); font-size: 1.25rem;">Assembling communities outside corporate structures.</p>
-                    <p>
-                        Building a community of collective vulnerability. Moving social media from Aspiration to Validation. This soul-centered project builds authentic connection through shared human experience, measuring success through high-resonance metrics like Saves and Shares rather than vanity numbers. 
-                    </p>
-                    <p style="font-family: var(--font-display); font-style: italic; color: var(--color-accent); font-size: 1.2rem;">Wisdom lives in what remains undone.</p>
+    <section id="work">
+        <h2 class="section-title">Strategy Work</h2>
+        <p class="section-subtitle">Let's dive in</p>
+        
+        <div class="grid-layout">
+            
+            <div class="project-card" data-open-modal="kayura" style="border-bottom: 4px solid var(--kayura-purple);">
+                <div class="card-image-gallery gallery-kayura">
+                    <img src="images/KAYURA_LOGO.png" class="kayura-logo-side" alt="Kayura Luxury Minimal Branding">
+                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" class="kayura-img-stack-1" alt="Kayura Product Suite Lineup">
+                    <img src="images/KAYURA_HAMPER.jpg" class="kayura-img-stack-2" alt="Kayura Raw Ayurvedic Soap Close-up">
                 </div>
-                <div style="background: var(--color-surface); border-radius: 20px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-border);">
-                     <span style="color: var(--color-muted); font-style: italic;">[Soul Project Graphic]</span>
+                <div class="card-content">
+                    <div>
+                        <span class="project-tag" style="color: var(--kayura-orange);">Mom's Care Project / Brand Identity</span>
+                        <h3>Kayura Homemade</h3>
+                        <p>Positioning luxury-grade Ayurvedic care for the "Mass Affluent" consumer segment. A strategic naming and brand identity blueprint merging traditional wisdom with premium market expectations.</p>
+                    </div>
+                    <ul class="project-meta-list">
+                        <li>Heritage storytelling & maternal care focus</li>
+                        <li>Regal warmth color world (#6A1C57 & #F89B1F)</li>
+                    </ul>
+                    <div class="explore-hint">Let's dive in <span>→</span></div>
                 </div>
             </div>
-        </section>
 
-        <section id="contact">
-            <h2>Let's Build Something Meaningful</h2>
-            <p style="margin: 0 auto;">Whether you're a founder seeking clarity, a brand craving meaning, or a dreamer turning vision into reality.</p>
-            
-            <a href="mailto:riya.shah01@yahoo.com" class="contact-email">riya.shah01@yahoo.com</a>
-            
-            <p style="letter-spacing: 0.2em; font-size: 0.9rem; text-transform: uppercase;">+91 8805055860</p>
-        </section>
-    </main>
+            <div class="project-card" data-open-modal="workpluss" style="border-bottom: 4px solid var(--workpluss-yellow);">
+                <div class="card-image-gallery gallery-workpluss">
+                    <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-side" alt="WorkPluss Platform Logo">
+                    <img src="images/WORKPLUSS_PHONE.png" class="wp-img-stack-1" alt="WorkPluss Mobile Interface">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-img-stack-2" alt="WorkPluss Dashboard Grid">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <span class="project-tag" style="color: var(--workpluss-yellow);">Tech-Hustle Project / Growth Strategy</span>
+                        <h3>WorkPluss (Dhruvanta)</h3>
+                        <p>Redefining how students across India find flexible, meaningful assignments. Actively solving the foundational gig-economy trust deficit through innovative systemic structures.</p>
+                    </div>
+                    <ul class="project-meta-list">
+                        <li>Instant Payout Advantage structural solution</li>
+                        <li>Lean 10% commission monetization matrix</li>
+                    </ul>
+                    <div class="explore-hint">Let's dive in <span>→</span></div>
+                </div>
+            </div>
+
+            <div class="project-card" data-open-modal="stratcomm">
+                 <div class="card-image-gallery gallery-stratcomm">
+                    <img src="images/STRATCOMM_1.png" class="sc-deck sc-card-1" alt="Strategic Communication Advisory Presentation Pillar">
+                    <img src="images/STRATCOMM_2.png" class="sc-deck sc-card-2" alt="Corporate Architecture Audit Value Metric Structure">
+                    <img src="images/STRATCOMM_3.png" class="sc-deck sc-card-3" alt="VCFO Strategic Advisory Framework Overview Matrix">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <span class="project-tag">Stakeholder Communications</span>
+                        <h3>VCFO & Corporate Advisory</h3>
+                        <p>Structured presentation ecosystems, pitch narratives, and brand modernization advisory for heritage companies like Laxmi Narayan Mithai and SEBI-regulated public entities.</p>
+                    </div>
+                    <ul class="project-meta-list">
+                        <li>VCFO + Internal Audit service positioning</li>
+                        <li>Next-generation heritage brand evolution pipelines</li>
+                    </ul>
+                    <div class="explore-hint">Let's dive in <span>→</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <div class="case-study-overlay" id="modal-kayura">
         <div class="modal-container">
-            <button class="close-button" aria-label="Close Modal">✕</button>
+            <button class="close-button">×</button>
             <div class="modal-header">
-                <span>Luxury Skincare Strategy</span>
+                <span>Mom's Care Project / Luxury Skincare Strategy</span>
                 <h2>Kayura Homemade</h2>
             </div>
             
+            <div class="kayura-split-showcase">
+                <div class="kayura-left-logo-pane">
+                    <img src="images/KAYURA_LOGO.png" alt="Kayura Identity Master Logo">
+                </div>
+                <div class="kayura-right-pictures-pane">
+                    <img src="images/KAYURA_ALL_PRODUCTS.jpg" alt="Kayura Range Full Look">
+                    <img src="images/KAYURA_HAMPER.jpg" alt="Ayurvedic Formulations Showcase">
+                </div>
+            </div>
+
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
                 <p>To scale an intimate homemade venture inspired by maternal care into a high-resonance, luxury Ayurvedic brand targeted directly at India's fast-growing "Mass Affluent" consumers who seek chemical-free, premium lifestyle alternatives.</p>
             </div>
             <div class="strategy-block">
-                <h4>Naming Architecture</h4>
-                <p>The name <strong>Kayura</strong> bridges Ayurvedic tradition with maternal lineage (Kavita). It builds an immediate positioning matrix around safety, pure lineage, and absolute heritage confidence.</p>
+                <h4>The Story Behind the Naming Architecture</h4>
+                <p>The name <strong>Kayura</strong> carries deep personal meaning. It bridges deep Ayurvedic tradition directly with my mother's name, <strong>Kavita</strong>. It builds an immediate positioning matrix around safety, pure lineage, and absolute heritage confidence.</p>
+            </div>
+            <div class="strategy-block">
+                <h4>Visual Identity Realization</h4>
+                <p>Utilizing a sensory design direction of regal warmth using deep purple (#6A1C57) and vibrant orange (#F89B1F) to honor native Indian botanicals while maintaining premium shelf value.</p>
             </div>
         </div>
     </div>
 
     <div class="case-study-overlay" id="modal-workpluss">
         <div class="modal-container">
-            <button class="close-button" aria-label="Close Modal">✕</button>
+            <button class="close-button">×</button>
             <div class="modal-header">
-                <span>Tech-Hustle Architecture</span>
-                <h2>WorkPluss</h2>
+                <span>Tech-Hustle Architecture / Growth Framework</span>
+                <h2>WorkPluss (Dhruvanta Tech)</h2>
             </div>
             
+            <div class="workpluss-split-showcase">
+                <div class="workpluss-left-system-pane">
+                    <img src="images/WORKPLUSS_LOGO.png" class="wp-modal-logo" alt="Workpluss branding">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-modal-screen" alt="Data metrics dashboard">
+                </div>
+                <div class="workpluss-right-phone-pane">
+                    <img src="images/WORKPLUSS_PHONE.png" alt="App UI mockup without background">
+                </div>
+            </div>
+
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
-                <p>Addressing the massive employment gap for college students across Tier-1 and Tier-2 Indian ecosystems by providing access to flexible part-time assignments within corporate on-ground configurations.</p>
+                <p>Addressing the massive employment gap for college students across Tier-1 and Tier-2 Indian ecosystems by providing access to flexible part-time assignments within corporate on-ground configurations, production networks, and event structures.</p>
             </div>
             <div class="strategy-block">
-                <h4>Trust Deficit Resolution</h4>
-                <p>The core friction point in the student gig economy is payment anxiety. WorkPluss solves this structurally through the <strong>"Instant Payout Advantage"</strong> framework—ensuring immediate security post-verification.</p>
+                <h4>Systemic Trust Deficit Resolution</h4>
+                <p>The core friction point in the student gig economy is payment anxiety. WorkPluss solves this structural deficit completely through the <strong>"Instant Payout Advantage"</strong> framework—ensuring immediate security post-assignment verification.</p>
+            </div>
+            <div class="strategy-block">
+                <h4>Go-To-Market Mechanics</h4>
+                <p>Deploying a lean 10% marketplace monetization match model, focusing rollouts directly through events management associations, university club nodes, and rapid student brand ambassador pipelines.</p>
             </div>
         </div>
     </div>
 
     <div class="case-study-overlay" id="modal-stratcomm">
         <div class="modal-container">
-            <button class="close-button" aria-label="Close Modal">✕</button>
+            <button class="close-button">×</button>
             <div class="modal-header">
-                <span>Corporate Strategy</span>
+                <span>Corporate Strategy / Stakeholder Ecosystems</span>
                 <h2>VCFO & Corporate Advisory</h2>
             </div>
-            
+            <div class="modal-showcase-grid">
+                <img src="images/STRATCOMM_1.png" alt="Value parameters" style="border: none; background: transparent;">
+                <img src="images/STRATCOMM_2.png" alt="Audit frameworks" style="border: none; background: transparent;">
+                <img src="images/STRATCOMM_3.png" alt="Advisory architecture" style="border: none; background: transparent;">
+            </div>
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
                 <p>Transforming complicated financial operations, risk audits, and corporate value architectures into high-clarity presentation assets designed explicitly for investor rooms, executive boards, and regulatory reviews.</p>
@@ -696,151 +667,164 @@
         </div>
     </div>
 
+    <section id="soul">
+        <div class="soul-container">
+            <div>
+                <h2 class="section-title">My Soul Project</h2>
+                <p class="section-subtitle" style="margin-bottom: 2rem;">Assembling communities outside corporate structures.</p>
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent-color);">The Unfinished You</h3>
+                <p style="color: var(--muted-color); line-height: 1.7; font-size: 1.1rem; margin-bottom: 1rem;">
+                    Building a community of collective vulnerability. Moving social media from Aspiration to Validation.
+                </p>
+                <p style="color: var(--muted-color); line-height: 1.6;">
+                    This soul-centered project builds authentic connection through shared human experience, measuring success through high-resonance metrics like Saves and Shares rather than vanity numbers. Wisdom lives in what remains undone.
+                </p>
+            </div>
+            <div class="soul-banner-frame">
+                <img src="images/UNIFINISHED_YOU.png" alt="The Unfinished You Manifesto Graphic Overlay">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Let's Build Something Soul-Centered</h2>
+        <p style="color: var(--muted-color);">Whether you're a founder seeking clarity, a brand craving meaning, or a dreamer turning vision into reality.</p>
+        
+        <a href="mailto:riya.shah01@yahoo.com" class="contact-email">riya.shah01@yahoo.com</a>
+        
+        <p style="color: var(--muted-color); letter-spacing: 2px; font-weight: bold; font-size: 1.1rem;">+91 8805055860</p>
+        
+        <div class="footer-ambience">
+            <img src="images/Heart.png" alt="Kayura Craft Watermark Logo" title="Kayura Essence">
+            <img src="images/Strategy.png" alt="Riya Shah Portfolio Studio Silhouette" title="Perspective Strategy Focus">
+            <img src="images/Brand.png" alt="WorkPluss Platform Verification System Watermark" title="WorkPluss Grid Identity" style="background: rgba(255,255,255,0.05); padding: 5px;">
+            <img src="images/Design.png" alt="Atmospheric Textures Detail" title="Textural Ambience">
+        </div>
+    </section>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            // 1. Page Transition Loader
-            const loader = document.getElementById('page-loader');
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 500);
-
-            // 2. Custom Cursor (Desktop Only)
-            const cursor = document.getElementById('cursor');
-            const isDesktop = window.matchMedia("(min-width: 769px)").matches;
-
-            if (isDesktop) {
-                document.addEventListener('mousemove', (e) => {
-                    requestAnimationFrame(() => {
-                        cursor.style.left = `${e.clientX - 10}px`;
-                        cursor.style.top = `${e.clientY - 10}px`;
-                    });
-                });
-
-                const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-dot, .floating-node');
-                hoverElements.forEach(el => {
-                    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-                });
-            }
-
-            // 3. Premium 3D Tilt Effect on Project Cards (Desktop Only)
-            if (isDesktop) {
-                const cards = document.querySelectorAll('.project-card');
-                cards.forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left; 
-                        const y = e.clientY - rect.top; 
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-                        
-                        // Calculate rotation (max 6 degrees)
-                        const rotateX = ((y - centerY) / centerY) * -6;
-                        const rotateY = ((x - centerX) / centerX) * 6;
-
-                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-                    });
-
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
-                    });
-                });
-            }
-
-            // 4. Modal Controller
-            const body = document.body;
-            const openModal = (id) => {
-                const modal = document.getElementById(`modal-${id}`);
-                if (modal) {
-                    modal.classList.add('active');
-                    body.classList.add('modal-open');
-                }
-            };
-
-            const closeModal = () => {
-                document.querySelectorAll('.case-study-overlay').forEach(m => m.classList.remove('active'));
-                body.classList.remove('modal-open');
-            };
-
-            document.querySelectorAll('[data-open-modal], [data-modal]').forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    const id = trigger.getAttribute('data-open-modal') || trigger.getAttribute('data-modal');
-                    openModal(id);
-                });
-            });
-
-            document.querySelectorAll('.close-button, .case-study-overlay').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    if (e.target === el) closeModal(); // Close if clicking background or button
-                });
-            });
-
-            // ESC key to close modal
-            document.addEventListener('keydown', (e) => {
-                if (e.key === "Escape") closeModal();
-            });
-
-            // 5. Navigation & Scrolling Logic
-            const sections = document.querySelectorAll('section');
-            const navDots = document.querySelectorAll('.nav-dot');
-
-            const scrollToTarget = (targetId) => {
-                const target = document.getElementById(targetId);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            };
-
-            document.querySelectorAll('[data-target]').forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    scrollToTarget(trigger.getAttribute('data-target'));
-                });
-            });
-
-            // Active State on Scroll using Intersection Observer
-            const observerOptions = {
-                root: null,
-                rootMargin: '-50% 0px -50% 0px', // Trigger when section is in middle of viewport
-                threshold: 0
-            };
-
-            const sectionObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-                        navDots.forEach(dot => {
-                            dot.classList.toggle('active', dot.getAttribute('data-target') === id);
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => sectionObserver.observe(section));
-
-            // 6. Text Scramble Effect
-            const scrambleEl = document.getElementById('scramble-text');
-            if(scrambleEl) {
-                const phrases = ['STRATEGY × SUBSTANCE', 'IDEAS WITH HEART', 'BUILT TO BE FELT'];
-                let count = 0;
-                
-                const scramble = () => {
-                    let original = phrases[count];
-                    let iterations = 0;
-                    const interval = setInterval(() => {
-                        scrambleEl.innerText = original.split("").map((letter, index) => {
-                            if(index < iterations) return original[index];
-                            return String.fromCharCode(65 + Math.floor(Math.random() * 26));
-                        }).join("");
-                        
-                        if(iterations >= original.length) clearInterval(interval);
-                        iterations += 1/3; // Speed of resolving letters
-                    }, 30);
-                    count = (count + 1) % phrases.length;
-                };
-                setInterval(scramble, 5000);
-            }
+        // --- Custom Cursor ---
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
+
+        const hoverables = document.querySelectorAll('.floating-node, .nav-dot, .project-card, .contact-email, .close-button');
+        hoverables.forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            item.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // --- Text Scramble ---
+        const phrases = ['STRATEGY X SUBSTANCE', 'IDEAS WITH HEART', 'BUILT TO BE FELT'];
+        let count = 0;
+        const el = document.getElementById('scramble-text');
+        function scramble() {
+            let original = phrases[count];
+            let iterations = 0;
+            const interval = setInterval(() => {
+                el.innerText = original.split("").map((letter, index) => {
+                    if(index < iterations) return original[index];
+                    return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                }).join("");
+                if(iterations >= original.length) clearInterval(interval);
+                iterations += 1/2;
+            }, 30);
+            count = (count + 1) % phrases.length;
+        }
+        setInterval(scramble, 4000);
+
+        // --- DEEP DIVE MODAL CONTROLLER ---
+        const fixedNav = document.getElementById('fixedNav');
+        
+        const openModal = (modalId) => {
+            const modal = document.getElementById(`modal-${modalId}`);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.classList.add('modal-open');
+                fixedNav.style.opacity = '0'; 
+                fixedNav.style.pointerEvents = 'none';
+            }
+        };
+
+        const closeModal = () => {
+            document.querySelectorAll('.case-study-overlay').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.classList.remove('modal-open');
+            fixedNav.style.opacity = '1';
+            fixedNav.style.pointerEvents = 'auto';
+        };
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const targetModal = card.getAttribute('data-open-modal');
+                openModal(targetModal);
+            });
+        });
+
+        document.querySelectorAll('.floating-node[data-modal]').forEach(node => {
+            node.addEventListener('click', () => {
+                openModal(node.getAttribute('data-modal'));
+            });
+        });
+
+        document.querySelectorAll('.close-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeModal();
+            });
+        });
+
+        document.querySelectorAll('.case-study-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeModal();
+            });
+        });
+
+        // --- SCROLL HANDLING ---
+        const scrollTowards = (targetId) => {
+            const target = document.getElementById(targetId);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        document.querySelectorAll('.floating-node[data-target]').forEach(node => {
+            node.addEventListener('click', () => scrollTowards(node.getAttribute('data-target')));
+        });
+
+        const dots = document.querySelectorAll('.nav-dot');
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => scrollTowards(dot.getAttribute('data-target')));
+        });
+
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (pageYOffset >= section.offsetTop - 250) {
+                    current = section.getAttribute('id');
+                }
+            });
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-target') === current) dot.classList.add('active');
+            });
+        });
+
+        // --- CONSTELLATION DRIFT ---
+        const nodes = document.querySelectorAll('.floating-node');
+        let angle = 0;
+        function driftNodes() {
+            angle += 0.007;
+            nodes.forEach((node, idx) => {
+                const offsetX = Math.cos(angle + idx) * 12;
+                const offsetY = Math.sin(angle + idx) * 12;
+                node.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+            requestAnimationFrame(driftNodes);
+        }
+        driftNodes();
     </script>
 </body>
 </html>
