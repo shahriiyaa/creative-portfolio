@@ -179,7 +179,7 @@
 
         .about-image-wrapper { 
             position: absolute;
-            background: transparent; /* Removed borders and shadow constraints from wrapper */
+            background: transparent;
         }
         
         .about-image-wrapper img { 
@@ -188,7 +188,7 @@
             object-fit: contain; 
             display: block; 
             transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4)); /* Added shadow directly to cutout */
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
         }
 
         /* 1. Black Blazer: Centerpiece & Largest */
@@ -289,44 +289,48 @@
         .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
         .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        /* WorkPluss Project Layout */
-        .gallery-workpluss .wp-logo-panel {
+        /* WorkPluss Project Layout (Updated per Kayura Rules) */
+        .gallery-workpluss .wp-logo-side {
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 48%;
-            height: 100%;
-            object-fit: cover;
-            background: #231635;
-            padding: 1.5rem;
-        }
-        .gallery-workpluss .wp-phone-mockup {
-            position: absolute;
-            right: 5px;
-            top: -15px;
-            width: 52%;
-            height: 115%;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44%;
+            height: auto;
+            max-height: 85%;
             object-fit: contain;
-            z-index: 4;
-            transform: rotate(-2deg);
-            filter: drop-shadow(0px 12px 24px rgba(0,0,0,0.8));
-            transition: transform 0.4s ease;
+            z-index: 5;
+            background: transparent !important;
         }
-        .gallery-workpluss .wp-screen-sub {
+        .gallery-workpluss .wp-img-stack-1 {
             position: absolute;
-            left: 32%;
-            bottom: 15px;
-            width: 36%;
-            height: 48%;
+            right: 15px;
+            top: 20px;
+            width: 46%;
+            height: 68%;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
+            transform: rotate(4deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease, z-index 0.3s ease;
             z-index: 2;
-            opacity: 0.5;
-            transform: scale(0.9) rotate(3deg);
-            transition: opacity 0.4s ease, transform 0.4s ease, z-index 0.4s ease;
         }
-        .project-card:hover .gallery-workpluss .wp-phone-mockup { transform: rotate(0deg) scale(1.04); }
-        .project-card:hover .gallery-workpluss .wp-screen-sub { opacity: 0.8; transform: scale(1) rotate(0deg); z-index: 5; }
+        .gallery-workpluss .wp-img-stack-2 {
+            position: absolute;
+            right: 40px;
+            bottom: 20px;
+            width: 44%;
+            height: 58%;
+            object-fit: cover;
+            border-radius: 8px;
+            transform: rotate(-6deg);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease;
+            z-index: 3;
+        }
+        .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
+        .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
         /* Stratcomm Presentation Structures */
         .gallery-stratcomm .sc-deck {
@@ -387,33 +391,33 @@
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
         .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
-        /* Split Panel Architecture For Kayura Deep Dive */
-        .kayura-split-showcase {
+        /* Split Panel Architecture For Deep Dives (Kayura & WorkPluss Rules) */
+        .kayura-split-showcase, .workpluss-split-showcase {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             gap: 2.5rem;
             margin: 2.5rem 0;
             align-items: center;
         }
-        .kayura-left-logo-pane {
+        .kayura-left-logo-pane, .workpluss-left-logo-pane {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 380px;
             background: transparent !important;
         }
-        .kayura-left-logo-pane img {
+        .kayura-left-logo-pane img, .workpluss-left-logo-pane img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             background: transparent !important;
         }
-        .kayura-right-pictures-pane {
+        .kayura-right-pictures-pane, .workpluss-right-pictures-pane {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
-        .kayura-right-pictures-pane img {
+        .kayura-right-pictures-pane img, .workpluss-right-pictures-pane img {
             width: 100%;
             height: 180px;
             object-fit: contain; 
@@ -439,8 +443,8 @@
             .about-gallery-frame { height: 480px; max-width: 500px; margin: 0 auto; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
-            .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
-            .kayura-left-logo-pane { height: 260px; }
+            .kayura-split-showcase, .workpluss-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
+            .kayura-left-logo-pane, .workpluss-left-logo-pane { height: 260px; }
         }
         @media(max-width: 768px) {
             .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
@@ -537,9 +541,9 @@
 
             <div class="project-card" data-open-modal="workpluss" style="border-bottom: 4px solid var(--workpluss-yellow);">
                 <div class="card-image-gallery gallery-workpluss">
-                    <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-panel" alt="WorkPluss Platform Logo">
-                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-screen-sub" alt="WorkPluss Dashboard Grid">
-                    <img src="images/WORKPLUSS_PHONE.png" class="wp-phone-mockup" alt="WorkPluss Mobile Interface">
+                    <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-side" alt="WorkPluss Platform Logo">
+                    <img src="images/WORKPLUSS_PHONE.png" class="wp-img-stack-1" alt="WorkPluss Mobile Interface">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-img-stack-2" alt="WorkPluss Dashboard Grid">
                 </div>
                 <div class="card-content">
                     <div>
@@ -618,11 +622,17 @@
                 <span>Tech-Hustle Architecture / Growth Framework</span>
                 <h2>WorkPluss (Dhruvanta Tech)</h2>
             </div>
-            <div class="modal-showcase-grid">
-                <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding" style="background:#221533; padding:1rem; object-fit:contain;">
-                <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
-                <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
+            
+            <div class="workpluss-split-showcase">
+                <div class="workpluss-left-logo-pane">
+                    <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding">
+                </div>
+                <div class="workpluss-right-pictures-pane">
+                    <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
+                    <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
+                </div>
             </div>
+
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
                 <p>Addressing the massive employment gap for college students across Tier-1 and Tier-2 Indian ecosystems by providing access to flexible part-time assignments within corporate on-ground configurations, production networks, and event structures.</p>
