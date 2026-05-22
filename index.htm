@@ -238,7 +238,7 @@
         .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
         .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        /* WorkPluss Dynamic Split Preview Layout (Logo + Screen vs Phone Mockup) */
+        /* WorkPluss Dynamic Split Preview Layout */
         .gallery-workpluss .wp-preview-left {
             position: absolute;
             left: 15px;
@@ -285,6 +285,7 @@
             object-fit: contain;
             background: transparent !important;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
         }
         .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: scale(1.03) translateY(-2px); }
         .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: scale(1.05) rotate(2deg); }
@@ -348,7 +349,7 @@
         .kayura-right-pictures-pane { display: flex; flex-direction: column; gap: 1.5rem; }
         .kayura-right-pictures-pane img { width: 100%; height: 180px; object-fit: contain; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.01); }
 
-        /* WorkPluss Deep Dive Split Modal Architecture (No backgrounds / No rectangles around phone) */
+        /* WorkPluss Deep Dive Split Modal Architecture */
         .workpluss-split-showcase {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
@@ -402,19 +403,75 @@
         .footer-ambience { margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; opacity: 0.25; }
         .footer-ambience img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 1px solid var(--text-color); }
 
-        /* Responsive Breakpoints */
+        /* --- RESPONSIVE MEDIA QUERIES --- */
         @media(max-width: 992px) {
+            header { padding: 1.25rem 5%; flex-direction: column; gap: 0.5rem; text-align: center; }
+            section { padding: 7rem 5% 4rem 5%; }
+            .hero-centerpiece h1 { font-size: 3.2rem; }
             .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
-            .about-gallery-frame { height: 480px; max-width: 500px; margin: 0 auto; }
-            .modal-container { padding: 2rem; }
+            .about-gallery-frame { height: 440px; max-width: 440px; margin: 0 auto; }
+            
+            .modal-container { padding: 2.5rem 1.5rem; border-radius: 16px; }
             .modal-header h2 { font-size: 2.2rem; }
-            .kayura-split-showcase, .workpluss-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
-            .kayura-left-logo-pane, .workpluss-right-phone-pane { height: 300px; }
+            
+            /* Responsive Overrides for Split Showcases */
+            .kayura-split-showcase, .workpluss-split-showcase { 
+                grid-template-columns: 1fr; 
+                gap: 2.5rem; 
+            }
+            .kayura-left-logo-pane { height: auto; max-height: 200px; }
+            .workpluss-left-system-pane .wp-modal-logo { width: 50%; margin: 0 auto; }
+            .workpluss-right-phone-pane { height: 380px; }
         }
+
         @media(max-width: 768px) {
-            .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
+            .custom-cursor { display: none !important; } /* Disable custom cursor completely on touch devices */
+            
+            /* Mobile Navigation - Thumb friendly bottom bar */
+            .fixed-nav { 
+                bottom: 1.5rem; 
+                top: auto; 
+                right: 50%; 
+                transform: translateX(50%); 
+                flex-direction: row; 
+                padding: 0.8rem 1.2rem; 
+                gap: 1.5rem; 
+                border-radius: 40px;
+                background: rgba(15, 15, 15, 0.85);
+                backdrop-filter: blur(15px);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            }
             .nav-dot .label { display: none; }
-            .contact-email { font-size: 2rem; }
+            .nav-dot { width: 12px; height: 12px; }
+            
+            .hero-centerpiece h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .grid-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .contact-email { font-size: 1.75rem; margin: 1.5rem 0; }
+            .footer-ambience { gap: 1rem; flex-wrap: wrap; }
+            .footer-ambience img { width: 60px; height: 60px; }
+
+            /* WorkPluss Mobile Preview - Vertical Stacking, No Backgrounds */
+            .gallery-workpluss .wp-preview-left {
+                position: relative;
+                width: 100%;
+                left: 0; top: 0; bottom: auto;
+                padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+                align-items: center;
+                gap: 14px;
+            }
+            .gallery-workpluss .wp-logo-side { width: 45%; max-height: 45px; }
+            .gallery-workpluss .wp-img-stack-2 { width: 85%; max-height: 110px; }
+            
+            .gallery-workpluss .wp-preview-right {
+                position: relative;
+                width: 100%;
+                right: 0; top: auto; bottom: auto;
+                height: 200px;
+                padding-bottom: 1.5rem;
+            }
+            .gallery-workpluss .wp-img-stack-1 { height: 100%; width: auto; }
+            .card-image-gallery { height: auto; min-height: 280px; display: flex; flex-direction: column; }
         }
     </style>
 </head>
@@ -444,7 +501,7 @@
         <div class="constellation-container" id="canvas">
             <div class="floating-node" data-target="about" style="top: 25%; left: 10%;">About Me</div>
             <div class="floating-node" data-modal="kayura" style="top: 74%; left: 15%;">Kayura Homemade</div>
-            <div class="floating-node" data-modal="workpluss" style="top: 66%; right: 12%;">WorkPluss </div>
+            <div class="floating-node" data-modal="workpluss" style="top: 66%; right: 12%;">WorkPluss</div>
             <div class="floating-node" data-target="soul" style="top: 28%; right: 18%;">The Unfinished You</div>
             <div class="floating-node" data-target="contact" style="top: 80%; right: 46%;">Contact</div>
         </div>
@@ -479,7 +536,7 @@
     </section>
 
     <section id="work">
-        <h2 class="section-title"> Strategy Work</h2>
+        <h2 class="section-title">Strategy Work</h2>
         <p class="section-subtitle">Let's dive in</p>
         
         <div class="grid-layout">
