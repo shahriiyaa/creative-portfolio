@@ -8,14 +8,14 @@
         :root {
             --bg-color: #0d0d0d;
             --text-color: #f5f5f5;
-            --accent-color: #ff5722;
+            --accent-color: #ffffff; /* Removed orange, replaced with white */
             --muted-color: #888888;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
             
             /* Project Branding Colors */
             --kayura-purple: #6A1C57;
-            --kayura-orange: #F89B1F;
+            --kayura-orange: #ffffff; /* Removed orange, replaced with white */
             --workpluss-bg: #3A2850;
             --workpluss-yellow: #FACC15;
         }
@@ -158,9 +158,28 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
-        #hero { overflow: hidden; display: flex; justify-content: center; align-items: center; }
-        .hero-centerpiece { text-align: center; z-index: 10; pointer-events: none; }
-        .hero-centerpiece h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -2px; }
+        #hero { overflow: hidden; display: flex; justify-content: center; align-items: center; position: relative; }
+        
+        /* GHOST WATERMARK BEHIND HEADER */
+        .hero-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 11vw; /* Adjusted from 15vw to fit perfectly without cutting H */
+            font-weight: 900;
+            color: var(--text-color);
+            opacity: 0.04;
+            z-index: 1;
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: -2px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-centerpiece { text-align: center; z-index: 10; pointer-events: none; position: relative; }
+        .hero-centerpiece h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -2px; position: relative; z-index: 2; }
         .hero-centerpiece p { color: var(--muted-color); font-size: 1.2rem; letter-spacing: 1px; }
 
         .constellation-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
@@ -388,7 +407,6 @@
             .hero-centerpiece h1 { font-size: 2.5rem; }
             .section-title { font-size: 2rem; }
             .grid-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-            .contact-email { font-size: 1.75rem; margin: 1.5rem 0; }
             .footer-ambience { gap: 1rem; flex-wrap: wrap; }
             .footer-ambience img { width: 60px; height: 60px; }
 
@@ -454,6 +472,9 @@
 
         /* === MOBILE STYLES === */
         @media (max-width: 768px) {
+            /* Refined Mobile Accent Color to match White/Monochrome */
+            :root { --accent-color: #ffffff; }
+
             .mobile-only { display: block; }
             
             /* Hide Desktop Artifacts */
@@ -471,41 +492,33 @@
 
             /* Hero - Full Typography Takeover */
             #hero { padding: 0; justify-content: center; align-items: flex-start; background: var(--bg-color); min-height: 100svh; }
-            .mobile-hero-title {
-                position: absolute; top: 12%; left: 0; width: 100%; padding: 0 5%;
-                font-size: 22vw; font-weight: 900; line-height: 0.85; opacity: 0.08;
-                z-index: 1; pointer-events: none; display: flex; flex-direction: column;
-                color: var(--text-color); font-family: Impact, -apple-system, BlinkMacSystemFont, sans-serif;
-            }
-            .m-riya { text-align: left; }
-            .m-shah { text-align: right; }
             
-            .hero-centerpiece { position: relative; z-index: 10; text-align: left; padding: 0 8%; margin-top: 30vh; width: 90%; }
+            /* Refined Mobile Ghost Watermark Layout */
+            .hero-watermark {
+                top: 35vh;
+                font-size: 15vw; /* Fixed H being cut by correctly scaling it */
+                line-height: 0.9;
+                opacity: 0.05;
+                font-family: Impact, -apple-system, BlinkMacSystemFont, sans-serif;
+                white-space: nowrap;
+            }
+            
+            .hero-centerpiece { position: relative; z-index: 10; text-align: left; padding: 0 6%; margin-top: 30vh; width: 100% !important; }
             .hero-centerpiece h1 { font-size: clamp(2rem, 8vw, 3rem); font-weight: 900; letter-spacing: -2px; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; word-break: break-word; }
             .hero-centerpiece p { font-size: 1.1rem; color: var(--text-color); border-left: 4px solid var(--accent-color); padding-left: 1rem; }
             
-            .mobile-ticker {
-                position: absolute; right: 0; top: 0; height: 100%; width: 40px;
-                writing-mode: vertical-rl; text-orientation: mixed;
-                border-left: 2px solid rgba(255,255,255,0.1); background: var(--bg-color); z-index: 5; overflow: hidden;
-                display: flex; align-items: center; justify-content: flex-start;
-            }
-            .ticker-text {
-                white-space: nowrap; animation: ticker 20s linear infinite;
-                font-size: 0.8rem; letter-spacing: 4px; font-weight: 700; color: var(--muted-color); padding-top: 100vh;
-            }
-            @keyframes ticker { 0% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
+            .mobile-ticker { display: none !important; }
 
             /* Mobile Menu Setup */
             .mobile-menu-btn {
                 display: block; position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
                 background: var(--bg-color); color: var(--text-color); border: 2px solid var(--accent-color);
                 border-radius: 50px; padding: 1rem 2.5rem; font-weight: 900; letter-spacing: 2px;
-                z-index: 10002; box-shadow: 0 0 20px rgba(255, 87, 34, 0.4); animation: pulse 2s infinite;
+                z-index: 10002; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); animation: pulse 2s infinite;
                 text-transform: uppercase; font-size: 1rem; cursor: pointer;
             }
             .modal-open .mobile-menu-btn { display: none; }
-            @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 87, 34, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); } }
+            @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
 
             .mobile-menu-overlay {
                 display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -517,13 +530,13 @@
             .mobile-nav-link { font-size: clamp(2rem, 10vw, 3rem); font-weight: 900; color: var(--text-color); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
             .mobile-nav-link:active { color: var(--accent-color); }
 
-            /* FIX 2 — About Photos */
-            .about-gallery-frame { display: flex !important; flex-direction: row !important; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; height: auto !important; margin-top: 2rem; }
-            .about-image-wrapper { position: relative !important; width: 32% !important; height: auto !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; border: none !important; filter: none !important; top: auto !important; left: auto !important; right: auto !important; margin-top: 0 !important; }
-            .about-image-wrapper img { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5)) !important; }
-            .about-img-blazer { transform: rotate(-3deg) !important; z-index: 2; }
-            .about-img-sweater { transform: rotate(2deg) !important; z-index: 1; }
-            .about-img-mirror { transform: rotate(-1deg) !important; z-index: 3; }
+            /* REFINE 3 — About Collage */
+            .about-gallery-frame { position: relative !important; display: block !important; width: 100% !important; height: 340px !important; margin-top: 2.5rem; }
+            .about-image-wrapper { position: absolute !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; border: none !important; filter: none !important; top: auto; left: auto; right: auto; margin-top: 0; }
+            .about-image-wrapper img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.6)) !important; }
+            .about-img-blazer { width: 55% !important; height: 88% !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; z-index: 3; }
+            .about-img-sweater { width: 44% !important; height: 75% !important; right: 0 !important; left: auto !important; top: 52% !important; transform: translateY(-50%) rotate(4deg) !important; z-index: 2; }
+            .about-img-mirror { width: 42% !important; height: 65% !important; left: 0 !important; top: 52% !important; transform: translateY(-50%) rotate(-4deg) !important; z-index: 1; }
 
             /* Strategy Work - Numbered Brutalist Cards */
             .grid-layout { display: flex; flex-direction: column; gap: 4rem; }
@@ -532,7 +545,13 @@
             .project-card[data-open-modal="workpluss"] { border-left-color: var(--workpluss-yellow) !important; }
             .project-card[data-open-modal="stratcomm"] { border-left-color: var(--text-color) !important; }
             
-            .card-image-gallery { border-bottom: 2px solid var(--glass-border); border-radius: 0; background: #000; height: 260px !important; }
+            /* REFINE 5 — StratComm Cards */
+            .card-image-gallery { border-bottom: 2px solid var(--glass-border); border-radius: 0; background: #000; height: 260px !important; overflow: visible !important; }
+            .gallery-stratcomm .sc-deck { object-fit: contain !important; background: transparent !important; height: auto !important; max-height: 140px !important; }
+            .gallery-stratcomm .sc-card-1 { left: 5% !important; top: 50% !important; transform: translateY(-50%) rotate(-4deg) !important; width: 42% !important; }
+            .gallery-stratcomm .sc-card-2 { right: 5% !important; top: 10% !important; transform: rotate(5deg) !important; width: 42% !important; }
+            .gallery-stratcomm .sc-card-3 { right: 12% !important; bottom: 8% !important; transform: rotate(-3deg) !important; width: 40% !important; }
+
             .card-content { padding: 2rem 1.5rem; position: relative; z-index: 2; background: #080808; }
             
             .project-card::before { position: absolute; right: 10px; top: -55px; font-size: 8rem; font-weight: 900; font-family: monospace; color: #fff; opacity: 0.05; z-index: 1; pointer-events: none; line-height: 1; }
@@ -547,7 +566,33 @@
 
             /* Contact Block */
             #contact { padding-bottom: 8rem; text-align: left; align-items: flex-start; }
-            .contact-email { font-size: clamp(1rem, 5vw, 1.6rem); background: var(--accent-color); color: var(--bg-color); padding: 1.5rem 1rem; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 2rem; display: block; text-align: center; font-weight: 900; text-transform: uppercase; border-top: 4px solid var(--text-color); border-bottom: 4px solid var(--text-color); transition: none; word-break: break-all; box-shadow: none; }
+            
+            /* FIXED: Re-architected mobile email button to be aesthetic and readable on hover */
+            .contact-email { 
+                font-size: 1.1rem; 
+                background: var(--accent-color); 
+                color: var(--bg-color); 
+                padding: 1rem 2.5rem; 
+                width: auto; 
+                position: relative; 
+                left: 0; right: 0; 
+                margin-left: 0; margin-right: 0; 
+                margin-top: 2rem; 
+                display: inline-block; 
+                text-align: center; 
+                font-weight: 700; 
+                text-transform: lowercase; 
+                border: none;
+                border-radius: 50px;
+                transition: transform 0.3s ease, background 0.3s ease; 
+                word-break: normal; 
+                box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); 
+            }
+            .contact-email:hover { 
+                color: var(--bg-color) !important; /* Keeps text dark over white background */
+                background: #e6e6e6; /* Slight dim for visual feedback */
+                transform: translateY(-3px);
+            }
             
             /* FIX 3 — Footer */
             .footer-ambience { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; width: 100%; gap: 0.5rem; margin-top: 2.5rem; opacity: 0.7; filter: grayscale(100%); }
@@ -591,13 +636,7 @@
     </nav>
 
     <section id="hero">
-        <div class="mobile-hero-title mobile-only">
-            <div class="m-riya">RIYA</div>
-            <div class="m-shah">SHAH</div>
-        </div>
-        <div class="mobile-ticker mobile-only">
-            <div class="ticker-text">STRATEGY · SOUL · SUBSTANCE · STRATEGY · SOUL · SUBSTANCE · STRATEGY · SOUL · SUBSTANCE ·</div>
-        </div>
+        <div class="hero-watermark">RIYA SHAH</div>
 
         <div class="hero-centerpiece">
             <h1 id="scramble-text">STRATEGY X SUBSTANCE</h1>
@@ -659,13 +698,13 @@
                 </div>
                 <div class="card-content">
                     <div>
-                        <span class="project-tag" style="color: var(--kayura-orange);">Mom's Care Project / Brand Identity</span>
+                        <span class="project-tag" style="color: var(--text-color);">Mom's Care Project / Brand Identity</span>
                         <h3>Kayura Homemade</h3>
                         <p>Positioning luxury-grade Ayurvedic care for the "Mass Affluent" consumer segment. A strategic naming and brand identity blueprint merging traditional wisdom with premium market expectations.</p>
                     </div>
                     <ul class="project-meta-list">
                         <li>Heritage storytelling & maternal care focus</li>
-                        <li>Regal warmth color world (#6A1C57 & #F89B1F)</li>
+                        <li>Regal warmth color world (#6A1C57 & White)</li>
                     </ul>
                     <div class="explore-hint">Let's dive in <span>→</span></div>
                 </div>
@@ -742,7 +781,7 @@
             </div>
             <div class="strategy-block">
                 <h4>Visual Identity Realization</h4>
-                <p>Utilizing a sensory design direction of regal warmth using deep purple (#6A1C57) and vibrant orange (#F89B1F) to honor native Indian botanicals while maintaining premium shelf value.</p>
+                <p>Utilizing a sensory design direction of regal warmth using deep purple (#6A1C57) and striking white to honor native Indian botanicals while maintaining premium shelf value.</p>
             </div>
         </div>
     </div>
