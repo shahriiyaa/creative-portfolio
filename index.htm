@@ -238,71 +238,40 @@
         .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
         .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        /* WorkPluss Dynamic Split Preview Layout */
-        .gallery-workpluss .wp-preview-left {
-            position: absolute;
-            left: 15px;
-            top: 10px;
-            bottom: 10px;
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 12px;
-            z-index: 3;
-        }
+        /* WorkPluss Project Layout (Overlapping like Kayura) */
         .gallery-workpluss .wp-logo-side {
-            width: 85%;
-            height: auto;
-            max-height: 35%;
-            object-fit: contain;
-            background: transparent !important;
-        }
-        .gallery-workpluss .wp-img-stack-2 {
-            width: 100%;
-            height: auto;
-            max-height: 55%;
-            object-fit: contain;
-            border-radius: 6px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-        }
-        .gallery-workpluss .wp-preview-right {
-            position: absolute;
-            right: 15px;
-            top: 0;
-            bottom: 0;
-            width: 42%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 4;
-            background: transparent !important;
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            width: 44%; height: auto; max-height: 85%; object-fit: contain; z-index: 5; background: transparent;
         }
         .gallery-workpluss .wp-img-stack-1 {
-            width: 100%;
-            height: 90%;
-            object-fit: contain;
-            background: transparent !important;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+            position: absolute; right: 15px; top: 20px; width: 46%; height: 68%;
+            object-fit: contain; transform: rotate(4deg);
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.6)); transition: transform 0.3s ease, z-index 0.3s ease; z-index: 2;
         }
-        .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: scale(1.03) translateY(-2px); }
-        .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: scale(1.05) rotate(2deg); }
+        .gallery-workpluss .wp-img-stack-2 {
+            position: absolute; right: 40px; bottom: 20px; width: 44%; height: 58%;
+            object-fit: contain; transform: rotate(-6deg);
+            filter: drop-shadow(0 12px 25px rgba(0,0,0,0.7));
+            transition: transform 0.3s ease; z-index: 3;
+        }
+        .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
+        .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        /* Stratcomm Presentation Structures */
+        /* Stratcomm Presentation Structures (No Restrictions / No Rectangles) */
         .gallery-stratcomm .sc-deck {
-            position: absolute; width: 60%; height: 72%; object-fit: contain;
-            background: #ffffff; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            position: absolute; object-fit: contain;
+            background: transparent !important; 
+            border: none !important;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0.4s;
         }
-        .gallery-stratcomm .sc-card-1 { left: 20px; top: 20px; transform: rotate(-5deg); z-index: 1; }
-        .gallery-stratcomm .sc-card-2 { right: 20px; top: 35px; transform: rotate(4deg); z-index: 2; }
-        .gallery-stratcomm .sc-card-3 { left: 20%; bottom: 15px; transform: rotate(-1deg); z-index: 3; width: 56%; height: 68%; }
+        .gallery-stratcomm .sc-card-1 { left: 15px; top: 50%; transform: translateY(-50%) rotate(-3deg); z-index: 1; width: 45%; height: auto; }
+        .gallery-stratcomm .sc-card-2 { right: 15px; top: 15px; transform: rotate(5deg); z-index: 2; width: 48%; height: auto; }
+        .gallery-stratcomm .sc-card-3 { right: 35px; bottom: 15px; transform: rotate(-4deg); z-index: 3; width: 44%; height: auto; }
         
-        .project-card:hover .gallery-stratcomm .sc-card-1 { transform: translate(-8px, -4px) rotate(-7deg); }
-        .project-card:hover .gallery-stratcomm .sc-card-2 { transform: translate(12px, -4px) rotate(6deg); }
-        .project-card:hover .gallery-stratcomm .sc-card-3 { transform: scale(1.04) translateY(-4px); z-index: 5; }
+        .project-card:hover .gallery-stratcomm .sc-card-1 { transform: translateY(-50%) translate(-8px, -4px) rotate(-6deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-2 { transform: translate(12px, -4px) rotate(8deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-3 { transform: scale(1.05) translateY(-4px); z-index: 5; }
 
         /* Card Content Basics */
         .card-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
@@ -340,57 +309,21 @@
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
         .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
-        /* Kayura Layout Showcase */
-        .kayura-split-showcase {
+        /* Split Showcase Layouts (Desktop) */
+        .kayura-split-showcase, .workpluss-split-showcase {
             display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; margin: 2.5rem 0; align-items: center;
         }
-        .kayura-left-logo-pane { display: flex; align-items: center; justify-content: center; height: 380px; background: transparent !important; }
-        .kayura-left-logo-pane img { width: 100%; height: 100%; object-fit: contain; background: transparent !important; }
+        .kayura-left-logo-pane, .workpluss-left-system-pane { display: flex; align-items: center; justify-content: center; height: 380px; background: transparent !important; }
+        .kayura-left-logo-pane img, .workpluss-left-system-pane img { width: 100%; height: 100%; object-fit: contain; background: transparent !important; }
+        
         .kayura-right-pictures-pane { display: flex; flex-direction: column; gap: 1.5rem; }
         .kayura-right-pictures-pane img { width: 100%; height: 180px; object-fit: contain; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.01); }
 
-        /* WorkPluss Deep Dive Split Modal Architecture */
-        .workpluss-split-showcase {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 2.5rem;
-            margin: 2.5rem 0;
-            align-items: center;
-        }
-        .workpluss-left-system-pane {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            height: auto;
-            background: transparent !important;
-        }
-        .workpluss-left-system-pane .wp-modal-logo {
-            width: 70%;
-            height: auto;
-            object-fit: contain;
-            background: transparent !important;
-        }
-        .workpluss-left-system-pane .wp-modal-screen {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        }
-        .workpluss-right-phone-pane {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 420px;
-            background: transparent !important;
-        }
-        .workpluss-right-phone-pane img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: transparent !important;
-            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.7));
-        }
+        .workpluss-left-system-pane { flex-direction: column; gap: 1.5rem; height: auto; }
+        .workpluss-left-system-pane .wp-modal-logo { width: 70%; height: auto; object-fit: contain; }
+        .workpluss-left-system-pane .wp-modal-screen { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .workpluss-right-phone-pane { display: flex; align-items: center; justify-content: center; height: 420px; background: transparent !important; }
+        .workpluss-right-phone-pane img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 15px 35px rgba(0,0,0,0.7)); }
 
         .strategy-block { margin-bottom: 3rem; }
         .strategy-block h4 { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; border-left: 3px solid var(--accent-color); padding-left: 10px; }
@@ -403,7 +336,7 @@
         .footer-ambience { margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; opacity: 0.25; }
         .footer-ambience img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 1px solid var(--text-color); }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
+        /* --- RESPONSIVE MEDIA QUERIES & MOBILE RE-ARCHITECTURE --- */
         @media(max-width: 992px) {
             header { padding: 1.25rem 5%; flex-direction: column; gap: 0.5rem; text-align: center; }
             section { padding: 7rem 5% 4rem 5%; }
@@ -414,31 +347,20 @@
             .modal-container { padding: 2.5rem 1.5rem; border-radius: 16px; }
             .modal-header h2 { font-size: 2.2rem; }
             
-            /* Responsive Overrides for Split Showcases */
-            .kayura-split-showcase, .workpluss-split-showcase { 
-                grid-template-columns: 1fr; 
-                gap: 2.5rem; 
-            }
+            .kayura-split-showcase, .workpluss-split-showcase { grid-template-columns: 1fr; gap: 2.5rem; }
             .kayura-left-logo-pane { height: auto; max-height: 200px; }
             .workpluss-left-system-pane .wp-modal-logo { width: 50%; margin: 0 auto; }
             .workpluss-right-phone-pane { height: 380px; }
         }
 
         @media(max-width: 768px) {
-            .custom-cursor { display: none !important; } /* Disable custom cursor completely on touch devices */
+            .custom-cursor { display: none !important; }
             
-            /* Mobile Navigation - Thumb friendly bottom bar */
+            /* Mobile Navigation */
             .fixed-nav { 
-                bottom: 1.5rem; 
-                top: auto; 
-                right: 50%; 
-                transform: translateX(50%); 
-                flex-direction: row; 
-                padding: 0.8rem 1.2rem; 
-                gap: 1.5rem; 
-                border-radius: 40px;
-                background: rgba(15, 15, 15, 0.85);
-                backdrop-filter: blur(15px);
+                bottom: 1.5rem; top: auto; right: 50%; transform: translateX(50%); 
+                flex-direction: row; padding: 0.8rem 1.2rem; gap: 1.5rem; 
+                border-radius: 40px; background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(15px);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             }
             .nav-dot .label { display: none; }
@@ -451,27 +373,45 @@
             .footer-ambience { gap: 1rem; flex-wrap: wrap; }
             .footer-ambience img { width: 60px; height: 60px; }
 
-            /* WorkPluss Mobile Preview - Vertical Stacking, No Backgrounds */
-            .gallery-workpluss .wp-preview-left {
-                position: relative;
-                width: 100%;
-                left: 0; top: 0; bottom: auto;
-                padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-                align-items: center;
-                gap: 14px;
+            /* --- MOBILE DEDICATED GALLERY ALGORITHM --- */
+            /* Instead of side-by-side, we place the logo at the top and cascade images below */
+            .card-image-gallery {
+                height: 350px !important;
             }
-            .gallery-workpluss .wp-logo-side { width: 45%; max-height: 45px; }
-            .gallery-workpluss .wp-img-stack-2 { width: 85%; max-height: 110px; }
-            
-            .gallery-workpluss .wp-preview-right {
-                position: relative;
-                width: 100%;
-                right: 0; top: auto; bottom: auto;
-                height: 200px;
-                padding-bottom: 1.5rem;
+
+            /* Center logos at top for all cards */
+            .gallery-kayura .kayura-logo-side,
+            .gallery-workpluss .wp-logo-side,
+            .gallery-stratcomm .sc-card-1 {
+                top: 25px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 60% !important;
+                height: auto !important;
+                max-height: 80px !important;
             }
-            .gallery-workpluss .wp-img-stack-1 { height: 100%; width: auto; }
-            .card-image-gallery { height: auto; min-height: 280px; display: flex; flex-direction: column; }
+
+            /* Cascade the right-side images to center-bottom */
+            .gallery-kayura .kayura-img-stack-1,
+            .gallery-workpluss .wp-img-stack-1,
+            .gallery-stratcomm .sc-card-2 {
+                top: 130px !important;
+                right: 15% !important;
+                width: 55% !important;
+                height: auto !important;
+                max-height: 170px !important;
+            }
+
+            .gallery-kayura .kayura-img-stack-2,
+            .gallery-workpluss .wp-img-stack-2,
+            .gallery-stratcomm .sc-card-3 {
+                bottom: 25px !important;
+                left: 15% !important;
+                right: auto !important;
+                width: 55% !important;
+                height: auto !important;
+                max-height: 160px !important;
+            }
         }
     </style>
 </head>
@@ -563,13 +503,9 @@
 
             <div class="project-card" data-open-modal="workpluss" style="border-bottom: 4px solid var(--workpluss-yellow);">
                 <div class="card-image-gallery gallery-workpluss">
-                    <div class="wp-preview-left">
-                        <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-side" alt="WorkPluss Platform Logo">
-                        <img src="images/WORKPLUSS_SCREEN.png" class="wp-img-stack-2" alt="WorkPluss Dashboard Grid">
-                    </div>
-                    <div class="wp-preview-right">
-                        <img src="images/WORKPLUSS_PHONE.png" class="wp-img-stack-1" alt="WorkPluss Mobile Interface">
-                    </div>
+                    <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-side" alt="WorkPluss Platform Logo">
+                    <img src="images/WORKPLUSS_PHONE.png" class="wp-img-stack-1" alt="WorkPluss Mobile Interface">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-img-stack-2" alt="WorkPluss Dashboard Grid">
                 </div>
                 <div class="card-content">
                     <div>
@@ -682,9 +618,9 @@
                 <h2>VCFO & Corporate Advisory</h2>
             </div>
             <div class="modal-showcase-grid">
-                <img src="images/STRATCOMM_1.png" alt="Value parameters">
-                <img src="images/STRATCOMM_2.png" alt="Audit frameworks">
-                <img src="images/STRATCOMM_3.png" alt="Advisory architecture">
+                <img src="images/STRATCOMM_1.png" alt="Value parameters" style="border: none; background: transparent;">
+                <img src="images/STRATCOMM_2.png" alt="Audit frameworks" style="border: none; background: transparent;">
+                <img src="images/STRATCOMM_3.png" alt="Advisory architecture" style="border: none; background: transparent;">
             </div>
             <div class="strategy-block">
                 <h4>The Strategic Opportunity</h4>
