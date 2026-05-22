@@ -342,6 +342,10 @@
         .footer-ambience { margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; opacity: 0.25; }
         .footer-ambience img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 1px solid var(--text-color); }
 
+        /* Default hidden elements for responsive structures */
+        .mobile-only { display: none; }
+        .scroll-divider { display: none; }
+
         /* --- RESPONSIVE MEDIA QUERIES & MOBILE RE-ARCHITECTURE --- */
         @media(max-width: 992px) {
             header { 
@@ -447,9 +451,126 @@
                 transform: rotate(-4deg) !important;
             }
         }
+
+        /* === MOBILE STYLES === */
+        @media (max-width: 768px) {
+            .mobile-only { display: block; }
+            
+            /* Hide Desktop Artifacts */
+            header, .constellation-container, .fixed-nav { display: none !important; }
+            
+            /* Brutalist Typography & Spacing */
+            section { border-bottom: none; padding: 6rem 6% 6rem 6%; }
+            .section-title { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; border-bottom: 4px solid var(--text-color); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+            .section-subtitle { font-size: 1.2rem; font-weight: bold; }
+            p { font-size: 1rem !important; line-height: 1.7 !important; }
+
+            /* Dividers */
+            .scroll-divider { display: block; width: 0; height: 2px; background: var(--accent-color); margin: 0; transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); position: relative; z-index: 10; }
+            .scroll-divider.drawn { width: 100%; }
+
+            /* Hero - Full Typography Takeover */
+            #hero { padding: 0; justify-content: center; align-items: flex-start; background: var(--bg-color); }
+            .mobile-hero-title {
+                position: absolute; top: 12%; left: 0; width: 100%; padding: 0 5%;
+                font-size: 22vw; font-weight: 900; line-height: 0.85; opacity: 0.08;
+                z-index: 1; pointer-events: none; display: flex; flex-direction: column;
+                color: var(--text-color); font-family: Impact, -apple-system, BlinkMacSystemFont, sans-serif;
+            }
+            .m-riya { text-align: left; }
+            .m-shah { text-align: right; }
+            
+            .hero-centerpiece { position: relative; z-index: 10; text-align: left; padding: 0 8%; margin-top: 40vh; width: 90%; }
+            .hero-centerpiece h1 { font-size: 3.8rem; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; word-break: break-word; }
+            .hero-centerpiece p { font-size: 1.1rem; color: var(--text-color); border-left: 4px solid var(--accent-color); padding-left: 1rem; }
+            
+            .mobile-ticker {
+                position: absolute; right: 0; top: 0; height: 100%; width: 40px;
+                writing-mode: vertical-rl; text-orientation: mixed;
+                border-left: 2px solid rgba(255,255,255,0.1); background: var(--bg-color); z-index: 5; overflow: hidden;
+                display: flex; align-items: center; justify-content: flex-start;
+            }
+            .ticker-text {
+                white-space: nowrap; animation: ticker 20s linear infinite;
+                font-size: 0.8rem; letter-spacing: 4px; font-weight: 700; color: var(--muted-color); padding-top: 100vh;
+            }
+            @keyframes ticker { 0% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
+
+            /* Mobile Menu Setup */
+            .mobile-menu-btn {
+                display: block; position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+                background: var(--bg-color); color: var(--text-color); border: 2px solid var(--accent-color);
+                border-radius: 50px; padding: 1rem 2.5rem; font-weight: 900; letter-spacing: 2px;
+                z-index: 10002; box-shadow: 0 0 20px rgba(255, 87, 34, 0.4); animation: pulse 2s infinite;
+                text-transform: uppercase; font-size: 1rem; cursor: pointer;
+            }
+            .modal-open .mobile-menu-btn { display: none; }
+            @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 87, 34, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); } }
+
+            .mobile-menu-overlay {
+                display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+                background: var(--bg-color); z-index: 10001; flex-direction: column; justify-content: center;
+                align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            }
+            .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+            .mobile-nav-links { display: flex; flex-direction: column; gap: 2.5rem; text-align: center; }
+            .mobile-nav-link { font-size: 3rem; font-weight: 900; color: var(--text-color); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+            .mobile-nav-link:active { color: var(--accent-color); }
+
+            /* About Section - Torn Polaroids */
+            .about-gallery-frame { height: auto !important; display: flex !important; flex-direction: column; align-items: center; margin-top: 3rem; gap: 1rem; }
+            .about-image-wrapper { position: relative !important; width: 90% !important; height: auto !important; background: #e8e8e8 !important; padding: 10px 10px 40px 10px !important; border-radius: 0 !important; box-shadow: 10px 10px 0px rgba(255,87,34,0.3) !important; border: 2px solid var(--bg-color); filter: grayscale(30%) contrast(1.1); top: auto !important; left: auto !important; right: auto !important; transform: none; }
+            .about-image-wrapper img { position: relative; width: 100%; height: auto; display: block; filter: none !important; }
+            .about-img-blazer { transform: rotate(-3deg) !important; z-index: 1; }
+            .about-img-sweater { transform: rotate(4deg) !important; z-index: 2; margin-top: -3rem; }
+            .about-img-mirror { transform: rotate(-2deg) !important; z-index: 3; margin-top: -3rem; }
+
+            /* Strategy Work - Numbered Brutalist Cards */
+            .grid-layout { display: flex; flex-direction: column; gap: 4rem; }
+            .project-card { border: 2px solid var(--glass-border) !important; border-bottom: 2px solid var(--glass-border) !important; border-left-width: 12px !important; border-radius: 0 !important; background: #080808; overflow: visible; padding: 0; }
+            .project-card[data-open-modal="kayura"] { border-left-color: var(--kayura-purple) !important; }
+            .project-card[data-open-modal="workpluss"] { border-left-color: var(--workpluss-yellow) !important; }
+            .project-card[data-open-modal="stratcomm"] { border-left-color: var(--text-color) !important; }
+            
+            .card-image-gallery { border-bottom: 2px solid var(--glass-border); border-radius: 0; background: #000; height: 260px !important; }
+            .card-content { padding: 2rem 1.5rem; position: relative; z-index: 2; background: #080808; }
+            
+            .project-card::before { position: absolute; right: 10px; top: -55px; font-size: 8rem; font-weight: 900; font-family: monospace; color: #fff; opacity: 0.05; z-index: 1; pointer-events: none; line-height: 1; }
+            .project-card:nth-child(1)::before { content: "01"; }
+            .project-card:nth-child(2)::before { content: "02"; }
+            .project-card:nth-child(3)::before { content: "03"; }
+
+            /* Soul Project */
+            .soul-container { display: flex; flex-direction: column-reverse; gap: 3rem; }
+            .soul-banner-frame { border-radius: 0; border: 4px solid var(--text-color); filter: grayscale(100%) contrast(1.2); box-shadow: none; }
+            .soul-banner-frame img { display: block; width: 100%; height: auto; }
+
+            /* Contact Block */
+            #contact { padding-bottom: 8rem; text-align: left; align-items: flex-start; }
+            .contact-email { font-size: 1.8rem; background: var(--accent-color); color: var(--bg-color); padding: 1.5rem 1rem; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 2rem; display: block; text-align: center; font-weight: 900; text-transform: uppercase; border-top: 4px solid var(--text-color); border-bottom: 4px solid var(--text-color); transition: none; word-break: break-all; box-shadow: none; }
+            .footer-ambience { margin-top: 4rem; justify-content: flex-start; opacity: 1; filter: grayscale(100%); }
+            .footer-ambience img { border-radius: 0; border: 2px solid var(--glass-border); width: 70px; height: 70px; }
+
+            /* Modals Takeover */
+            .modal-container { border-radius: 0 !important; width: 100%; max-width: 100%; padding: 5rem 1.5rem 3rem 1.5rem !important; border: none; border-top: 8px solid var(--accent-color); min-height: 100vh; }
+            .case-study-overlay { padding: 0 !important; align-items: flex-start; }
+            .close-button { border-radius: 0 !important; width: 60px; height: 60px; font-size: 2rem; background: var(--bg-color); border: 4px solid var(--text-color); top: 0; right: 0; z-index: 10003; }
+        }
+        /* === END MOBILE STYLES === */
     </style>
 </head>
 <body>
+
+    <button class="mobile-menu-btn mobile-only" id="mobileMenuBtn">MENU</button>
+    <div class="mobile-menu-overlay mobile-only" id="mobileMenuOverlay">
+        <div class="mobile-nav-links">
+            <a href="#hero" class="mobile-nav-link">Home</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#work" class="mobile-nav-link">Strategy</a>
+            <a href="#soul" class="mobile-nav-link">Soul</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </div>
 
     <div class="custom-cursor" id="cursor"></div>
 
@@ -467,6 +588,14 @@
     </nav>
 
     <section id="hero">
+        <div class="mobile-hero-title mobile-only">
+            <div class="m-riya">RIYA</div>
+            <div class="m-shah">SHAH</div>
+        </div>
+        <div class="mobile-ticker mobile-only">
+            <div class="ticker-text">STRATEGY · SOUL · SUBSTANCE · STRATEGY · SOUL · SUBSTANCE · STRATEGY · SOUL · SUBSTANCE ·</div>
+        </div>
+
         <div class="hero-centerpiece">
             <h1 id="scramble-text">STRATEGY X SUBSTANCE</h1>
             <p>Crafting brands that are not just seen, but felt.</p>
@@ -480,6 +609,8 @@
             <div class="floating-node" data-target="contact" style="top: 80%; right: 46%;">Contact</div>
         </div>
     </section>
+
+    <div class="scroll-divider mobile-only"></div>
 
     <section id="about">
         <div class="about-grid">
@@ -508,6 +639,8 @@
             </div>
         </div>
     </section>
+
+    <div class="scroll-divider mobile-only"></div>
 
     <section id="work">
         <h2 class="section-title">Strategy Work</h2>
@@ -667,6 +800,8 @@
         </div>
     </div>
 
+    <div class="scroll-divider mobile-only"></div>
+
     <section id="soul">
         <div class="soul-container">
             <div>
@@ -685,6 +820,8 @@
             </div>
         </div>
     </section>
+
+    <div class="scroll-divider mobile-only"></div>
 
     <section id="contact">
         <h2 class="section-title">Let's Build Something Soul-Centered</h2>
@@ -825,6 +962,56 @@
             requestAnimationFrame(driftNodes);
         }
         driftNodes();
+
+        /* === MOBILE JS === */
+        if (window.innerWidth <= 768) {
+            // Mobile Menu Control
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const menuOverlay = document.getElementById('mobileMenuOverlay');
+            const menuLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            if(menuBtn && menuOverlay) {
+                menuBtn.addEventListener('click', () => {
+                    menuOverlay.classList.toggle('active');
+                    menuBtn.innerText = menuOverlay.classList.contains('active') ? 'CLOSE' : 'MENU';
+                    if (menuOverlay.classList.contains('active')) {
+                        document.body.classList.add('modal-open');
+                    } else {
+                        document.body.classList.remove('modal-open');
+                    }
+                });
+                
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if(targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                        menuOverlay.classList.remove('active');
+                        menuBtn.innerText = 'MENU';
+                        document.body.classList.remove('modal-open');
+                    });
+                });
+            }
+
+            // Sweeping Divider Observer
+            const dividers = document.querySelectorAll('.scroll-divider');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('drawn');
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                dividers.forEach(div => observer.observe(div));
+            } else {
+                // Fallback for older browsers
+                dividers.forEach(div => div.classList.add('drawn'));
+            }
+        }
+        /* === END MOBILE JS === */
     </script>
 </body>
 </html>
