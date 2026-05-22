@@ -36,7 +36,7 @@
         }
 
         body.modal-open {
-            overflow: hidden; /* Prevent background scrolling when a case study is open */
+            overflow: hidden;
         }
 
         /* --- NOISE & GRAIN OVERLAY --- */
@@ -191,37 +191,10 @@
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
         }
 
-        /* 1. Black Blazer: Centerpiece & Largest */
-        .about-img-blazer {
-            width: 60%;
-            height: 90%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-        }
+        .about-img-blazer { width: 60%; height: 90%; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3; }
+        .about-img-sweater { width: 48%; height: 80%; right: 0%; top: 55%; transform: translateY(-50%); z-index: 2; }
+        .about-img-mirror { width: 47%; height: 69%; left: 0%; top: 55%; transform: translateY(-50%); z-index: 1; }
 
-        /* 2. Yellow Sweater: To the right, slightly smaller */
-        .about-img-sweater {
-            width: 48%;
-            height: 80%;
-            right: 0%;
-            top: 55%;
-            transform: translateY(-50%);
-            z-index: 2;
-        }
-
-        /* 3. Mirror: To the left, 1% smaller than the yellow sweater */
-        .about-img-mirror {
-            width: 47%;
-            height: 69%;
-            left: 0%;
-            top: 55%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        /* Dynamic Hover Effect */
         .about-gallery-frame:hover .about-img-blazer img { transform: scale(1.03); }
         .about-gallery-frame:hover .about-img-sweater img { transform: scale(1.04) translate(15px, -10px); }
         .about-gallery-frame:hover .about-img-mirror img { transform: scale(1.35) translate(-15px, -10px); }
@@ -237,7 +210,7 @@
         }
         .project-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.15); box-shadow: 0 15px 45px rgba(0,0,0,0.6); }
 
-        /* --- COMPOSITIONS ENGINE --- */
+        /* --- PREVIEW ARCHITECTURES --- */
         .card-image-gallery { 
             position: relative; 
             height: 280px; 
@@ -246,101 +219,80 @@
             overflow: hidden; 
         }
 
-        /* Kayura Grid Project Preview Layout */
+        /* Kayura Project Layout */
         .gallery-kayura .kayura-logo-side {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44%;
-            height: auto;
-            max-height: 85%;
-            object-fit: contain;
-            z-index: 5;
-            background: transparent !important;
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            width: 44%; height: auto; max-height: 85%; object-fit: contain; z-index: 5; background: transparent;
         }
         .gallery-kayura .kayura-img-stack-1 {
-            position: absolute;
-            right: 15px;
-            top: 20px;
-            width: 46%;
-            height: 68%;
-            object-fit: cover;
-            border-radius: 8px;
-            transform: rotate(4deg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease, z-index 0.3s ease;
-            z-index: 2;
+            position: absolute; right: 15px; top: 20px; width: 46%; height: 68%;
+            object-fit: cover; border-radius: 8px; transform: rotate(4deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6); transition: transform 0.3s ease, z-index 0.3s ease; z-index: 2;
         }
         .gallery-kayura .kayura-img-stack-2 {
-            position: absolute;
-            right: 40px;
-            bottom: 20px;
-            width: 44%;
-            height: 58%;
-            object-fit: cover;
-            border-radius: 8px;
-            transform: rotate(-6deg);
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.7);
-            transition: transform 0.3s ease;
-            z-index: 3;
+            position: absolute; right: 40px; bottom: 20px; width: 44%; height: 58%;
+            object-fit: cover; border-radius: 8px; transform: rotate(-6deg);
+            border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease; z-index: 3;
         }
         .project-card:hover .gallery-kayura .kayura-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
         .project-card:hover .gallery-kayura .kayura-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
 
-        /* WorkPluss Project Layout (Updated per Kayura Rules) */
-        .gallery-workpluss .wp-logo-side {
+        /* WorkPluss Dynamic Split Preview Layout (Logo + Screen vs Phone Mockup) */
+        .gallery-workpluss .wp-preview-left {
             position: absolute;
             left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44%;
+            top: 10px;
+            bottom: 10px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            z-index: 3;
+        }
+        .gallery-workpluss .wp-logo-side {
+            width: 85%;
             height: auto;
-            max-height: 85%;
+            max-height: 35%;
             object-fit: contain;
-            z-index: 5;
+            background: transparent !important;
+        }
+        .gallery-workpluss .wp-img-stack-2 {
+            width: 100%;
+            height: auto;
+            max-height: 55%;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .gallery-workpluss .wp-preview-right {
+            position: absolute;
+            right: 15px;
+            top: 0;
+            bottom: 0;
+            width: 42%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
             background: transparent !important;
         }
         .gallery-workpluss .wp-img-stack-1 {
-            position: absolute;
-            right: 15px;
-            top: 20px;
-            width: 46%;
-            height: 68%;
-            object-fit: cover;
-            border-radius: 8px;
-            transform: rotate(4deg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease, z-index 0.3s ease;
-            z-index: 2;
-        }
-        .gallery-workpluss .wp-img-stack-2 {
-            position: absolute;
-            right: 40px;
-            bottom: 20px;
-            width: 44%;
-            height: 58%;
-            object-fit: cover;
-            border-radius: 8px;
-            transform: rotate(-6deg);
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.7);
+            width: 100%;
+            height: 90%;
+            object-fit: contain;
+            background: transparent !important;
             transition: transform 0.3s ease;
-            z-index: 3;
         }
-        .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: rotate(1deg) scale(1.02); z-index: 4; }
-        .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: rotate(-2deg) scale(1.04); }
+        .project-card:hover .gallery-workpluss .wp-img-stack-2 { transform: scale(1.03) translateY(-2px); }
+        .project-card:hover .gallery-workpluss .wp-img-stack-1 { transform: scale(1.05) rotate(2deg); }
 
         /* Stratcomm Presentation Structures */
         .gallery-stratcomm .sc-deck {
-            position: absolute;
-            width: 60%;
-            height: 72%;
-            object-fit: contain;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            position: absolute; width: 60%; height: 72%; object-fit: contain;
+            background: #ffffff; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0.4s;
         }
         .gallery-stratcomm .sc-card-1 { left: 20px; top: 20px; transform: rotate(-5deg); z-index: 1; }
@@ -360,8 +312,6 @@
         .project-meta-list { list-style: none; border-top: 1px solid var(--glass-border); padding-top: 1rem; }
         .project-meta-list li { font-size: 0.85rem; color: var(--text-color); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
         .project-meta-list li::before { content: "→"; color: var(--accent-color); }
-
-        /* Hint tag for expansion */
         .explore-hint { font-size: 0.75rem; text-transform: uppercase; color: var(--accent-color); letter-spacing: 1px; margin-top: 1rem; font-weight: bold; display: flex; align-items: center; gap: 4px; }
 
         /* Soul Container Layout */
@@ -376,7 +326,6 @@
             z-index: 10001; visibility: hidden; opacity: 0; transition: opacity 0.5s ease, visibility 0.5s ease;
             display: flex; justify-content: center; overflow-y: auto; padding: 4rem 2rem;
         }
-
         .case-study-overlay.active { visibility: visible; opacity: 1; }
 
         .modal-container { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); max-width: 900px; width: 100%; border-radius: 24px; padding: 4rem; position: relative; height: fit-content; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
@@ -387,43 +336,59 @@
         .modal-header span { text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--accent-color); }
         .modal-header h2 { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; margin-top: 0.5rem; }
         
-        /* Base Modal Grid Style */
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
         .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
         
-        /* Split Panel Architecture For Deep Dives (Kayura & WorkPluss Rules) */
-        .kayura-split-showcase, .workpluss-split-showcase {
+        /* Kayura Layout Showcase */
+        .kayura-split-showcase {
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; margin: 2.5rem 0; align-items: center;
+        }
+        .kayura-left-logo-pane { display: flex; align-items: center; justify-content: center; height: 380px; background: transparent !important; }
+        .kayura-left-logo-pane img { width: 100%; height: 100%; object-fit: contain; background: transparent !important; }
+        .kayura-right-pictures-pane { display: flex; flex-direction: column; gap: 1.5rem; }
+        .kayura-right-pictures-pane img { width: 100%; height: 180px; object-fit: contain; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.01); }
+
+        /* WorkPluss Deep Dive Split Modal Architecture (No backgrounds / No rectangles around phone) */
+        .workpluss-split-showcase {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             gap: 2.5rem;
             margin: 2.5rem 0;
             align-items: center;
         }
-        .kayura-left-logo-pane, .workpluss-left-logo-pane {
+        .workpluss-left-system-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: auto;
+            background: transparent !important;
+        }
+        .workpluss-left-system-pane .wp-modal-logo {
+            width: 70%;
+            height: auto;
+            object-fit: contain;
+            background: transparent !important;
+        }
+        .workpluss-left-system-pane .wp-modal-screen {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+        .workpluss-right-phone-pane {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 380px;
+            height: 420px;
             background: transparent !important;
         }
-        .kayura-left-logo-pane img, .workpluss-left-logo-pane img {
+        .workpluss-right-phone-pane img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             background: transparent !important;
-        }
-        .kayura-right-pictures-pane, .workpluss-right-pictures-pane {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .kayura-right-pictures-pane img, .workpluss-right-pictures-pane img {
-            width: 100%;
-            height: 180px;
-            object-fit: contain; 
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.01);
+            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.7));
         }
 
         .strategy-block { margin-bottom: 3rem; }
@@ -444,7 +409,7 @@
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
             .kayura-split-showcase, .workpluss-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
-            .kayura-left-logo-pane, .workpluss-left-logo-pane { height: 260px; }
+            .kayura-left-logo-pane, .workpluss-right-phone-pane { height: 300px; }
         }
         @media(max-width: 768px) {
             .fixed-nav { bottom: 2rem; top: auto; right: 50%; transform: translateX(50%); flex-direction: row; padding: 0.8rem 1.5rem; }
@@ -541,9 +506,13 @@
 
             <div class="project-card" data-open-modal="workpluss" style="border-bottom: 4px solid var(--workpluss-yellow);">
                 <div class="card-image-gallery gallery-workpluss">
-                    <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-side" alt="WorkPluss Platform Logo">
-                    <img src="images/WORKPLUSS_PHONE.png" class="wp-img-stack-1" alt="WorkPluss Mobile Interface">
-                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-img-stack-2" alt="WorkPluss Dashboard Grid">
+                    <div class="wp-preview-left">
+                        <img src="images/WORKPLUSS_LOGO.png" class="wp-logo-side" alt="WorkPluss Platform Logo">
+                        <img src="images/WORKPLUSS_SCREEN.png" class="wp-img-stack-2" alt="WorkPluss Dashboard Grid">
+                    </div>
+                    <div class="wp-preview-right">
+                        <img src="images/WORKPLUSS_PHONE.png" class="wp-img-stack-1" alt="WorkPluss Mobile Interface">
+                    </div>
                 </div>
                 <div class="card-content">
                     <div>
@@ -624,12 +593,12 @@
             </div>
             
             <div class="workpluss-split-showcase">
-                <div class="workpluss-left-logo-pane">
-                    <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding">
+                <div class="workpluss-left-system-pane">
+                    <img src="images/WORKPLUSS_LOGO.png" class="wp-modal-logo" alt="Workpluss branding">
+                    <img src="images/WORKPLUSS_SCREEN.png" class="wp-modal-screen" alt="Data metrics dashboard">
                 </div>
-                <div class="workpluss-right-pictures-pane">
-                    <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
-                    <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
+                <div class="workpluss-right-phone-pane">
+                    <img src="images/WORKPLUSS_PHONE.png" alt="App UI mockup without background">
                 </div>
             </div>
 
@@ -761,7 +730,6 @@
             fixedNav.style.pointerEvents = 'auto';
         };
 
-        // Attach hooks to card clicks
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', () => {
                 const targetModal = card.getAttribute('data-open-modal');
@@ -769,14 +737,12 @@
             });
         });
 
-        // Attach hooks to floating nodes on hero canvas
         document.querySelectorAll('.floating-node[data-modal]').forEach(node => {
             node.addEventListener('click', () => {
                 openModal(node.getAttribute('data-modal'));
             });
         });
 
-        // Close triggers
         document.querySelectorAll('.close-button').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -784,7 +750,6 @@
             });
         });
 
-        // Close when clicking outside content box
         document.querySelectorAll('.case-study-overlay').forEach(overlay => {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) closeModal();
