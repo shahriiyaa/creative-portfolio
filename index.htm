@@ -166,93 +166,65 @@
         .floating-node:hover { border-color: var(--accent-color); transform: scale(1.05); }
         .floating-node::before { content: ''; width: 6px; height: 6px; background-color: var(--accent-color); border-radius: 50%; }
 
-        /* --- PREMIUM EDITORIAL ABOUT SECTION GRAPHICS --- */
-        .about-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1.2fr; 
-            gap: 5rem; 
-            align-items: center; 
-        }
+        /* --- ABOUT COLLAGE --- */
+        .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
         
-        .about-subtitle-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent-color);
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-
         .about-gallery-frame { 
             position: relative; 
             width: 100%;
-            height: 560px;
-            background: transparent !important;
+            height: 600px; 
+            background: transparent;
+            display: block; 
         }
 
         .about-image-wrapper { 
             position: absolute;
-            overflow: hidden; 
-            background: transparent !important;
-            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), filter 0.4s ease, z-index 0.7s;
+            background: transparent; /* Removed borders and shadow constraints from wrapper */
         }
-
+        
         .about-image-wrapper img { 
             width: 100%; 
             height: 100%; 
-            object-fit: contain;
+            object-fit: contain; 
             display: block; 
-            filter: grayscale(15%) brightness(90%);
-            transition: filter 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4)); /* Added shadow directly to cutout */
         }
-        
-        /* Proportional Layout, Sizing & Alignment Hierarchy Rules */
-        
-        /* 1. Black Blazer: Centerpiece & The Absolute Largest Anchor (z-index highest initially) */
+
+        /* 1. Black Blazer: Centerpiece & Largest */
         .about-img-blazer {
             width: 60%;
-            height: 75%;
+            height: 85%;
             left: 50%;
             top: 50%;
-            transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%);
             z-index: 3;
         }
 
-        /* 2. Yellow Sweater: Positioned on the Right, slightly smaller than Blazer */
+        /* 2. Yellow Sweater: To the right, slightly smaller */
         .about-img-sweater {
             width: 48%;
-            height: 60%;
-            right: -5%;
+            height: 70%;
+            right: 0%;
             top: 55%;
-            transform: translateY(-50%) rotate(4deg);
+            transform: translateY(-50%);
             z-index: 2;
         }
 
-        /* 3. Mirror Reflection: Positioned on the Left, exactly 1% smaller than the Yellow Sweater */
+        /* 3. Mirror: To the left, 1% smaller than the yellow sweater */
         .about-img-mirror {
             width: 47%;
-            height: 59%;
-            left: -5%;
-            top: 45%;
-            transform: translateY(-50%) rotate(-4deg);
+            height: 69%;
+            left: 0%;
+            top: 55%;
+            transform: translateY(-50%);
             z-index: 1;
         }
 
-        /* Dynamic Parallax & Separation Effects on Hovering Entire Frame */
-        .about-gallery-frame:hover .about-img-blazer {
-            transform: translate(-50%, -53%) scale(1.02);
-            filter: grayscale(0%) brightness(100%);
-        }
-        .about-gallery-frame:hover .about-img-sweater {
-            transform: translate(15px, -45%) rotate(7deg) scale(1.03);
-            filter: grayscale(0%) brightness(95%);
-        }
-        .about-gallery-frame:hover .about-img-mirror {
-            transform: translate(-15px, -55%) rotate(-8deg) scale(1.03);
-            filter: grayscale(0%) brightness(95%);
-            z-index: 4; /* Dynamic overlap layer shift on separation */
-        }
+        /* Dynamic Hover Effect */
+        .about-gallery-frame:hover .about-img-blazer img { transform: scale(1.03); }
+        .about-gallery-frame:hover .about-img-sweater img { transform: scale(1.04) translate(15px, -10px); }
+        .about-gallery-frame:hover .about-img-mirror img { transform: scale(1.04) translate(-15px, -10px); }
 
         /* Portfolio Grids */
         .section-title { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
@@ -444,7 +416,7 @@
         .kayura-right-pictures-pane img {
             width: 100%;
             height: 180px;
-            object-fit: contain;
+            object-fit: contain; 
             border-radius: 12px;
             border: 1px solid var(--glass-border);
             background: rgba(255, 255, 255, 0.01);
@@ -463,11 +435,8 @@
 
         /* Responsive Breakpoints */
         @media(max-width: 992px) {
-            .about-grid, .soul-container { grid-template-columns: 1fr; gap: 4rem; }
-            .about-gallery-frame { height: 460px; max-width: 480px; margin: 2rem auto; }
-            .about-img-blazer { width: 65%; height: 80%; }
-            .about-img-sweater { right: -2%; width: 52%; }
-            .about-img-mirror { left: -2%; width: 51%; }
+            .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
+            .about-gallery-frame { height: 480px; max-width: 500px; margin: 0 auto; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
             .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -515,7 +484,6 @@
     <section id="about">
         <div class="about-grid">
             <div>
-                <span class="about-subtitle-tag">The Visionary Behind The Strategy</span>
                 <h2 class="section-title" style="margin-bottom: 2rem;">Meet The Person</h2>
                 <p style="font-size: 1.25rem; line-height: 1.8; color: var(--muted-color); margin-bottom: 1.5rem;">
                     I'm a strategist and founder drawn to the emotional side of business: the stories people carry, the identities they aspire toward, and the quiet psychology behind what resonates.
@@ -524,10 +492,19 @@
                     My work sits at the intersection of strategy, culture, consumer behavior, and storytelling. From building a heritage-led skincare brand to shaping trust-first systems for the gig economy, I'm interested in ideas that combine clarity with emotional depth.
                 </p>
             </div>
+            
             <div class="about-gallery-frame">
-                <div class="about-image-wrapper about-img-mirror"><img src="images/Riya_Hero_2.png" alt="Riya Shah Reflective Dimension"></div>
-                <div class="about-image-wrapper about-img-sweater"><img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Perspective"></div>
-                <div class="about-image-wrapper about-img-blazer"><img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait Focus"></div>
+                <div class="about-image-wrapper about-img-mirror">
+                    <img src="images/Riya_Hero_2.png" alt="Riya Shah Mirror View">
+                </div>
+                
+                <div class="about-image-wrapper about-img-sweater">
+                    <img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Lens">
+                </div>
+
+                <div class="about-image-wrapper about-img-blazer">
+                    <img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait">
+                </div>
             </div>
         </div>
     </section>
