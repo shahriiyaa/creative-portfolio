@@ -166,65 +166,11 @@
         .floating-node:hover { border-color: var(--accent-color); transform: scale(1.05); }
         .floating-node::before { content: ''; width: 6px; height: 6px; background-color: var(--accent-color); border-radius: 50%; }
 
-        /* --- ABOUT COLLAGE --- */
-        .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
-        
-        .about-gallery-frame { 
-            position: relative; 
-            width: 100%;
-            height: 600px; 
-            background: transparent;
-            display: block; 
-        }
-
-        .about-image-wrapper { 
-            position: absolute;
-            background: transparent; /* Removed borders and shadow constraints from wrapper */
-        }
-        
-        .about-image-wrapper img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-            display: block; 
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4)); /* Added shadow directly to cutout */
-        }
-
-        /* 1. Black Blazer: Centerpiece & Largest */
-        .about-img-blazer {
-            width: 60%;
-            height: 85%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-        }
-
-        /* 2. Yellow Sweater: To the right, slightly smaller */
-        .about-img-sweater {
-            width: 48%;
-            height: 70%;
-            right: 0%;
-            top: 55%;
-            transform: translateY(-50%);
-            z-index: 2;
-        }
-
-        /* 3. Mirror: To the left, 1% smaller than the yellow sweater */
-        .about-img-mirror {
-            width: 47%;
-            height: 69%;
-            left: 0%;
-            top: 55%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        /* Dynamic Hover Effect */
-        .about-gallery-frame:hover .about-img-blazer img { transform: scale(1.03); }
-        .about-gallery-frame:hover .about-img-sweater img { transform: scale(1.04) translate(15px, -10px); }
-        .about-gallery-frame:hover .about-img-mirror img { transform: scale(1.04) translate(-15px, -10px); }
+        /* About */
+        .about-grid { display: grid; grid-template-columns: 1.21fr 0.79fr; gap: 4rem; align-items: center; }
+        .about-gallery-frame { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; position: relative; }
+        .about-image-wrapper { border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
 
         /* Portfolio Grids */
         .section-title { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
@@ -385,7 +331,7 @@
         
         /* Base Modal Grid Style */
         .modal-showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
-        .modal-showcase-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 12px; border: 1px solid var(--glass-border); }
+        .modal-showcase-grid img { width: 100%; height: 240px; object-fit: contain; background: rgba(255, 255, 255, 0.01); border-radius: 12px; border: 1px solid var(--glass-border); }
         
         /* Split Panel Architecture For Kayura Deep Dive */
         .kayura-split-showcase {
@@ -416,7 +362,7 @@
         .kayura-right-pictures-pane img {
             width: 100%;
             height: 180px;
-            object-fit: contain; 
+            object-fit: contain; /* Prevents the images from being cropped/cut off */
             border-radius: 12px;
             border: 1px solid var(--glass-border);
             background: rgba(255, 255, 255, 0.01);
@@ -436,7 +382,6 @@
         /* Responsive Breakpoints */
         @media(max-width: 992px) {
             .about-grid, .soul-container { grid-template-columns: 1fr; gap: 3rem; }
-            .about-gallery-frame { height: 480px; max-width: 500px; margin: 0 auto; }
             .modal-container { padding: 2rem; }
             .modal-header h2 { font-size: 2.2rem; }
             .kayura-split-showcase { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -492,18 +437,12 @@
                     My work sits at the intersection of strategy, culture, consumer behavior, and storytelling. From building a heritage-led skincare brand to shaping trust-first systems for the gig economy, I'm interested in ideas that combine clarity with emotional depth.
                 </p>
             </div>
-            
             <div class="about-gallery-frame">
-                <div class="about-image-wrapper about-img-mirror">
-                    <img src="images/Riya_Hero_2.png" alt="Riya Shah Mirror View">
+                <div class="about-image-wrapper" style="margin-top: 2rem; overflow: hidden;">
+                    <img src="images/Riya_Hero_3.png" alt="Riya Shah Strategic Lens" style="transform: scale(1.35); transform-origin: top center;">
                 </div>
-                
-                <div class="about-image-wrapper about-img-sweater">
-                    <img src="images/Riya_Hero_1.png" alt="Riya Shah Strategic Lens">
-                </div>
-
-                <div class="about-image-wrapper about-img-blazer">
-                    <img src="images/Riya_Hero_3.png" alt="Riya Shah Portrait">
+                <div class="about-image-wrapper" style="overflow: hidden;">
+                    <img src="images/Riya_Hero_1.png" alt="Riya Shah Portrait" style="transform: scale(1.15);">
                 </div>
             </div>
         </div>
@@ -619,7 +558,7 @@
                 <h2>WorkPluss (Dhruvanta Tech)</h2>
             </div>
             <div class="modal-showcase-grid">
-                <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding" style="background:#221533; padding:1rem; object-fit:contain;">
+                <img src="images/WORKPLUSS_LOGO.png" alt="Workpluss branding">
                 <img src="images/WORKPLUSS_PHONE.png" alt="App UI design">
                 <img src="images/WORKPLUSS_SCREEN.png" alt="Data metrics dashboard">
             </div>
