@@ -166,7 +166,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 11vw; /* Adjusted from 15vw to fit perfectly without cutting H */
+            font-size: 11vw;
             font-weight: 900;
             color: var(--text-color);
             opacity: 0.04;
@@ -287,15 +287,17 @@
             position: absolute; object-fit: contain;
             background: transparent !important; 
             border: none !important;
+            border-radius: 12px; /* Softened edges for decks */
             filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), z-index 0.4s;
         }
-        .gallery-stratcomm .sc-card-1 { left: 15px; top: 50%; transform: translateY(-50%) rotate(-3deg); z-index: 1; width: 45%; height: auto; }
-        .gallery-stratcomm .sc-card-2 { right: 15px; top: 15px; transform: rotate(5deg); z-index: 2; width: 48%; height: auto; }
-        .gallery-stratcomm .sc-card-3 { right: 35px; bottom: 15px; transform: rotate(-4deg); z-index: 3; width: 44%; height: auto; }
+        /* Scaled and shifted inwards to prevent any clipping from the container edge */
+        .gallery-stratcomm .sc-card-1 { left: 25px; top: 50%; transform: translateY(-50%) rotate(-3deg); z-index: 1; width: 38%; height: auto; }
+        .gallery-stratcomm .sc-card-2 { right: 25px; top: 25px; transform: rotate(5deg); z-index: 2; width: 42%; height: auto; }
+        .gallery-stratcomm .sc-card-3 { right: 45px; bottom: 25px; transform: rotate(-4deg); z-index: 3; width: 38%; height: auto; }
         
-        .project-card:hover .gallery-stratcomm .sc-card-1 { transform: translateY(-50%) translate(-8px, -4px) rotate(-6deg); }
-        .project-card:hover .gallery-stratcomm .sc-card-2 { transform: translate(12px, -4px) rotate(8deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-1 { transform: translateY(-50%) translate(-6px, -4px) rotate(-5deg); }
+        .project-card:hover .gallery-stratcomm .sc-card-2 { transform: translate(8px, -4px) rotate(7deg); }
         .project-card:hover .gallery-stratcomm .sc-card-3 { transform: scale(1.05) translateY(-4px); z-index: 5; }
 
         /* Card Content Basics */
@@ -416,56 +418,66 @@
                 position: relative;
             }
 
-            /* Kayura & WorkPluss: Balanced Identity + Stack Previews */
+            /* Kayura & WorkPluss: Balanced Identity + Explicit Tighter Stack Previews for Phone Overlap */
             .gallery-kayura .kayura-logo-side,
             .gallery-workpluss .wp-logo-side {
-                left: 1.5rem !important;
+                left: 1rem !important;
                 top: 50% !important;
                 transform: translateY(-50%) !important;
-                width: 38% !important;
+                width: 40% !important;
                 max-height: 75% !important;
+                z-index: 5 !important;
             }
 
             .gallery-kayura .kayura-img-stack-1,
             .gallery-workpluss .wp-img-stack-1 {
-                top: 15% !important;
-                right: 1.25rem !important;
-                width: 44% !important;
-                height: 65% !important;
+                top: 10% !important;
+                right: 5% !important;
+                width: 48% !important;
+                height: 70% !important;
                 object-fit: cover !important;
+                transform: rotate(5deg) !important;
+                border-radius: 8px !important;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.6) !important;
+                z-index: 2 !important;
             }
 
             .gallery-kayura .kayura-img-stack-2,
             .gallery-workpluss .wp-img-stack-2 {
-                bottom: 15% !important;
-                right: 2.5rem !important;
+                bottom: 10% !important;
+                right: 15% !important;
                 left: auto !important;
-                width: 40% !important;
-                height: 50% !important;
+                width: 46% !important;
+                height: 60% !important;
                 object-fit: cover !important;
+                transform: rotate(-6deg) !important;
+                border-radius: 8px !important;
+                box-shadow: 0 12px 25px rgba(0,0,0,0.8) !important;
+                z-index: 3 !important;
             }
 
             /* Stratcomm Presentation Fix: Restores aspect-ratio decks, prevents cutoff */
             .gallery-stratcomm .sc-deck {
                 position: absolute !important;
-                width: 46% !important;
+                width: 40% !important; /* Smaller size safely inside bounds */
                 height: auto !important;
                 max-height: none !important;
                 object-fit: contain !important;
+                border-radius: 10px !important; /* Retained rounded corners */
             }
             .gallery-stratcomm .sc-card-1 {
-                left: 1.25rem !important;
+                left: 8% !important; /* Kept safely away from edges */
                 top: 50% !important;
                 transform: translateY(-50%) rotate(-4deg) !important;
             }
             .gallery-stratcomm .sc-card-2 {
-                right: 1.25rem !important;
-                top: 12% !important;
+                right: 8% !important;
+                top: 15% !important;
                 transform: rotate(6deg) !important;
             }
             .gallery-stratcomm .sc-card-3 {
-                right: 2.25rem !important;
-                bottom: 12% !important;
+                right: 18% !important;
+                bottom: 15% !important;
                 transform: rotate(-4deg) !important;
             }
         }
@@ -547,10 +559,10 @@
             
             /* REFINE 5 — StratComm Cards */
             .card-image-gallery { border-bottom: 2px solid var(--glass-border); border-radius: 0; background: #000; height: 260px !important; overflow: visible !important; }
-            .gallery-stratcomm .sc-deck { object-fit: contain !important; background: transparent !important; height: auto !important; max-height: 140px !important; }
-            .gallery-stratcomm .sc-card-1 { left: 5% !important; top: 50% !important; transform: translateY(-50%) rotate(-4deg) !important; width: 42% !important; }
-            .gallery-stratcomm .sc-card-2 { right: 5% !important; top: 10% !important; transform: rotate(5deg) !important; width: 42% !important; }
-            .gallery-stratcomm .sc-card-3 { right: 12% !important; bottom: 8% !important; transform: rotate(-3deg) !important; width: 40% !important; }
+            .gallery-stratcomm .sc-deck { object-fit: contain !important; background: transparent !important; height: auto !important; max-height: 140px !important; border-radius: 10px !important; }
+            .gallery-stratcomm .sc-card-1 { left: 8% !important; top: 50% !important; transform: translateY(-50%) rotate(-4deg) !important; width: 38% !important; }
+            .gallery-stratcomm .sc-card-2 { right: 8% !important; top: 12% !important; transform: rotate(5deg) !important; width: 38% !important; }
+            .gallery-stratcomm .sc-card-3 { right: 18% !important; bottom: 12% !important; transform: rotate(-3deg) !important; width: 36% !important; }
 
             .card-content { padding: 2rem 1.5rem; position: relative; z-index: 2; background: #080808; }
             
@@ -824,7 +836,7 @@
             <button class="close-button">×</button>
             <div class="modal-header">
                 <span>Corporate Strategy / Stakeholder Ecosystems</span>
-                <h2>Strategic Communication Decksy</h2>
+                <h2>Strategic Communication Decks</h2>
             </div>
             <div class="modal-showcase-grid">
                 <img src="images/STRATCOMM_1.png" alt="Value parameters" style="border: none; background: transparent;">
