@@ -247,15 +247,6 @@
         
         .hero-tagline { font-size: 0.95rem; color: var(--muted-color); margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; opacity: 0.7; }
 
-        .constellation-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
-        .floating-node {
-            position: absolute; padding: 1rem 1.5rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 50px;
-            cursor: pointer; backdrop-filter: blur(5px); transition: border-color 0.3s, transform 0.3s ease; display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-        .floating-node:hover { border-color: var(--accent-color); transform: scale(1.05) translateY(-5px); }
-        .floating-node::before { content: ''; width: 6px; height: 6px; background-color: var(--accent-color); border-radius: 50%; }
-
         /* --- ABOUT COLLAGE --- */
         .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
         
@@ -447,7 +438,17 @@
         /* Footer / Contact */
         #contact { text-align: center; align-items: center; }
         .contact-links { display: flex; flex-direction: column; gap: 1.5rem; margin: 3rem 0; align-items: center; width: 100%; }
-        .contact-link { font-size: 2.5rem; font-weight: 700; color: var(--text-color); text-decoration: none; transition: all 0.3s ease; display: inline-block; word-break: break-all; position: relative; }
+        
+        .contact-link { 
+            font-size: 1.5rem; /* Reduced from 2.5rem to look sophisticated and less loud */
+            font-weight: 700; 
+            color: var(--text-color); 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+            display: inline-block; 
+            word-break: break-all; 
+            position: relative; 
+        }
         .contact-link::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: -5px; left: 0; background-color: var(--accent-color); transform-origin: bottom right; transition: transform 0.3s ease-out; }
         .contact-link:hover { color: var(--accent-color); transform: translateY(-3px); }
         .contact-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
@@ -457,7 +458,6 @@
 
         .site-footer { padding: 2.5rem; text-align: center; border-top: 1px solid var(--glass-border); color: var(--muted-color); font-size: 0.85rem; letter-spacing: 1px; }
 
-        /* Default hidden elements for responsive structures */
         .mobile-only { display: none; }
         .scroll-divider { display: none; }
 
@@ -544,7 +544,7 @@
             :root { --accent-color: #ffffff; }
 
             .mobile-only { display: block; }
-            header, .constellation-container, .fixed-nav { display: none !important; }
+            header, .fixed-nav { display: none !important; }
             
             .section-title { font-size: clamp(1.6rem, 6vw, 2rem); font-weight: 900; text-transform: uppercase; border-bottom: 4px solid var(--text-color); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
             .section-subtitle { font-size: 1.2rem; font-weight: bold; }
@@ -673,14 +673,6 @@
                 <a href="#project-kayura" class="btn primary-btn scroll-link">View My Work</a>
                 <a href="#contact" class="btn secondary-btn scroll-link">Let's Work Together</a>
             </div>
-        </div>
-
-        <div class="constellation-container" id="canvas">
-            <div class="floating-node" data-target="about" style="top: 22%; left: 10%;">About Me</div>
-            <div class="floating-node" data-modal="kayura" style="top: 74%; left: 15%;">Kayura Homemade</div>
-            <div class="floating-node" data-modal="workpluss" style="top: 66%; right: 12%;">WorkPluss</div>
-            <div class="floating-node" data-target="soul" style="top: 25%; right: 15%;">The Unfinished You</div>
-            <div class="floating-node" data-target="contact" style="top: 80%; right: 46%;">Contact</div>
         </div>
     </section>
 
@@ -836,6 +828,7 @@
 
     <div class="scroll-divider mobile-only"></div>
 
+    <!-- Modals -->
     <div class="case-study-overlay" id="modal-kayura">
         <div class="modal-container">
             <button class="close-button">×</button>
@@ -1031,14 +1024,6 @@
     </footer>
 
     <script>
-        /*
-         * FINAL QA / VERIFICATION NOTES:
-         * - LinkedIn URL has been updated successfully to active dynamic pathing.
-         * - Staggered fade-up animations have been implemented using a timeout queue inside the IntersectionObserver.
-         * - Mobile spacing pass completed: consistent padding applied across all sections, CTA gap fixed, and content edge-touching prevented.
-         * - Scroll targets updated: "View My Work" now anchors directly to `#project-kayura`.
-         */
-
         // --- Custom Cursor ---
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
@@ -1046,7 +1031,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        const hoverables = document.querySelectorAll('.floating-node, .nav-dot, .project-card, .contact-link, .close-button, .btn, .service-card');
+        const hoverables = document.querySelectorAll('.nav-dot, .project-card, .contact-link, .close-button, .btn, .service-card');
         hoverables.forEach(item => {
             item.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
             item.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
@@ -1065,7 +1050,7 @@
                     return String.fromCharCode(65 + Math.floor(Math.random() * 26));
                 }).join("");
                 if(iterations >= original.length) clearInterval(interval);
-                iterations += 1/2; // adjusted speed for longer text
+                iterations += 1/2; 
             }, 30);
             count = (count + 1) % phrases.length;
         }
@@ -1080,7 +1065,7 @@
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, delay);
-                    delay += 100; // Stagger siblings that enter the viewport simultaneously
+                    delay += 100; 
                     fadeObserver.unobserve(entry.target);
                 }
             });
@@ -1117,12 +1102,6 @@
             });
         });
 
-        document.querySelectorAll('.floating-node[data-modal]').forEach(node => {
-            node.addEventListener('click', () => {
-                openModal(node.getAttribute('data-modal'));
-            });
-        });
-
         document.querySelectorAll('.close-button').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -1142,10 +1121,10 @@
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         };
 
-        document.querySelectorAll('.floating-node[data-target], .scroll-link').forEach(node => {
+        document.querySelectorAll('.scroll-link').forEach(node => {
             node.addEventListener('click', (e) => {
                 if(node.tagName === 'A') e.preventDefault();
-                const targetVal = node.getAttribute('data-target') || node.getAttribute('href').substring(1);
+                const targetVal = node.getAttribute('href').substring(1);
                 scrollTowards(targetVal);
             });
         });
@@ -1169,23 +1148,8 @@
             });
         });
 
-        // --- CONSTELLATION DRIFT ---
-        const nodes = document.querySelectorAll('.floating-node');
-        let angle = 0;
-        function driftNodes() {
-            angle += 0.007;
-            nodes.forEach((node, idx) => {
-                const offsetX = Math.cos(angle + idx) * 12;
-                const offsetY = Math.sin(angle + idx) * 12;
-                node.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-            });
-            requestAnimationFrame(driftNodes);
-        }
-        driftNodes();
-
         /* === MOBILE JS === */
         if (window.innerWidth <= 768) {
-            // Mobile Menu Control
             const menuBtn = document.getElementById('mobileMenuBtn');
             const menuOverlay = document.getElementById('mobileMenuOverlay');
             const menuLinks = document.querySelectorAll('.mobile-nav-link');
@@ -1214,7 +1178,6 @@
                 });
             }
 
-            // Sweeping Divider Observer
             const dividers = document.querySelectorAll('.scroll-divider');
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -1227,7 +1190,6 @@
                 
                 dividers.forEach(div => observer.observe(div));
             } else {
-                // Fallback for older browsers
                 dividers.forEach(div => div.classList.add('drawn'));
             }
         }
