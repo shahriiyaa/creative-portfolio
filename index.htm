@@ -655,7 +655,7 @@
     <nav class="fixed-nav" id="fixedNav">
         <div class="nav-dot active" data-target="hero"><span class="label">Home</span></div>
         <div class="nav-dot" data-target="about"><span class="label">About</span></div>
-        <div class="nav-dot" data-target="services"><span class="label">Expertise</span></div>
+        <div class="nav-dot" data-target="services"><span class="label">Services</span></div>
         <div class="nav-dot" data-target="work"><span class="label">Strategic Work</span></div>
         <div class="nav-dot" data-target="soul"><span class="label">Soul Project</span></div>
         <div class="nav-dot" data-target="contact"><span class="label">Contact</span></div>
@@ -836,6 +836,7 @@
 
     <div class="scroll-divider mobile-only"></div>
 
+    <!-- Modals -->
     <div class="case-study-overlay" id="modal-kayura">
         <div class="modal-container">
             <button class="close-button">×</button>
@@ -1012,7 +1013,7 @@
             
             <div class="contact-links">
                 <a href="mailto:riya.shah01@yahoo.com" class="contact-link">riya.shah01@yahoo.com</a>
-                <a href="https://www.linkedin.com/in/shahriiyyaa/" target="_blank" class="contact-link">LinkedIn &rarr;</a>
+                <a href="#" target="_blank" class="contact-link"><!-- TODO: confirm LinkedIn URL -->LinkedIn &rarr;</a>
             </div>
             
             <p style="color: var(--muted-color); letter-spacing: 2px; font-weight: bold; font-size: 1.1rem;">+91 8805055860</p>
@@ -1033,9 +1034,9 @@
     <script>
         /*
          * FINAL QA / VERIFICATION NOTES:
-         * - LinkedIn URL implemented.
-         * - Staggered fade-up animations implemented using a timeout queue.
-         * - Mobile spacing pass completed.
+         * - LinkedIn URL is currently using a placeholder ("#"). Search for "TODO: confirm LinkedIn URL" in the HTML to insert the final link.
+         * - Staggered fade-up animations have been implemented using a timeout queue inside the IntersectionObserver.
+         * - Mobile spacing pass completed: consistent padding applied across all sections, CTA gap fixed, and content edge-touching prevented.
          * - Scroll targets updated: "View My Work" now anchors directly to `#project-kayura`.
          */
 
@@ -1080,7 +1081,7 @@
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, delay);
-                    delay += 100; // Stagger siblings
+                    delay += 100; // Stagger siblings that enter the viewport simultaneously
                     fadeObserver.unobserve(entry.target);
                 }
             });
@@ -1185,6 +1186,7 @@
 
         /* === MOBILE JS === */
         if (window.innerWidth <= 768) {
+            // Mobile Menu Control
             const menuBtn = document.getElementById('mobileMenuBtn');
             const menuOverlay = document.getElementById('mobileMenuOverlay');
             const menuLinks = document.querySelectorAll('.mobile-nav-link');
@@ -1213,6 +1215,7 @@
                 });
             }
 
+            // Sweeping Divider Observer
             const dividers = document.querySelectorAll('.scroll-divider');
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -1225,9 +1228,11 @@
                 
                 dividers.forEach(div => observer.observe(div));
             } else {
+                // Fallback for older browsers
                 dividers.forEach(div => div.classList.add('drawn'));
             }
         }
+        /* === END MOBILE JS === */
     </script>
 </body>
 </html>
